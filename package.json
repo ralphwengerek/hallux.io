@@ -3,40 +3,56 @@
   "version": "1.0.0",
   "description": "A personal site",
   "main": "index.js",
+  "scripts": {
+    "start": "NODE_ENV=development parcel src/index.html --open",
+    "build": "NODE_ENV=production parcel build src/index.html --public-url ./",
+    "pretest": "yarn run test:eslint",
+    "test:eslint": "eslint src/ --ext .js --ext .jsx",
+    "test": "jest --watch"
+  },
   "dependencies": {
+    "@testing-library/react": "^8.0.1",
     "axios": "^0.19.0",
+    "jest-dom": "^3.4.0",
+    "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.1"
   },
   "devDependencies": {
-    "@testing-library/react": "^8.0.1",
+    "@babel/core": "^7.4.5",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.4.4",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-react": "^7.0.0",
     "autoprefixer": "^9.6.0",
     "babel-eslint": "^10.0.1",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-react": "^6.24.1",
+    "babel-jest": "^24.8.0",
     "cypress": "^3.3.1",
     "docz": "^1.2.0",
     "docz-theme-default": "^1.2.0",
     "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-cypress": "^2.2.1",
+    "eslint-plugin-import": "^2.17.3",
+    "eslint-plugin-jest": "^22.6.4",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.13.0",
+    "eslint-plugin-react-hooks": "^1.6.0",
     "husky": "^2.4.0",
-    "jest-dom": "^3.4.0",
-    "lint-staged": "^8.1.7",
+    "jest": "^24.8.0",
+    "lint-staged": "^8.2.0",
     "node-sass": "^4.12.0",
     "parcel-bundler": "^1.12.3",
+    "parcel-plugin-eslint": "^1.0.7",
+    "parcel-plugin-static-files-copy": "^2.1.1",
     "prettier": "^1.17.1",
     "react-hooks-testing-library": "^0.5.1",
     "react-hot-loader": "^4.9.0"
   },
-  "scripts": {
-    "start": "NODE_ENV=development parcel src/index.html --open",
-    "build": "NODE_ENV=production parcel build src/index.html --public-url ./",
-    "precommit": "lint-staged",
-    "pretest": "yarn run test:eslint",
-    "test:eslint": "eslint src/ --ext .js --ext .jsx"
+  "peerDependencies": {
+    "react-test-renderer": "^16.8.6"
   },
   "husky": {
     "hooks": {
@@ -46,13 +62,18 @@
   "lint-staged": {
     "*.{js,jsx,json,scss,css,md}": [
       "prettier --write",
-      "git add"
+      "git add ."
     ]
   },
   "jest": {
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}",
       "!<rootDir>/src/**/index.js"
+    ],
+    "setupFilesAfterEnv": [
+      "@testing-library/react/cleanup-after-each",
+      "jest-dom/extend-expect",
+      "<rootDir>/src/config/setupTests.js"
     ]
   },
   "postcss": {

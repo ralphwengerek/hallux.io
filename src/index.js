@@ -1,11 +1,11 @@
 /* global module */
 import React from "react";
 import { render } from "react-dom";
+import App from "./App";
 
 const root = document.getElementById("root");
 
 const renderApp = () => {
-  const App = require("./components/App").default;
   render(<App />, root);
 };
 
