@@ -3,12 +3,6 @@
   "version": "1.0.0",
   "description": "A personal site",
   "main": "index.js",
-  "scripts": {
-    "start": "parcel ./src/index.html",
-    "lint:sc": "stylelint './src/**/*.js'",
-    "lint:js": "eslint .",
-    "lint": "yarn lint:sc && yarn lint:js"
-  },
   "dependencies": {
     "axios": "^0.19.0",
     "react": "^16.8.6",
@@ -16,28 +10,33 @@
     "react-router-dom": "^5.0.1"
   },
   "devDependencies": {
-    "babel-preset-react": "^6.24.1",
+    "@testing-library/react": "^8.0.1",
+    "autoprefixer": "^9.6.0",
+    "babel-eslint": "^10.0.1",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
     "cypress": "^3.3.1",
     "docz": "^1.2.0",
     "docz-theme-default": "^1.2.0",
-    "eslint-config-airbnb": "^17.1.0",
-    "eslint-plugin-cypress": "^2.2.1",
-    "eslint-plugin-import": "^2.17.3",
-    "eslint-plugin-jest": "^22.6.4",
-    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint": "^5.16.0",
     "eslint-plugin-react": "^7.13.0",
-    "eslint-plugin-react-hooks": "^1.6.0",
-    "husky": "^2.3.0",
+    "husky": "^2.4.0",
     "jest-dom": "^3.4.0",
     "lint-staged": "^8.1.7",
+    "node-sass": "^4.12.0",
     "parcel-bundler": "^1.12.3",
-    "@testing-library/react": "^8.0.1",
+    "prettier": "^1.17.1",
     "react-hooks-testing-library": "^0.5.1",
-    "stylelint": "^10.0.1",
-    "stylelint-config-recommended": "^2.2.0",
-    "stylelint-config-styled-components": "^0.1.1",
-    "stylelint-processor-styled-components": "^1.8.0"
+    "react-hot-loader": "^4.9.0"
+  },
+  "scripts": {
+    "start": "NODE_ENV=development parcel src/index.html --open",
+    "build": "NODE_ENV=production parcel build src/index.html --public-url ./",
+    "precommit": "lint-staged",
+    "pretest": "yarn run test:eslint",
+    "test:eslint": "eslint src/ --ext .js --ext .jsx"
   },
   "husky": {
     "hooks": {
@@ -45,8 +44,9 @@
     }
   },
   "lint-staged": {
-    "*.js": [
-      "git add ."
+    "*.{js,jsx,json,scss,css,md}": [
+      "prettier --write",
+      "git add"
     ]
   },
   "jest": {
@@ -54,6 +54,20 @@
       "src/**/*.{js,jsx}",
       "!<rootDir>/src/**/index.js"
     ]
+  },
+  "postcss": {
+    "modules": false,
+    "plugins": {
+      "autoprefixer": {
+        "browsers": [
+          ">1%",
+          "last 4 versions",
+          "Firefox ESR",
+          "not ie < 9"
+        ],
+        "flexbox": "no-2009"
+      }
+    }
   },
   "eslintIgnore": [
     "/src/setupTests.js",
