@@ -4,20 +4,28 @@
   "description": "A personal site",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_ENV=development parcel src/index.html --open",
+    "serve": "NODE_ENV=development parcel src/index.html --open",
     "build": "NODE_ENV=production parcel build src/index.html --public-url ./",
     "pretest": "yarn run test:eslint",
     "test:eslint": "eslint src/ --ext .js --ext .jsx",
-    "test": "jest --watch"
+    "test": "jest --watch",
+    "e2e": "cypress run --reporter junit --reporter-options mochaFile=results/output.xml"
   },
   "dependencies": {
+    "@material-ui/core": "^4.0.2",
+    "@material-ui/icons": "^4.0.1",
     "@testing-library/react": "^8.0.1",
     "axios": "^0.19.0",
+    "dotenv": "^8.0.0",
+    "immer": "^3.1.2",
     "jest-dom": "^3.4.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-router-dom": "^5.0.1"
+    "react-redux": "^7.0.3",
+    "react-router-dom": "^5.0.1",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
@@ -49,7 +57,8 @@
     "parcel-plugin-static-files-copy": "^2.1.1",
     "prettier": "^1.17.1",
     "react-hooks-testing-library": "^0.5.1",
-    "react-hot-loader": "^4.9.0"
+    "react-hot-loader": "^4.9.0",
+    "redux-devtools": "^3.5.0"
   },
   "peerDependencies": {
     "react-test-renderer": "^16.8.6"
@@ -95,9 +104,9 @@
     }
   },
   "eslintIgnore": [
-    "/src/setupTests.js",
+    "/src/config/setupTests.js",
     "/coverage/*",
-    "/build/*"
+    "/dist/*"
   ],
   "author": "Ralph Wengerek",
   "license": "ISC"

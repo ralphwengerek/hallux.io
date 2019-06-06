@@ -5,7 +5,14 @@
     "plugin:react/recommended",
     "plugin:jsx-a11y/recommended"
   ],
-  "plugins": ["cypress", "import", "jest", "react", "react-hooks", "jsx-a11y"],
+  "plugins": [
+    "cypress",
+    "import",
+    "jest",
+    "jsx-a11y",
+    "react",
+    "react-hooks"
+  ],
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
   },
