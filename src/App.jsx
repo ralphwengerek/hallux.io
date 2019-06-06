@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const App = () => <h1 data-testid="header">Hello World</h1>;
 
