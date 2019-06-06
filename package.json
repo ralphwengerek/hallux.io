@@ -63,6 +63,10 @@
     "*.{js,jsx}": [
       "eslint --fix",
       "git add ."
+    ],
+    "*.{scss,css,md}": [
+      "prettier --write",
+      "git add ."
     ]
   },
   "jest": {
