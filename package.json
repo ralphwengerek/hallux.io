@@ -9,7 +9,8 @@
     "pretest": "yarn run test:eslint",
     "test:eslint": "eslint src/ --ext .js --ext .jsx",
     "test": "jest --watch",
-    "e2e": "cypress run --reporter junit --reporter-options mochaFile=results/output.xml"
+    "e2e": "cypress run --reporter junit --reporter-options mochaFile=results/output.xml",
+    "lint:css":"stylelint './src/**/*.jsx'"
   },
   "dependencies": {
     "@material-ui/core": "^4.0.2",
@@ -39,6 +40,7 @@
     "autoprefixer": "^9.6.0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^24.8.0",
+    "babel-plugin-styled-components": "^1.10.0",
     "cross-env": "^5.2.0",
     "cypress": "^3.3.1",
     "docz": "^1.2.0",
@@ -53,6 +55,7 @@
     "eslint-plugin-react-hooks": "^1.6.0",
     "husky": "^2.4.0",
     "jest": "^24.8.0",
+    "jest-styled-components": "^6.3.1",
     "lint-staged": "^8.2.0",
     "node-sass": "^4.12.0",
     "parcel-bundler": "^1.12.3",
@@ -61,7 +64,11 @@
     "prettier": "^1.18.2",
     "react-hooks-testing-library": "^0.5.1",
     "react-hot-loader": "^4.11.0",
-    "redux-devtools": "^3.5.0"
+    "redux-devtools": "^3.5.0",
+    "stylelint": "^10.1.0",
+    "stylelint-config-recommended": "^2.2.0",
+    "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-processor-styled-components": "^1.8.0"
   },
   "peerDependencies": {
     "react-test-renderer": "^16.8.6"

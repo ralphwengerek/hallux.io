@@ -6,7 +6,7 @@ This repository serves to showcase my technology preferences when developing a R
 
 ### Tech stack 💻☁️
 
-- [Parcel 📦](https://github.com/parcel-bundler/parcel)
+- [Parcel](https://github.com/parcel-bundler/parcel) 📦
 - [React v16.8.6](https://github.com/facebook/react)
 - [React-redux v7](https://github.com/reduxjs/react-redux)
 - [Styled Components v4](https://github.com/styled-components/styled-components)
@@ -16,7 +16,7 @@ This repository serves to showcase my technology preferences when developing a R
 - [React-Testing-Libary](https://github.com/testing-library/react-testing-library)
 - [Cypress](https://github.com/cypress-io/cypress)
 - [Docz](https://github.com/pedronauck/docz)
-- [Docker 🐋](https://www.docker.com/)
+- [Docker](https://www.docker.com/) 🐋
 
 ### 🔧 Installation and Usage 🏃
 
