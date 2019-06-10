@@ -1,17 +1,14 @@
 /* global module */
 import React from 'react';
 import { render } from 'react-dom';
-import { Provider } from 'react-redux';
-import store from './redux/store';
-import App from './App';
-
+import { Layout, Provider } from './components';
 
 const root = document.getElementById('root');
 
 const renderApp = () => {
   render(
-    <Provider store={store}>
-      <App />
+    <Provider>
+      <Layout />
     </Provider>,
     root,
   );
