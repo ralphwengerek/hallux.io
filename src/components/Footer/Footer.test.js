@@ -1,5 +1,5 @@
 import React from 'react';
-import render from '../../utils/testUtils';
+import { render } from '../../utils/testUtils';
 import Footer from './Footer';
 
 describe('<Footer />', () => {

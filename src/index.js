@@ -2,6 +2,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Layout, Provider } from './components';
+import 'normalize.css';
 
 const root = document.getElementById('root');
 

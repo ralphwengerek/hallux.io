@@ -5,7 +5,6 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import store from '../../redux/store';
 import { lightTheme } from '../../theme';
-import 'normalize.css';
 
 const Provider = ({ children }) => (
   <ReduxProvider store={store}>
