@@ -7,6 +7,7 @@ const userReducer = handleActions(
     LOGOUT: (user, payload) => {
       console.log('LOGOUT: ', user);
       console.log('Payload: ', payload);
+      user = initialState.user;
     },
     LOGIN: (user) => {
       user.loginAttempts += 1;
@@ -17,6 +18,7 @@ const userReducer = handleActions(
       user.email = payload.idTokenPayload.email;
       user.name = payload.idTokenPayload.name;
       user.picture = payload.idTokenPayload.picture;
+      user.isAuthenticated = true;
     },
     LOGIN_FAILURE: (user, payload) => {
       console.log('LOGIN_FAILURE: ', user);
