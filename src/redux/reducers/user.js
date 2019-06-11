@@ -5,9 +5,8 @@ import initialState from '../initialState';
 const userReducer = handleActions(
   {
     LOGOUT: (user, payload) => {
-      console.log('LOGOUT: ', user);
-      console.log('Payload: ', payload);
-      user = initialState.user;
+      // TODO: clear user to initial
+      user = user.isAuthenticated = false;
     },
     LOGIN: (user) => {
       user.loginAttempts += 1;
