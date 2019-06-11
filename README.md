@@ -17,6 +17,8 @@ This repository serves to showcase my technology preferences when developing a R
 - [Cypress](https://github.com/cypress-io/cypress)
 - [Docz](https://github.com/pedronauck/docz)
 - [Docker](https://www.docker.com/) 🐋
+- [Husky](https://github.com/typicode/husky) 🐶
+- [Auth0](https://github.com/auth0) 🔐
 
 ### 🔧 Installation and Usage 🏃
 

@@ -14,7 +14,9 @@
     "react-hooks"
   ],
   "rules": {
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/forbid-prop-types": "off",
+    "consistent-return": "off"
   },
   "env": {
     "browser": true,

@@ -1,10 +1,14 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import styled from 'styled-components';
-import { About, Blog, Home } from '../../pages';
+import {
+  About, Blog, Home, NotFound,
+} from '../../pages';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import GlobalStyle from '../GlobalStyle/GlobalStyle';
+import Callback from '../Auth/Callback';
+
 
 const Site = styled.div`
   display: flex;
@@ -23,9 +27,13 @@ const Layout = () => (
     <Site>
       <Header />
       <Content>
-        <Route path="/" exact component={Home} />
-        <Route path="/about" component={About} />
-        <Route path="/blog" component={Blog} />
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/about" component={About} />
+          <Route path="/blog" component={Blog} />
+          <Route path="/callback" component={Callback} />
+          <Route component={NotFound} />
+        </Switch>
       </Content>
       <Footer />
     </Site>

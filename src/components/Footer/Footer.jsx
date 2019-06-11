@@ -1,15 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
+import media from '../../utils/mediaQuery';
 
 const StyledFooter = styled.footer`
     background-color: ${({ theme }) => theme.colors.footerBackground};
     color: ${({ theme }) => theme.colors.footer};
-    min-height: 60px;
+    min-height: 40px;
+
+    ${media.up.tablet`
+      min-height: 60px;
+    `}
 `;
 
 const Footer = () => (
   <StyledFooter>
-    <p>FOOTER</p>
+    FOOTER
   </StyledFooter>
 );
 
