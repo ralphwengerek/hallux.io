@@ -24,9 +24,13 @@ const addLoggingToStore = (store) => {
 };
 
 const configureStore = () => {
-  const persistedState = loadState();
-  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+  let composeEnhancers = compose;
+  if (process.env.NODE_ENV !== 'production') {
+    // eslint-disable-next-line no-underscore-dangle
+    composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+  }
 
+  const persistedState = loadState();
   const store = createStore(
     rootReducer,
     persistedState || initialState,

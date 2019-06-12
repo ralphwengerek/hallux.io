@@ -1,21 +1,26 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { render } from '@testing-library/react';
-import Provider from '../components/Provider/Provider';
+import { ThemeProvider } from 'styled-components';
+import { MemoryRouter } from 'react-router-dom';
+import mockTheme from './mocks/mockTheme';
 
-const DefaultProviders = ({ children }) => (
-  <Provider>
-    {children}
-  </Provider>
-);
-
-DefaultProviders.propTypes = {
-  children: PropTypes.element.isRequired,
+// TODO: REDUX MockSTORE
+const customRender = (node, options) => {
+  const rendered = render(
+    <ThemeProvider theme={mockTheme}>
+      <MemoryRouter>{node}</MemoryRouter>
+    </ThemeProvider>,
+    { ...options },
+  );
+  return {
+    ...rendered,
+    rerender: (ui, rerenderOptions) => customRender(ui,
+      {
+        container: rendered.container,
+        ...rerenderOptions,
+      }),
+  };
 };
-
-const customRender = (ui, options) => render(
-  ui, { wrapper: DefaultProviders, ...options },
-);
 
 // re-export everything
 export * from '@testing-library/react';

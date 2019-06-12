@@ -10,11 +10,11 @@ const store = configureStore();
 
 const Provider = ({ children }) => (
   <ReduxProvider store={store}>
-    <Router>
-      <ThemeProvider theme={lightTheme}>
+    <ThemeProvider theme={lightTheme}>
+      <Router>
         { children}
-      </ThemeProvider>
-    </Router>
+      </Router>
+    </ThemeProvider>
   </ReduxProvider>
 );
 
