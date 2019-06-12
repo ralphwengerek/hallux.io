@@ -1,30 +1,27 @@
 /* eslint-disable */
 import handleActions from '../handleActions';
 import initialState from '../initialState';
+import merge from 'lodash/merge';
 
 const userReducer = handleActions(
   {
-    LOGOUT: (user, payload) => {
-      console.log('LOGOUT: ', user);
-      console.log('Payload: ', payload);
-      user = initialState.user;
+    LOGOUT: (user) => {
+      merge(user, initialState.user);
     },
     LOGIN: (user) => {
       user.loginAttempts += 1;
     },
-    LOGIN_SUCCESS: (user, payload) => {
-      user.accessToken = payload.accessToken;
-      user.expiresIn = payload.expiresIn;
-      user.email = payload.idTokenPayload.email;
-      user.name = payload.idTokenPayload.name;
-      user.picture = payload.idTokenPayload.picture;
+    LOGIN_SUCCESS: (user, authResponse) => {
+      user.accessToken = authResponse.accessToken;
+      user.expiresIn = authResponse.expiresIn;
+      user.email = authResponse.idTokenPayload.email;
+      user.name = authResponse.idTokenPayload.name;
+      user.picture = authResponse.idTokenPayload.picture;
       user.isAuthenticated = true;
     },
     LOGIN_FAILURE: (user, payload) => {
-      console.log('LOGIN_FAILURE: ', user);
-      console.log('Payload: ', payload);
-    }
-
+      console.log('LOGIN_FAILURE: ', payload);
+    },
   },
   initialState.user,
 );
