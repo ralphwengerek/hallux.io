@@ -5,14 +5,14 @@ import media from './mediaQuery';
 
 describe('media', () => {
   const createDiv = (query) => {
-    const Elm = styled.div.attrs({
+    const Element = styled.div.attrs({
       'data-testid': 'media-test',
     })`
       ${query`
         color: red;
       `}
     `;
-    return render(<Elm />);
+    return render(<Element />);
   };
 
   describe('media.down', () => {
