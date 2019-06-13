@@ -1,6 +1,6 @@
 import auth0 from 'auth0-js';
 
-class Auth {
+class AuthService {
   constructor() {
     this.auth0 = new auth0.WebAuth({
       domain: process.env.AUTH0_DOMAIN,
@@ -8,6 +8,7 @@ class Auth {
       redirectUri: process.env.AUTH0_REDIRECT_URI,
       responseType: 'token id_token',
       scope: 'openid profile email',
+      // audience: 'https://' + YOUR_DOMAIN + '/userinfo',
     });
   }
 
@@ -71,6 +72,6 @@ class Auth {
   }
 }
 
-const auth = new Auth();
+const authService = new AuthService();
 
-export default auth;
+export default authService;

@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, Link } from 'react-router-dom';
 import px from '../../utils/sizeMixin';
 import media from '../../utils/mediaQuery';
+import AvatarProfile from '../AvatarProfile/AvatarProfile';
 import Button from '../Button/Button';
-import * as userActions from '../../redux/actions/user';
+import { login, logout } from '../../redux/actions/user';
+import { getUser } from '../../redux/reducers/user';
 
 const StyledHeader = styled.header`
   box-shadow: 0 0 5px #cccccc;
@@ -40,7 +41,6 @@ const Title = styled(Link)`
   margin-left: ${px(8)};
   color: ${({ theme }) => theme.colors.primary};
   text-decoration: none;
-  font-family: 'Roboto';
   font-weight: bold;
   font-size: ${px(24)};
 
@@ -60,38 +60,29 @@ const NavButton = styled(NavLink)`
   }
 `;
 
-const Header = ({ isAuthenticated, logout, login }) => (
-  <StyledHeader>
-    <NavBarContainer>
-      <Company>
-        <Title to="/">Hallux.io</Title>
-      </Company>
-      <Navigation>
-        <NavButton to="/" exact activeClassName="active">Home</NavButton>
-        <NavButton to="/blog" activeClassName="active">Blog</NavButton>
-        <NavButton to="/about" activeClassName="active">About</NavButton>
-        { isAuthenticated
-          ? <Button onClick={() => logout()}>Sign out</Button>
-          : <Button onClick={() => login()}>Sign in</Button>
-        }
-      </Navigation>
-    </NavBarContainer>
-  </StyledHeader>
-);
+const Header = () => {
+  const dispatch = useDispatch();
+  const user = useSelector(getUser);
 
-Header.propTypes = {
-  isAuthenticated: PropTypes.bool.isRequired,
-  logout: PropTypes.func.isRequired,
-  login: PropTypes.func.isRequired,
+  return (
+    <StyledHeader>
+      <NavBarContainer>
+        <Company>
+          <Title to="/">Hallux.io</Title>
+        </Company>
+        <Navigation>
+          <NavButton to="/" exact activeClassName="active">Home</NavButton>
+          <NavButton to="/blog" activeClassName="active">Blog</NavButton>
+          <NavButton to="/about" activeClassName="active">About</NavButton>
+          { user.isAuthenticated
+            ? <Button onClick={() => dispatch(logout())}>Sign out</Button>
+            : <Button onClick={() => dispatch(login())}>Sign in</Button>
+        }
+        </Navigation>
+      </NavBarContainer>
+      { user.isAuthenticated && <AvatarProfile profile={user} /> }
+    </StyledHeader>
+  );
 };
 
-const mapStateToProps = ({ user }) => ({
-  isAuthenticated: user.isAuthenticated,
-});
-
-const mapDispatchToProps = ({
-  login: userActions.login,
-  logout: userActions.logout,
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default Header;

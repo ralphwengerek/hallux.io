@@ -1,4 +1,4 @@
-import auth from '../../utils/Auth';
+import authService from '../../utils/AuthService';
 
 
 const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
@@ -11,7 +11,7 @@ export const login = () => (dispatch) => {
     type: LOGIN,
     payload: null,
   });
-  auth.login();
+  authService.login();
 };
 
 export const logout = () => (dispatch) => {
@@ -19,7 +19,7 @@ export const logout = () => (dispatch) => {
     type: LOGOUT,
     payload: null,
   });
-  auth.logout();
+  authService.logout();
 };
 
 export const loginSuccess = authResult => ({
@@ -32,7 +32,7 @@ export const loginFailure = err => ({
   payload: err,
 });
 
-export const handleAuthentication = () => dispatch => auth
+export const handleAuthentication = () => dispatch => authService
   .handleAuthentication()
   .then((authResult) => {
     dispatch(loginSuccess(authResult));

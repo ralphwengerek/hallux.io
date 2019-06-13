@@ -27,3 +27,9 @@ const userReducer = handleActions(
 );
 
 export default userReducer;
+
+// Selectors
+
+export const getUserIsAuthenticated = ({ user }) => user.isAuthenticated;
+
+export const getUser = ({ user }) => user;

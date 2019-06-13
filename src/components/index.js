@@ -1,3 +1,4 @@
+import AvatarProfile from './AvatarProfile/AvatarProfile';
 import Button from './Button/Button';
 import Footer from './Footer/Footer';
 import GlobalStyle from './GlobalStyle/GlobalStyle';
@@ -7,6 +8,7 @@ import Provider from './Provider/Provider';
 
 
 export {
+  AvatarProfile,
   Button,
   Footer,
   GlobalStyle,
