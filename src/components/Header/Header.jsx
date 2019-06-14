@@ -6,7 +6,7 @@ import px from '../../utils/sizeMixin';
 import media from '../../utils/mediaQuery';
 import AvatarProfile from '../AvatarProfile/AvatarProfile';
 import Button from '../Button/Button';
-import { login, logout } from '../../redux/actions/user';
+import { login } from '../../redux/actions/user';
 import { getUser } from '../../redux/reducers/user';
 
 const StyledHeader = styled.header`
@@ -49,7 +49,10 @@ const Title = styled(Link)`
   `}
 `;
 
-const Navigation = styled.nav``;
+const Navigation = styled.nav`
+  display: flex;
+  align-items: center;
+`;
 
 const NavButton = styled(NavLink)`
   margin: ${px(16)};
@@ -75,12 +78,12 @@ const Header = () => {
           <NavButton to="/blog" activeClassName="active">Blog</NavButton>
           <NavButton to="/about" activeClassName="active">About</NavButton>
           { user.isAuthenticated
-            ? <Button onClick={() => dispatch(logout())}>Sign out</Button>
+            ? <AvatarProfile profile={user} />
             : <Button onClick={() => dispatch(login())}>Sign in</Button>
-        }
+          }
         </Navigation>
       </NavBarContainer>
-      { user.isAuthenticated && <AvatarProfile profile={user} /> }
+
     </StyledHeader>
   );
 };

@@ -8,14 +8,11 @@ const AvatarLink = styled.a`
   text-decoration: none;
 `;
 
-const Avatar = styled.span`
+const Avatar = styled.div`
   background-image: url(${({ picture }) => picture});
   background-size: 32px 32px;
   border-radius: 50%;
-  display: block;
-  margin: -1px;
   overflow: hidden;
-  position: relative;
   height: 32px;
   width: 32px;
   z-index: 0;
@@ -26,13 +23,20 @@ const Avatar = styled.span`
   }
 `;
 
+const ProfileMenu = styled.div`
+
+`;
+
 const AvatarProfile = ({ profile }) => {
   const [isOpen, setOpen] = useState(false);
 
   return (
-    <AvatarLink onClick={() => setOpen(!isOpen)}>
-      <Avatar picture={profile.picture} />
-    </AvatarLink>
+    <>
+      <AvatarLink onClick={() => setOpen(!isOpen)}>
+        <Avatar picture={profile.picture}>&nbsp;</Avatar>
+      </AvatarLink>
+      <ProfileMenu />
+    </>
   );
 };
 
