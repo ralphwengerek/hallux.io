@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { render } from './testUtils';
+import { render } from '@testing-library/react';
 import media from './mediaQuery';
 
 describe('media', () => {

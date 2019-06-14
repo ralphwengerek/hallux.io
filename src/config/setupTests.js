@@ -1,4 +1,3 @@
-import 'jest-styled-components';
 
 /* eslint-disable no-console */
 // this is just a little hack to silence a warning that we'll get until react
