@@ -6,6 +6,7 @@ const StyledFooter = styled.footer`
     background-color: ${({ theme }) => theme.colors.footerBackground};
     color: ${({ theme }) => theme.colors.footer};
     min-height: 40px;
+    transition: all 0.5s ease;
 
     ${media.up.tablet`
       min-height: 60px;

@@ -8,6 +8,7 @@ import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import GlobalStyle from '../GlobalStyle/GlobalStyle';
 import Callback from '../Auth/Callback';
+import ProfilePanel from '../ProfilePanel/ProfilePanel';
 
 
 const Site = styled.div`
@@ -27,6 +28,7 @@ const Layout = () => (
     <Site>
       <Header />
       <Content>
+        <ProfilePanel />
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/about" component={About} />

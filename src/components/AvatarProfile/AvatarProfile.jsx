@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { toggleProfilePanel } from '../../redux/actions/app';
 
 const AvatarLink = styled.a`
   color: #000;
@@ -23,20 +25,12 @@ const Avatar = styled.div`
   }
 `;
 
-const ProfileMenu = styled.div`
-
-`;
-
 const AvatarProfile = ({ profile }) => {
-  const [isOpen, setOpen] = useState(false);
-
+  const dispatch = useDispatch();
   return (
-    <>
-      <AvatarLink onClick={() => setOpen(!isOpen)}>
-        <Avatar picture={profile.picture}>&nbsp;</Avatar>
-      </AvatarLink>
-      <ProfileMenu />
-    </>
+    <AvatarLink onClick={() => dispatch(toggleProfilePanel())}>
+      <Avatar picture={profile.picture}>&nbsp;</Avatar>
+    </AvatarLink>
   );
 };
 

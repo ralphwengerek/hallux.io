@@ -10,7 +10,7 @@ const lightTheme = {
     footerBackground: '#333',
   },
   typography: {
-    fontFamily: 'Roboto',
+    fontFamily: 'Nunito Sans, Montserrat',
   },
 };
 

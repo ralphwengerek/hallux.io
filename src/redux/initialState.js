@@ -1,4 +1,7 @@
 export default {
+  app: {
+    showProfileDrawer: false,
+  },
   todos: [],
   user: {
     accessToken: undefined,

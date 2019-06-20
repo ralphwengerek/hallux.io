@@ -13,9 +13,9 @@ const StyledHeader = styled.header`
   box-shadow: 0 0 5px #cccccc;
   position: fixed;
   top: 0;
-  transition: all 0.5s ease-out;
   width: 100%;
-  z-index: 9000000;
+  z-index: 101;
+  background-color: #fff;
 `;
 
 const NavBarContainer = styled.div`
@@ -25,6 +25,7 @@ const NavBarContainer = styled.div`
   margin: 0 ${px(8)};
   min-height: 40px;
   color: #fff;
+  transition: all 0.5s ease;
 
   ${media.up.tablet`
     margin: 0 ${px(32)};
@@ -58,8 +59,13 @@ const NavButton = styled(NavLink)`
   margin: ${px(16)};
   text-decoration: none;
   color: ${({ theme }) => theme.colors.primary};
+  transition: all 0.2s;
+
   &.active {
     color: ${({ theme }) => theme.colors.accent};
+  }
+  &:hover {
+    transform: scale(1.2);
   }
 `;
 

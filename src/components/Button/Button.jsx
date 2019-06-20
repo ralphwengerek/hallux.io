@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-const StyledButton = styled.button``;
+const StyledButton = styled.button`
+`;
 
 const Button = ({ onClick, children }) => (
   <StyledButton onClick={onClick}>
