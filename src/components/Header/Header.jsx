@@ -2,34 +2,41 @@ import React from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, Link } from 'react-router-dom';
-import px from '../../utils/sizeMixin';
-import media from '../../utils/mediaQuery';
-import AvatarProfile from '../AvatarProfile/AvatarProfile';
+import { px } from '../../utils/pixel';
+import { media } from '../../utils/mediaQuery';
 import Button from '../Button/Button';
+import Avatar from '../Avatar/Avatar';
 import { login } from '../../redux/actions/user';
 import { getUser } from '../../redux/reducers/user';
+import { toggleProfilePanel } from '../../redux/actions/app';
 
-const StyledHeader = styled.header`
+const HeaderContainer = styled.header`
   box-shadow: 0 0 5px #cccccc;
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 101;
   background-color: #fff;
+  display: flex;
+  justify-content: center;
 `;
 
 const NavBarContainer = styled.div`
   align-items: center;
   display:flex;
   justify-content: space-between;
-  margin: 0 ${px(8)};
+  padding: 0 ${px(8)};
   min-height: 40px;
   color: #fff;
   transition: all 0.5s ease;
+  width:100%;
 
   ${media.up.tablet`
-    margin: 0 ${px(32)};
     min-height: 60px;
+  `}
+
+  ${media.up.desktop`
+    max-width: ${({ theme }) => theme.sizing.desktop};
   `}
 `;
 
@@ -53,6 +60,7 @@ const Title = styled(Link)`
 const Navigation = styled.nav`
   display: flex;
   align-items: center;
+  margin-right: ${px(8)};
 `;
 
 const NavButton = styled(NavLink)`
@@ -69,12 +77,24 @@ const NavButton = styled(NavLink)`
   }
 `;
 
+const AvatarLink = styled.a`
+  color: #000;
+  cursor: pointer;
+  text-decoration: none;
+`;
+
+
 const Header = () => {
   const dispatch = useDispatch();
   const user = useSelector(getUser);
 
+  const onAvatarClick = (event) => {
+    event.stopPropagation();
+    dispatch(toggleProfilePanel());
+  };
+
   return (
-    <StyledHeader>
+    <HeaderContainer>
       <NavBarContainer>
         <Company>
           <Title to="/">Hallux.io</Title>
@@ -84,13 +104,16 @@ const Header = () => {
           <NavButton to="/blog" activeClassName="active">Blog</NavButton>
           <NavButton to="/about" activeClassName="active">About</NavButton>
           { user.isAuthenticated
-            ? <AvatarProfile profile={user} />
+            ? (
+              <AvatarLink onClick={onAvatarClick}>
+                <Avatar picture={user.picture}>&nbsp;</Avatar>
+              </AvatarLink>
+            )
             : <Button onClick={() => dispatch(login())}>Sign in</Button>
           }
         </Navigation>
       </NavBarContainer>
-
-    </StyledHeader>
+    </HeaderContainer>
   );
 };
 

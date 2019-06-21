@@ -32,4 +32,6 @@ export default userReducer;
 
 export const getUserIsAuthenticated = ({ user }) => user.isAuthenticated;
 
+export const getUserPicture = ({ user }) => user.picture;
+
 export const getUser = ({ user }) => user;

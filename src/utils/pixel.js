@@ -3,9 +3,13 @@ const round = (value, precision = 0) => {
   return Math.round(value * multiplier) / multiplier;
 };
 
-const calculateRelativeSize = (px, {
+const pixel = (px, {
   base = 16,
   unit = 'rem',
 } = {}) => `${round(px / base, 5)}${unit}`;
 
-export default calculateRelativeSize;
+export default pixel;
+
+export {
+  pixel as px,
+};
