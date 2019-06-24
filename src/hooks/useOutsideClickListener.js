@@ -1,22 +1,23 @@
 import { useEffect, useState } from 'react';
 
-const useOutsideClickListener = (ref) => {
+const useOutsideClickListener = (ref, exclude) => {
   const [isOutside, setIsOutside] = useState(null);
 
-  const handleClickOutside = (event) => {
-    if (ref.current && !ref.current.contains(event.target)) {
-      setIsOutside(true);
-    } else setIsOutside(false);
-  };
-
   useEffect(() => {
+    const handleClickOutside = (event) => {
+      if ((ref.current && ref.current.contains(event.target))
+      || event.target.closest(exclude) !== null) {
+        setIsOutside(false);
+      } else setIsOutside(true);
+    };
+
     document.addEventListener('click', handleClickOutside);
     return () => {
       document.removeEventListener('click', handleClickOutside);
     };
-  });
+  }, []);
 
-  return [isOutside];
+  return isOutside;
 };
 
 export default useOutsideClickListener;

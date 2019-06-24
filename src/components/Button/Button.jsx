@@ -1,23 +1,34 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { px } from '../../utils/pixel';
 
-const StyledButton = styled.button`
+const StyledButton = styled.a`
+  margin: ${px(16)};
+  text-decoration: none;
+  color: ${({ theme }) => theme.colors.primary};
+  transition: all 0.2s;
+  cursor: pointer;
+
+  &.active {
+    color: ${({ theme }) => theme.colors.accent};
+  }
+  &:hover {
+    transform: scale(1.2);
+  }
 `;
 
-const Button = ({ onClick, children }) => (
-  <StyledButton onClick={onClick}>
+const Button = ({ children, ...rest }) => (
+  <StyledButton {...rest}>
     { children}
   </StyledButton>
 );
 
 Button.propTypes = {
-  onClick: PropTypes.func,
   children: PropTypes.any.isRequired,
 };
 
 Button.defaultProps = {
-  onClick: Button.onClick,
 };
 
 export default Button;

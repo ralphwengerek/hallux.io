@@ -1,7 +1,9 @@
-import app from './app';
+import menu from './menu';
+import profilePanel from './profilePanel';
 import user from './user';
 
 export {
-  app as appActions,
+  menu as menuActions,
+  profilePanel as profilePanelActions,
   user as userActions,
 };

@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
-import app from './app';
+import menu from './menu';
 import todos from './todos';
 import user from './user';
+import profilePanel from './profilePanel';
 
 export default combineReducers({
-  app,
+  menu,
+  profilePanel,
   todos,
   user,
 });

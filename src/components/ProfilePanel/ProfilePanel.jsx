@@ -2,13 +2,14 @@ import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { CSSTransition } from 'react-transition-group';
 import { useSelector, useDispatch } from 'react-redux';
-import { getProfileDrawerState } from '../../redux/reducers/app';
-import { closeProfilePanel } from '../../redux/actions/app';
+import { getprofilePanelState } from '../../redux/reducers/profilePanel';
+import { closeProfilePanel } from '../../redux/actions/profilePanel';
 import { getUser } from '../../redux/reducers/user';
 import { px } from '../../utils/pixel';
 import { media } from '../../utils/mediaQuery';
 import Avatar from '../Avatar/Avatar';
-import useOutsideClickListener from '../../hooks/useOutsideClickListener';
+import { logout } from '../../redux/actions/user';
+import Button from '../Button/Button';
 
 const PanelContainer = styled.aside.attrs({ role: 'dialog' })`
   position: absolute;
@@ -17,7 +18,7 @@ const PanelContainer = styled.aside.attrs({ role: 'dialog' })`
   background: #f6f7f9 linear-gradient(to bottom,#fff,#fff 4.75rem,#e8ebf1 4.75rem,#e8ebf1 4.8125rem,#f6f7f9 4.8125rem,#f6f7f9);
   box-shadow: 0 0 ${px(10)} 0 rgba(0,0,0,.15);
   overflow-y: auto;
-  transition: all .3s ease;
+  transition: all .4s cubic-bezier(0.42, 0.01, 0.21, 1);
   z-index: 100;
   right: 0px;
   top: 0;
@@ -58,25 +59,37 @@ const UserAttribute = styled.div`
   font-size: ${({ theme }) => theme.typography.large};
 `;
 
+const ProfileAction = styled.div`
+  padding: ${px(16)} 0;
+  text-align: center;
+`;
+
 const ProfilePanel = () => {
-  const open = useSelector(getProfileDrawerState);
+  const open = useSelector(getprofilePanelState);
   const user = useSelector(getUser);
   const panelRef = useRef(null);
-  const [isOutsideClick] = useOutsideClickListener(panelRef);
   const dispatch = useDispatch();
-  const isOpen = useSelector(getProfileDrawerState);
+  const isOpen = useSelector(getprofilePanelState);
+
+  const signOut = () => dispatch(logout());
 
   useEffect(() => {
-    if (isOpen) {
-      dispatch(closeProfilePanel());
-    }
-  }, [isOutsideClick]);
+    const handleClickOutside = (event) => {
+      if (isOpen && !panelRef.current.contains(event.target)) {
+        dispatch(closeProfilePanel());
+      }
+    };
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  });
 
   return (
     <CSSTransition
       in={open}
       classNames="slide"
-      timeout={300}
+      timeout={400}
       unmountOnExit
     >
       <PanelContainer ref={panelRef}>
@@ -85,6 +98,16 @@ const ProfilePanel = () => {
           <UserAttribute>{user.name}</UserAttribute>
         </ProfileContainer>
 
+        <ProfileAction>
+          <Button onClick={signOut}>
+              Sign out
+          </Button>
+        </ProfileAction>
+        <ProfileAction>
+          <Button onClick={signOut}>
+              Sign out
+          </Button>
+        </ProfileAction>
       </PanelContainer>
     </CSSTransition>
   );

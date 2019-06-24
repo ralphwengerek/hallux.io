@@ -1,6 +1,9 @@
 export default {
-  app: {
-    showProfileDrawer: false,
+  menu: {
+    open: false,
+  },
+  profilePanel: {
+    open: false,
   },
   todos: [],
   user: {

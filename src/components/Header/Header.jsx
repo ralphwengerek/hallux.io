@@ -1,14 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { px } from '../../utils/pixel';
 import { media } from '../../utils/mediaQuery';
+import Hamburger from '../Navigation/Hamburger';
+import Navigation from '../Navigation/Navigation';
 import Button from '../Button/Button';
 import Avatar from '../Avatar/Avatar';
 import { login } from '../../redux/actions/user';
 import { getUser } from '../../redux/reducers/user';
-import { toggleProfilePanel } from '../../redux/actions/app';
+import { toggleProfilePanel } from '../../redux/actions/profilePanel';
 
 const HeaderContainer = styled.header`
   box-shadow: 0 0 5px #cccccc;
@@ -26,7 +28,7 @@ const NavBarContainer = styled.div`
   display:flex;
   justify-content: space-between;
   padding: 0 ${px(8)};
-  min-height: 40px;
+  min-height: 50px;
   color: #fff;
   transition: all 0.5s ease;
   width:100%;
@@ -57,32 +59,11 @@ const Title = styled(Link)`
   `}
 `;
 
-const Navigation = styled.nav`
-  display: flex;
-  align-items: center;
-  margin-right: ${px(8)};
-`;
-
-const NavButton = styled(NavLink)`
-  margin: ${px(16)};
-  text-decoration: none;
-  color: ${({ theme }) => theme.colors.primary};
-  transition: all 0.2s;
-
-  &.active {
-    color: ${({ theme }) => theme.colors.accent};
-  }
-  &:hover {
-    transform: scale(1.2);
-  }
-`;
-
 const AvatarLink = styled.a`
   color: #000;
   cursor: pointer;
   text-decoration: none;
 `;
-
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -97,21 +78,19 @@ const Header = () => {
     <HeaderContainer>
       <NavBarContainer>
         <Company>
-          <Title to="/">Hallux.io</Title>
+          <Hamburger />
+          <Title to="/">Hello world</Title>
         </Company>
-        <Navigation>
-          <NavButton to="/" exact activeClassName="active">Home</NavButton>
-          <NavButton to="/blog" activeClassName="active">Blog</NavButton>
-          <NavButton to="/about" activeClassName="active">About</NavButton>
-          { user.isAuthenticated
-            ? (
-              <AvatarLink onClick={onAvatarClick}>
-                <Avatar picture={user.picture}>&nbsp;</Avatar>
-              </AvatarLink>
-            )
-            : <Button onClick={() => dispatch(login())}>Sign in</Button>
-          }
-        </Navigation>
+
+        <Navigation />
+        { user.isAuthenticated
+          ? (
+            <AvatarLink onClick={onAvatarClick}>
+              <Avatar picture={user.picture}>&nbsp;</Avatar>
+            </AvatarLink>
+          )
+          : <Button onClick={() => dispatch(login())}>Sign in</Button>
+        }
       </NavBarContainer>
     </HeaderContainer>
   );
