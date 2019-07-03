@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "serve": "cross-env NODE_ENV=development parcel src/index.html --open",
-    "build": "cross-env NODE_ENV=production parcel build src/index.html --public-url ./",
+    "prebuild": "rm -rf dist/*",
+    "build": "cross-env NODE_ENV=production parcel build src/index.html --public-url .",
     "pretest": "yarn run test:eslint",
     "test:eslint": "eslint src/ --ext .js --ext .jsx",
     "test": "jest --watch",
@@ -107,20 +108,6 @@
       "jest-styled-components",
       "<rootDir>/src/config/setupTests.js"
     ]
-  },
-  "postcss": {
-    "modules": false,
-    "plugins": {
-      "autoprefixer": {
-        "browsers": [
-          ">1%",
-          "last 4 versions",
-          "Firefox ESR",
-          "not ie < 9"
-        ],
-        "flexbox": "no-2009"
-      }
-    }
   },
   "eslintIgnore": [
     "/src/config/setupTests.js",

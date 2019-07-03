@@ -7,6 +7,7 @@ import configureStore from '../../redux/configureStore';
 import { lightTheme } from '../../theme';
 
 const store = configureStore();
+// const baseName = process.env.BASE_URL;
 
 const Provider = ({ children }) => (
   <ReduxProvider store={store}>
