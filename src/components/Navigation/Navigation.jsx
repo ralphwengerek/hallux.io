@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { CSSTransition } from 'react-transition-group';
 import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -20,8 +20,14 @@ const NavigationContainer = styled.nav`
   z-index: 10;
   transition: all .4s cubic-bezier(0.42, 0.01, 0.21, 1);
   background: #fff linear-gradient(to bottom,#f5f5f5,#e8e8e8);
+  ${({ open }) => !open && css`
+      transform: translateX(-100%);
+  `}
 
   ${media.up.phone`
+    ${({ open }) => !open && css`
+      transform: translateX(0);
+    `}
     top: 0px;
     background: none;
     position: relative;
@@ -70,9 +76,9 @@ const Navigation = () => {
       in={open}
       classNames="slide"
       timeout={400}
-      unmountOnExit
+
     >
-      <NavigationContainer>
+      <NavigationContainer open={open}>
         <NavButton to="/" exact activeClassName="active" onClick={closeMenuAction}>Home</NavButton>
         <NavButton to="/blog" activeClassName="active" onClick={closeMenuAction}>Blog</NavButton>
         <NavButton to="/about" activeClassName="active" onClick={closeMenuAction}>About</NavButton>
