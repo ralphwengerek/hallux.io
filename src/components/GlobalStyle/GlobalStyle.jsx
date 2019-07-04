@@ -4,6 +4,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     font-family: ${({ theme }) => theme.typography.fontFamily};
     font-size: 16px;
+    color: #555555;
   }
 `;
 
