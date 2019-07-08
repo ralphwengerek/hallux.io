@@ -6,6 +6,9 @@ const GlobalStyle = createGlobalStyle`
     font-size: 16px;
     color: #555555;
   }
+  .react-icons {
+    vertical-align: middle;
+  }
 `;
 
 export default GlobalStyle;

@@ -51,6 +51,7 @@ const NavButton = styled(NavLink)`
   text-decoration: none;
   color: ${({ theme }) => theme.colors.primary};
   transition: all 0.2s;
+  cursor: pointer;
 
   &.active {
     color: ${({ theme }) => theme.colors.accent};

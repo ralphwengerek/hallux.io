@@ -1,0 +1,40 @@
+[
+  {
+    "id": 1,
+    "title": "The best way to use useEffect",
+    "image": "/images/post1.jpg",
+    "summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam luctus pharetra quam sed lobortis. Curabitur interdum tortor vel ex sodales, eget sollicitudin est suscipit. Donec placerat commodo sapien, in ullamcorper",
+    "publishDate": "20 May 2019",
+    "tags": [{
+      "id": 1,
+      "value": "React"
+    },
+    {
+      "id": 2,
+      "value": "Node.js"
+    },
+    {
+      "id": 3,
+      "value": "Express"
+    }]
+  },
+  {
+    "id": 2,
+    "title": "How I learned to use MongoDB in 24 hours",
+    "image": "/images/post2.jpg",
+    "summary": "Curabitur interdum tortor vel ex sodales, eget sollicitudin est suscipit. Donec placerat commodo sapien, in ullamcorper",
+    "publishDate": "1 July 2019",
+    "tags": [{
+      "id": 1,
+      "value": "MongoDB"
+    },
+    {
+      "id": 2,
+      "value": "Node.js"
+    },
+    {
+      "id": 3,
+      "value": "Express"
+    }]
+  }
+]

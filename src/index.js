@@ -1,4 +1,3 @@
-/* global module */
 import React from 'react';
 import { render } from 'react-dom';
 import { Layout, Provider } from './components';
@@ -17,6 +16,6 @@ const renderApp = () => {
 
 renderApp();
 
-if (module.hot) {
-  module.hot.accept(renderApp);
-}
+// if (module.hot) {
+//   module.hot.accept(renderApp);
+// }

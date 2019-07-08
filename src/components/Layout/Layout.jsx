@@ -20,13 +20,13 @@ const Site = styled.div`
 `;
 
 const ContentContainer = styled.div`
-  padding-top: 50px;
+  padding-top: 30px;
   flex: 1;
   display: flex;
   justify-content: center;
 
   ${media.up.tablet`
-    padding-top: 60px;
+    padding-top: 40px;
   `}
 
 `;
@@ -37,7 +37,7 @@ const Content = styled.div`
   ${media.up.desktop`
     width: ${({ theme }) => theme.sizing.desktop};
   `}
-  background-color: lightblue;
+  /* background-color: lightblue; */
 `;
 
 const Layout = () => {
