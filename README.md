@@ -10,6 +10,8 @@ This repository serves to showcase my technology preferences when developing a R
 - [React v16.8.6](https://github.com/facebook/react) (Hooks!)
 - [React-redux v7](https://github.com/reduxjs/react-redux) (Hooks!)
 - [Styled Components v4](https://github.com/styled-components/styled-components)
+- [Express](https://github.com/expressjs/express)
+- [MongoDB](https://github.com/mongodb/mongo)
 - [Immer](https://github.com/immerjs/immer)
 - [Axios](https://github.com/axios/axios)
 - [Jest](https://github.com/facebook/jest)
