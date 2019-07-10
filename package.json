@@ -106,6 +106,10 @@
       "src/**/*.{js,jsx}",
       "!<rootDir>/src/**/index.js"
     ],
+    "coverageReporters": [
+      "text",
+      "html"
+    ],
     "setupFilesAfterEnv": [
       "@testing-library/react/cleanup-after-each",
       "jest-dom/extend-expect",
