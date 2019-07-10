@@ -4,9 +4,9 @@
   "description": "A personal site",
   "main": "index.js",
   "scripts": {
-    "serve": "cross-env NODE_ENV=development parcel src/index.html --open",
+    "serve": "cross-env NODE_ENV=development parcel src/client/index.html --open",
     "prebuild": "rm -rf dist/*",
-    "build": "cross-env NODE_ENV=production parcel build src/index.html --public-url .",
+    "build": "cross-env NODE_ENV=production parcel build src/client/index.html --public-url .",
     "pretest": "yarn run test:eslint",
     "test:eslint": "eslint src/ --ext .js --ext .jsx",
     "test": "jest --watch",
@@ -123,5 +123,8 @@
     "/dist/*"
   ],
   "author": "Ralph Wengerek",
-  "license": "ISC"
+  "license": "ISC",
+  "staticFiles": {
+    "staticPath": ["./src/client/static"]
+  }
 }
