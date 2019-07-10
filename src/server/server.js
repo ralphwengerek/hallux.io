@@ -1,11 +1,11 @@
 /* eslint-disable no-console */
-import express from 'express';
-import path from 'path';
-import bodyParser from 'body-parser';
-import session from 'express-session';
-import cors from 'cors';
-import errorHandler from 'errorhandler';
-// import mongoose from 'mongoose';
+const express = require('express');
+const path = require('path');
+const bodyParser = require('body-parser');
+const session = require('express-session');
+const cors = require('cors');
+const errorHandler = require('errorhandler');
+// const mongoose = require('mongoose';
 
 const isProduction = process.env.NODE_ENV === 'production';
 const port = process.env.PORT || 3000;
