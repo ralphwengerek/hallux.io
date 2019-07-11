@@ -5,16 +5,11 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const cors = require('cors');
 const errorHandler = require('errorhandler');
-// const mongoose = require('mongoose';
+const mongoose = require('mongoose');
+const chalk = require('chalk');
+const config = require('../shared/config');
 
-const isProduction = process.env.NODE_ENV === 'production';
-const port = process.env.PORT || 3000;
-
-// const Task = require('./api/models/todoListModel')
-// created model loading here
-// mongoose instance connection url connection
-// mongoose.Promise = global.Promise;
-// mongoose.connect('mongodb://root:root@mongo:27017/TodoDB', { auth: { authdb: 'admin' }, useNewUrlParser: true });
+mongoose.Promise = global.Promise;
 
 const app = express();
 
@@ -26,11 +21,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   secret: 'LightBlog', cookie: { maxAge: 60000 }, resave: false, saveUninitialized: false,
 }));
+// app.use(require('./routes'));
 
-if (!isProduction) {
+if (!config.isProduction) {
   app.use(errorHandler());
 }
 
-app.listen(port);
-
-console.log(`Node.js + MongoDB RESTful API server started on: ${port}`);
+mongoose.connect(`mongodb://${config.mongoHost}:${config.mongoPort}/hallux`, {
+  useNewUrlParser: true,
+}).then(() => {
+  console.log(chalk.blue.bold('Database Server connected'));
+  app.listen(config.serverPort, config.serverHost, () => {
+    console.log(chalk.blue.bold('Server started: ') + chalk.blue.underline.bold(`http://${config.serverHost}:${config.serverPort}`));
+    console.log(chalk.green.bold('CONFIGURATION:\n'), config);
+  });
+}).catch(err => console.log(err));
