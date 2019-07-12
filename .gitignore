@@ -27,7 +27,6 @@ yarn-error.log*
 package-lock.json
 
 .cache/
-.vscode/
 
 # Docz
 .docz

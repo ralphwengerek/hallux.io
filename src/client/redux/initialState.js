@@ -5,7 +5,7 @@ export default {
   profilePanel: {
     open: false,
   },
-  todos: [],
+  posts: [],
   user: {
     accessToken: undefined,
     expiresIn: undefined,

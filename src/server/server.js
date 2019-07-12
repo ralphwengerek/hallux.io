@@ -1,13 +1,15 @@
 /* eslint-disable no-console */
-const express = require('express');
-const path = require('path');
-const bodyParser = require('body-parser');
-const session = require('express-session');
-const cors = require('cors');
-const errorHandler = require('errorhandler');
-const mongoose = require('mongoose');
-const chalk = require('chalk');
-const config = require('../shared/config');
+import express from 'express';
+import path from 'path';
+import bodyParser from 'body-parser';
+import session from 'express-session';
+import cors from 'cors';
+import errorHandler from 'errorhandler';
+import mongoose from 'mongoose';
+import chalk from 'chalk';
+import config from '../shared/config';
+import './models';
+import routes from './routes';
 
 mongoose.Promise = global.Promise;
 
@@ -21,7 +23,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   secret: 'LightBlog', cookie: { maxAge: 60000 }, resave: false, saveUninitialized: false,
 }));
-// app.use(require('./routes'));
+
+routes(app);
 
 if (!config.isProduction) {
   app.use(errorHandler());
@@ -29,8 +32,10 @@ if (!config.isProduction) {
 
 mongoose.connect(`mongodb://${config.mongoHost}:${config.mongoPort}/hallux`, {
   useNewUrlParser: true,
+  useCreateIndex: true,
 }).then(() => {
   console.log(chalk.blue.bold('Database Server connected'));
+
   app.listen(config.serverPort, config.serverHost, () => {
     console.log(chalk.blue.bold('Server started: ') + chalk.blue.underline.bold(`http://${config.serverHost}:${config.serverPort}`));
     console.log(chalk.green.bold('CONFIGURATION:\n'), config);
