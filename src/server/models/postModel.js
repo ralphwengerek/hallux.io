@@ -34,6 +34,7 @@ const postModel = new Schema({
     type: Schema.ObjectId,
     ref: 'Tag',
   }],
+  keywords: [String],
   likes: {
     type: Number,
     default: 0,

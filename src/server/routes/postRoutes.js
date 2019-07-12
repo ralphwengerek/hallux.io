@@ -1,13 +1,14 @@
+import config from '../../shared/config';
 import {
   createPost, findOne, findAll, updatePost, deletePost,
 } from '../controllers/postController';
 
 const postRoutes = (app) => {
-  app.route('/posts')
+  app.route(`${config.apiRoutePrefix}/posts`)
     .get(findAll)
     .post(createPost);
 
-  app.route('/posts/:id')
+  app.route(`${config.apiRoutePrefix}/posts/:id`)
     .get(findOne)
     .put(updatePost)
     .delete(deletePost);

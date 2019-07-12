@@ -1,13 +1,14 @@
+import config from '../../shared/config';
 import {
   createTag, findOne, findAll, updateTag, deleteTag,
 } from '../controllers/tagController';
 
 const tagRoutes = (app) => {
-  app.route('/tags')
+  app.route(`${config.apiRoutePrefix}/tags`)
     .get(findAll)
     .post(createTag);
 
-  app.route('/tags/:id')
+  app.route(`${config.apiRoutePrefix}/tags/:id`)
     .get(findOne)
     .put(updateTag)
     .delete(deleteTag);

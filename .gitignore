@@ -30,3 +30,6 @@ package-lock.json
 
 # Docz
 .docz
+
+# Server build
+/src/server/public

@@ -21,4 +21,5 @@ export default {
   mongoUser: process.env.MONGO_USER,
   mongoPort: process.env.MONGO_PORT,
   isProduction: process.env.NODE_ENV === 'production',
+  apiRoutePrefix: process.env.API_ROUTE_PREFIX,
 };
