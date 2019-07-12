@@ -9,7 +9,7 @@ if (result.error) {
   throw result.error;
 }
 
-export default {
+const configuration = {
   baseUrl: process.env.BASE_URL,
   auth0Domain: process.env.AUTH0_DOMAIN,
   auth0ClientId: process.env.AUTH0_CLIENTID,
@@ -23,3 +23,7 @@ export default {
   isProduction: process.env.NODE_ENV === 'production',
   apiRoutePrefix: process.env.API_ROUTE_PREFIX,
 };
+
+export const apiUrl = `http://${configuration.serverHost}${configuration.apiRoutePrefix}`;
+
+export default configuration;
