@@ -5,7 +5,11 @@ export default {
   profilePanel: {
     open: false,
   },
-  posts: [],
+  post: {
+    items: [],
+    isLoading: false,
+    error: undefined,
+  },
   user: {
     accessToken: undefined,
     expiresIn: undefined,

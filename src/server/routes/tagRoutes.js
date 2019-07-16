@@ -1,4 +1,4 @@
-import config from '../../shared/config';
+import config from '../config';
 import {
   createTag, findOne, findAll, updateTag, deleteTag,
 } from '../controllers/tagController';

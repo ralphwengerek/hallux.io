@@ -1,4 +1,4 @@
-import config from '../../shared/config';
+import config from '../config';
 import {
   createPost, findOne, findAll, updatePost, deletePost,
 } from '../controllers/postController';

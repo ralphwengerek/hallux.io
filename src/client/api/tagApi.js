@@ -1,12 +1,20 @@
 import axios from 'axios';
-import { apiUrl } from '../../shared/config';
+import { apiUrl } from '../config';
 
-export const createTag = tag => axios.tag(`${apiUrl}/tags`, tag);
+const createTag = tag => axios.tag(`${apiUrl}/tags`, tag);
 
-export const getTags = () => axios.get(`${apiUrl}/tags`);
+const getTags = () => axios.get(`${apiUrl}/tags`);
 
-export const getTag = id => axios.get(`${apiUrl}/tags/${id}`);
+const getTag = id => axios.get(`${apiUrl}/tags/${id}`);
 
-export const updateTag = tag => axios.put(`${apiUrl}/tags/${tag.id}`, tag);
+const updateTag = tag => axios.put(`${apiUrl}/tags/${tag.id}`, tag);
 
-export const deleteTag = id => axios.delete(`${apiUrl}/tags/${id}`);
+const deleteTag = id => axios.delete(`${apiUrl}/tags/${id}`);
+
+export default {
+  createTag,
+  getTags,
+  getTag,
+  updateTag,
+  deleteTag,
+};

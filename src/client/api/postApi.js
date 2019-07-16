@@ -1,12 +1,20 @@
 import axios from 'axios';
-import { apiUrl } from '../../shared/config';
+import { apiUrl } from '../config';
 
-export const createPost = post => axios.post(`${apiUrl}/posts`, post);
+const createPost = post => axios.post(`${apiUrl}/posts`, post);
 
-export const getPosts = () => axios.get(`${apiUrl}/posts`);
+const fetchPosts = () => axios.get(`${apiUrl}/posts`);
 
-export const getPost = id => axios.get(`${apiUrl}/posts/${id}`);
+const fetchPost = id => axios.get(`${apiUrl}/posts/${id}`);
 
-export const updatePost = post => axios.put(`${apiUrl}/posts/${post.id}`, post);
+const updatePost = post => axios.put(`${apiUrl}/posts/${post.id}`, post);
 
-export const deletePost = id => axios.delete(`${apiUrl}/posts/${id}`);
+const deletePost = id => axios.delete(`${apiUrl}/posts/${id}`);
+
+export default {
+  createPost,
+  fetchPosts,
+  fetchPost,
+  updatePost,
+  deletePost,
+};

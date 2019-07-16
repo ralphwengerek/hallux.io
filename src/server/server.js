@@ -8,7 +8,7 @@ import errorHandler from 'errorhandler';
 import mongoose from 'mongoose';
 import morgan from 'morgan';
 import chalk from 'chalk';
-import config from '../shared/config';
+import config from './config';
 import './models';
 import configureRoutes from './routes';
 
@@ -40,6 +40,18 @@ mongoose.connect(`mongodb://${config.mongoHost}:${config.mongoPort}/hallux`, {
   useCreateIndex: true,
 }).then(() => {
   console.log(chalk.blue.bold('Database Server connected'));
+
+  // const Post = mongoose.model('Post');
+  // Array.fill(10).map((i) => {
+  //   const newPost = new Post({
+  //     title: `Title ${i}`,
+  //     summary: `Summary ${i}`,
+  //     image: `image ${i}`,
+  //     state: 'draft',
+  //     filename: `filename_${i}`,
+  //   });
+  //   newPost.save();
+  // });
 
   app.listen(config.serverPort, config.serverHost, () => {
     console.log(chalk.blue.bold('Server started: ') + chalk.blue.underline.bold(`http://${config.serverHost}:${config.serverPort}`));

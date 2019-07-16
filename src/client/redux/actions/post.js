@@ -1,30 +1,20 @@
-const CREATE_POST = 'CREATE_POST';
-const GET_POST = 'GET_POST';
-const GET_POSTS = 'GET_POST';
-const UPDATE_POST = 'UPDATE_POST';
-const DELETE_POST = 'DELETE_POST';
 
-export const createPost = post => ({
-  type: CREATE_POST,
-  payload: post,
+import { CALL_API } from '../middleware/apiMiddleWare';
+import { postApi } from '../../api';
+
+export const fetchPosts = () => ({
+  [CALL_API]: {
+    types: ['LOAD_POST_REQUEST', 'LOAD_POST_SUCCESS', 'LOAD_POST_FAILURE'],
+    shouldCallAPI: ({ post }) => post.items.length === 0,
+    callAPI: () => postApi.fetchPosts(),
+  },
 });
 
-export const getPost = id => ({
-  type: GET_POST,
-  payload: id,
-});
-
-export const getPosts = () => ({
-  type: GET_POSTS,
-  payload: null,
-});
-
-export const updatePost = post => ({
-  type: UPDATE_POST,
-  payload: post,
-});
-
-export const deletePost = id => ({
-  type: DELETE_POST,
-  payload: id,
+export const fetchPost = id => ({
+  [CALL_API]: {
+    types: ['LOAD_POST_REQUEST', 'LOAD_POST_SUCCESS', 'LOAD_POST_FAILURE'],
+    shouldCallAPI: ({ post }) => !post.items[id],
+    callAPI: () => postApi.fetchPost(id),
+  },
+  payload: { id },
 });

@@ -1,7 +1,7 @@
-import * as postApi from './postApi';
-import * as tagApi from './tagApi';
+import postApi from './postApi';
+import tagApi from './tagApi';
 
-export default {
+export {
   postApi,
   tagApi,
 };

@@ -23,7 +23,6 @@ export const findOne = (req, res) => {
           ...post,
           content,
         };
-
         res.json(blogPost);
       });
     })
