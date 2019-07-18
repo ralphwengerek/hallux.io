@@ -2,7 +2,7 @@
 import express from 'express';
 import path from 'path';
 import bodyParser from 'body-parser';
-import session from 'express-session';
+// import session from 'express-session';
 import cors from 'cors';
 import errorHandler from 'errorhandler';
 import mongoose from 'mongoose';
@@ -11,6 +11,7 @@ import chalk from 'chalk';
 import config from './config';
 import './models';
 import configureRoutes from './routes';
+import seedDatabase from './utils/seedDatabase';
 
 mongoose.Promise = global.Promise;
 
@@ -20,9 +21,9 @@ app.use(cors());
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(session({
-  secret: 'LightBlog', cookie: { maxAge: 60000 }, resave: false, saveUninitialized: false,
-}));
+// app.use(session({
+//   secret: 'hallux.io', cookie: { maxAge: 60000 }, resave: false, saveUninitialized: false,
+// }));
 
 configureRoutes(app);
 
@@ -41,17 +42,9 @@ mongoose.connect(`mongodb://${config.mongoHost}:${config.mongoPort}/hallux`, {
 }).then(() => {
   console.log(chalk.blue.bold('Database Server connected'));
 
-  // const Post = mongoose.model('Post');
-  // Array.fill(10).map((i) => {
-  //   const newPost = new Post({
-  //     title: `Title ${i}`,
-  //     summary: `Summary ${i}`,
-  //     image: `image ${i}`,
-  //     state: 'draft',
-  //     filename: `filename_${i}`,
-  //   });
-  //   newPost.save();
-  // });
+  if (!config.isProduction) {
+    seedDatabase();
+  }
 
   app.listen(config.serverPort, config.serverHost, () => {
     console.log(chalk.blue.bold('Server started: ') + chalk.blue.underline.bold(`http://${config.serverHost}:${config.serverPort}`));

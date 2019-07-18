@@ -9423,6 +9423,11 @@ normalize.css@^8.0.1:
   resolved "https://registry.yarnpkg.com/normalize.css/-/normalize.css-8.0.1.tgz#9b98a208738b9cc2634caacbc42d131c97487bf3"
   integrity sha512-qizSNPO93t1YUuUhP22btGOo3chcvDFqFaj2TRybP0DMxkHOCTYwp3n34fel4a31ORXy4m1Xq0Gyqpb5m33qIg==
 
+normalizr@^3.4.0:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/normalizr/-/normalizr-3.4.0.tgz#fe79fd77768e0ae99944a8c35cbdb58521ab5d34"
+  integrity sha512-0dQLKpvsSb2f+vZwj78L855OMn9aeMQ0dQhduRqX3GkJh+k6rN9kcftxBV/VkW1n4q9OuV6F43Angn+pNbjg9w==
+
 npm-bundled@^1.0.1:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/npm-bundled/-/npm-bundled-1.0.6.tgz#e7ba9aadcef962bb61248f91721cd932b3fe6bdd"
@@ -11197,7 +11202,7 @@ react-router-dom@^5.0.1:
     tiny-invariant "^1.0.2"
     tiny-warning "^1.0.0"
 
-react-router@5.0.1:
+react-router@5.0.1, react-router@^5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/react-router/-/react-router-5.0.1.tgz#04ee77df1d1ab6cb8939f9f01ad5702dbadb8b0f"
   integrity sha512-EM7suCPNKb1NxcTZ2LEOWFtQBQRQXecLxVpdsP4DW4PbbqYWeRiLyV/Tt1SdCrvT2jcyXAXmVTmzvSzrPR63Bg==

@@ -1,3 +1,4 @@
+import { normalize } from 'normalizr';
 // Action key that carries API call info interpreted by this Redux middleware.
 export const CALL_API = 'CALL_API';
 
@@ -11,6 +12,7 @@ const apiMiddleWare = ({ dispatch, getState }) => next => (action) => {
     types,
     shouldCallAPI = () => true,
     callAPI,
+    schema,
   } = api;
 
   if (
@@ -20,7 +22,9 @@ const apiMiddleWare = ({ dispatch, getState }) => next => (action) => {
   ) {
     throw new Error('Expected an array of three string types.');
   }
-
+  if (!schema) {
+    throw new Error('Specify a schema for normalizr');
+  }
   if (typeof callAPI !== 'function') {
     throw new Error('Expected callAPI to be a function.');
   }
@@ -42,7 +46,7 @@ const apiMiddleWare = ({ dispatch, getState }) => next => (action) => {
   return callAPI().then(
     response => dispatch(
       Object.assign({}, {
-        payload: response,
+        payload: normalize(response.data, schema),
         type: successType,
       }),
     ),

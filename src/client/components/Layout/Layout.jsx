@@ -20,13 +20,13 @@ const Site = styled.div`
 `;
 
 const ContentContainer = styled.div`
-  padding-top: 30px;
+  padding-top: 50px;
   flex: 1;
   display: flex;
   justify-content: center;
 
   ${media.up.tablet`
-    padding-top: 40px;
+    padding-top: 60px;
   `}
 
 `;
@@ -53,7 +53,7 @@ const Layout = () => {
             <Switch>
               <Route path="/" exact component={Home} />
               <Route path="/about" component={About} />
-              <Route path="/blog" component={Blog} />
+              <Route path="/blog/:slug" component={Blog} />
               <Route path="/callback" component={Callback} />
               <Route component={NotFound} />
             </Switch>
