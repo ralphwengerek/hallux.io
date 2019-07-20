@@ -1,23 +1,65 @@
+export const FETCH_POST = '[post] - GET Single post';
+export const FETCH_POST_SUCCESS = '[post] - GET Single post Success';
+export const FETCH_POST_FAILURE = '[post] - GET Single post Failed';
+export const FETCH_POST_COMPLETE = '[post] - GET Single post complete';
 
-import { CALL_API } from '../middleware/apiMiddleWare';
-import { postApi } from '../../api';
-import schema from '../schemas/post';
+export const FETCH_POSTS = '[post] - GET ALL POSTS';
+export const FETCH_POSTS_SUCCESS = '[post] - GET ALL POSTS Success';
+export const FETCH_POSTS_FAILURE = '[post] - GET ALL POSTS Failed';
+export const FETCH_POSTS_COMPLETE = '[post] - FETCH POSTS complete';
+
+export const SELECT_POST = '[post] - Select post';
+export const FETCH_POSTS_INIT = '[post] - Fetch post/s init';
+
+export const fetchPostsInit = () => ({
+  type: FETCH_POSTS_INIT,
+});
 
 export const fetchPosts = () => ({
-  [CALL_API]: {
-    types: ['LOAD_POSTS_REQUEST', 'LOAD_POSTS_SUCCESS', 'LOAD_POSTS_FAILURE'],
-    shouldCallAPI: ({ post }) => post.items.length === 0,
-    callAPI: () => postApi.fetchPosts(),
-    schema: schema.POST_ARRAY,
-  },
+  type: FETCH_POSTS,
 });
 
 export const fetchPost = slug => ({
-  [CALL_API]: {
-    types: ['LOAD_POST_REQUEST', 'LOAD_POST_SUCCESS', 'LOAD_POST_FAILURE'],
-    shouldCallAPI: ({ post }) => !post.items[slug],
-    callAPI: () => postApi.fetchPost(slug),
-    schema: schema.POST,
+  type: FETCH_POST,
+  payload: slug,
+});
+
+export const fetchPostSuccess = ({ entities, result }) => ({
+  type: FETCH_POST_SUCCESS,
+  payload: {
+    postId: result,
+    postEntity: entities.posts[result],
   },
-  payload: { slug },
+});
+
+
+export const fetchPostsSuccess = ({ entities, result }) => ({
+  type: FETCH_POSTS_SUCCESS,
+  payload: {
+    postIds: result,
+    postEntities: entities.posts,
+  },
+});
+
+export const fetchPostComplete = () => ({
+  type: FETCH_POST_COMPLETE,
+});
+
+export const fetchPostsComplete = () => ({
+  type: FETCH_POSTS_COMPLETE,
+});
+
+export const fetchPostFailure = error => ({
+  type: FETCH_POST_FAILURE,
+  payload: error,
+});
+
+export const fetchPostsFailure = error => ({
+  type: FETCH_POSTS_FAILURE,
+  payload: error,
+});
+
+export const selectPost = slug => ({
+  type: SELECT_POST,
+  payload: slug,
 });

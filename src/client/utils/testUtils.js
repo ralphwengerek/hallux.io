@@ -7,7 +7,6 @@ import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
 import mockTheme from './mocks/mockTheme';
 import rootReducer from '../redux/reducers';
-import realInitialState from '../redux/initialState';
 
 const customRender = (node,
   {
@@ -38,7 +37,7 @@ const customRender = (node,
 
 const reduxRender = (node,
   {
-    initialState = realInitialState,
+    initialState = {},
     store = createStore(rootReducer, initialState),
     route = '/',
     history = createMemoryHistory({ initialEntries: [route] }),

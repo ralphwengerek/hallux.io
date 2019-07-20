@@ -13,7 +13,7 @@ const ArticleLink = styled.button`
   color: unset;
 `;
 
-const CardTitle = styled(Link)`
+const CardTitle = styled.h2`
   font-size: 24px;
   display: block;
   margin: ${px(16)} 0px;
@@ -73,18 +73,18 @@ const DateContainer = styled.div`
   }
 `;
 
-const PostSummary = ({
-  title, image, summary, publishDate, tags,
+export const PostSummary = ({
+  title, image, summary, published, tags, slug,
 }) => (
   <Card>
     <DateContainer>
       <FaCalendarDay />
-      <span>{publishDate}</span>
+      <span>{published}</span>
     </DateContainer>
     <CardImage src={image} alt={title} title={title} height="140" />
     <CardContent>
-      <ArticleLink as={Link}>
-        <CardTitle>
+      <ArticleLink as={Link} to={`/blog/${slug}`}>
+        <CardTitle to={`/blog/${slug}`}>
           {title}
         </CardTitle>
         <CardSummary>
@@ -95,7 +95,7 @@ const PostSummary = ({
         <TagsContainer>
           {tags.map(t => <Tag key={t.id} value={t.value} />)}
         </TagsContainer>
-        <Button>
+        <Button as={Link} to={`/blog/${slug}`}>
           Continue reading
         </Button>
       </CardFooter>
@@ -107,8 +107,9 @@ PostSummary.propTypes = {
   title: PropTypes.string.isRequired,
   image: PropTypes.string,
   summary: PropTypes.string.isRequired,
-  publishDate: PropTypes.instanceOf(Date).isRequired,
+  published: PropTypes.string.isRequired,
   tags: PropTypes.array.isRequired,
+  slug: PropTypes.string.isRequired,
 };
 
 PostSummary.defaultProps = {

@@ -8,7 +8,7 @@ const postRoutes = (app) => {
     .get(findAll)
     .post(createPost);
 
-  app.route(`${config.apiRoutePrefix}/posts/:id`)
+  app.route(`${config.apiRoutePrefix}/posts/:slug`)
     .get(findOne)
     .put(updatePost)
     .delete(deletePost);

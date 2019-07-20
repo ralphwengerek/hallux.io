@@ -1,20 +1,24 @@
 import React from 'react';
-import Post from '../../components/Post/Post';
+import { useDispatch, useSelector } from 'react-redux';
+import { Post } from '../../components/Post/Post';
 import useRouter from '../../hooks/useRouter';
 import { fetchPost } from '../../redux/actions/post';
+import { getPostBySlug } from '../../redux/reducers/post';
 
 const Blog = () => {
   const { match } = useRouter();
+  const dispatch = useDispatch();
+  const post = useSelector(state => getPostBySlug(state, match.params.slug));
 
   React.useEffect(() => {
-    fetchPost(match.params.slug);
-  });
+    dispatch(fetchPost(match.params.slug));
+  }, []);
 
   return (
     <div>
       <h1>Blog</h1>
       <hr />
-      <Post />
+      <Post {...post} />
     </div>
   );
 };

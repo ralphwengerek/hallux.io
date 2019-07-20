@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import path from 'path';
 import fs from 'fs';
 import mdx from '@mdx-js/mdx';
 
@@ -15,12 +16,19 @@ export const findAll = (req, res) => {
 };
 
 export const findOne = (req, res) => {
-  Post.findById(req.params.id)
+  const query = Post.where({ slug: req.params.slug });
+  query.findOne()
     .then((post) => {
-      const mdxText = fs.readFileSync(`posts/${post.filename}`, 'utf8');
+      // ${post.filename}
+      if (!post) {
+        throw Error('This blogpost cannot be found.');
+      }
+      const tmpPath = path.resolve('src/server/posts/README.mdx');
+      const mdxText = fs.readFileSync(tmpPath, 'utf8');
+
       mdx(mdxText).then((content) => {
         const blogPost = {
-          ...post,
+          ...post.toJSON(),
           content,
         };
         res.json(blogPost);

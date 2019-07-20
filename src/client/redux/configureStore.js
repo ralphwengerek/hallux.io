@@ -5,14 +5,15 @@ import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import throttle from 'lodash/throttle';
 import apiMiddleWare from './middleware/apiMiddleWare';
+import postMiddleWare from './middleware/postMiddleware';
 import rootReducer from './reducers';
-import initialState from './initialState';
 import { loadState, saveState } from '../utils/localStorage';
+import initialState from './initialState';
 
 const configureStore = () => {
   let composeEnhancers = compose;
 
-  const middlewares = [thunk, apiMiddleWare];
+  const middlewares = [thunk, apiMiddleWare, ...postMiddleWare];
 
   if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line no-underscore-dangle
@@ -21,6 +22,7 @@ const configureStore = () => {
   }
 
   const persistedState = loadState();
+
   const store = createStore(
     rootReducer,
     persistedState || initialState,

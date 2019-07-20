@@ -1,6 +1,9 @@
 /* eslint-disable */
 import handleActions from '../handleActions';
-import initialState from '../initialState';
+
+export const initialState = {
+  open: false,
+};
 
 const profilePanelReducer = handleActions(
   {
@@ -14,7 +17,7 @@ const profilePanelReducer = handleActions(
       profilePanel.open = false;
     },
   },
-  initialState.profilePanel,
+  initialState,
 );
 
 export default profilePanelReducer;

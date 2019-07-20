@@ -21,6 +21,10 @@ const postModel = new Schema({
     enum: ['draft', 'published'],
     default: 'draft',
   },
+  published: {
+    type: Date,
+    default: Date.now,
+  },
   created: {
     type: Date,
     default: Date.now,

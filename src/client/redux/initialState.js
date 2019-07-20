@@ -1,22 +1,13 @@
-export default {
-  menu: {
-    open: false,
-  },
-  profilePanel: {
-    open: false,
-  },
-  post: {
-    items: [],
-    isLoading: false,
-    error: undefined,
-  },
-  user: {
-    accessToken: undefined,
-    expiresIn: undefined,
-    email: undefined,
-    name: undefined,
-    picture: undefined,
-    isAuthenticated: false,
-    loginAttempts: 0,
-  },
+import { initialState as menu } from './reducers/menu';
+import { initialState as post } from './reducers/post';
+import { initialState as profilePanel } from './reducers/profilePanel';
+import { initialState as user } from './reducers/user';
+
+const initialState = {
+  menu,
+  posts: post,
+  profilePanel,
+  user,
 };
+
+export default initialState;

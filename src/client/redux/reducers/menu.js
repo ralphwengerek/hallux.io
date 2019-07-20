@@ -1,7 +1,10 @@
 
 /* eslint-disable */
 import handleActions from '../handleActions';
-import initialState from '../initialState';
+
+export const initialState =  {
+  open: false,
+};
 
 const menuReducer = handleActions(
   {
@@ -15,7 +18,7 @@ const menuReducer = handleActions(
       menu.open = false;
     },
   },
-  initialState.menu,
+  initialState,
 );
 
 export default menuReducer;

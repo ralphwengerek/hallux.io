@@ -1,7 +1,16 @@
 /* eslint-disable */
 import handleActions from '../handleActions';
-import initialState from '../initialState';
 import merge from 'lodash/merge';
+
+export const initialState = {
+  accessToken: undefined,
+  expiresIn: undefined,
+  email: undefined,
+  name: undefined,
+  picture: undefined,
+  isAuthenticated: false,
+  loginAttempts: 0,
+};
 
 const userReducer = handleActions(
   {
@@ -23,7 +32,7 @@ const userReducer = handleActions(
       console.log('LOGIN_FAILURE: ', payload);
     },
   },
-  initialState.user,
+  initialState,
 );
 
 export default userReducer;

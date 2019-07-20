@@ -1,34 +1,51 @@
 /* eslint-disable */
 import handleActions from '../handleActions';
-import initialState from '../initialState';
 
-const postsReducer = handleActions(
+import {
+  FETCH_POSTS_INIT,
+  FETCH_POSTS_COMPLETE,
+  FETCH_POSTS_FAILURE,
+  FETCH_POST_SUCCESS,
+  FETCH_POSTS_SUCCESS,
+} from '../actions/post';
+
+export const initialState = {
+  postEntities: {},
+  postIds: [],
+  requests: 0,
+  error: undefined,
+};
+
+const postReducer = handleActions(
   {
-    LOAD_POST_REQUEST: (state) => state.isLoading = true,
-    LOAD_POST_FAILURE: (state, { message }) => {
-      state.isLoading = false;
+    [FETCH_POSTS_INIT]: (state) => {
+      state.requests += 1;
+    },
+    [FETCH_POSTS_COMPLETE]: (state) => {
+      state.requests -= 1;
+    },
+    [FETCH_POSTS_FAILURE]: (state, { message }) => {
       state.error = message;
     },
-    LOAD_POST_SUCCESS: (state, post) =>{
-      debugger;
-      state.items[data.slug] = data;
-      state.isLoading = false;
+    [FETCH_POST_SUCCESS]: (state, { postId, postEntity }) =>{
+      state.activePost=postId;
+      state.postEntities[postId] = postEntity;
       state.error = undefined;
     },
-    LOAD_POSTS_SUCCESS: (state, posts) => {
-      debugger;
-      state.items = data;
-      state.isLoading = false;
+    [FETCH_POSTS_SUCCESS]: (state, { postEntities, postIds }) => {
+      state.postEntities = postEntities;
+      state.postIds = postIds;
       state.error = undefined;
     },
-    CREATE_POST: (state, post) => state.items.push(post),
-    DELETE_POST: (state, id) => state.items.splice(items.findIndex(t => t.id === id), 1),
-    COMPLETE_POST: (state, id) => { state.items[state.items.findIndex(t => t.id === id)].complete = true; },
-    UPDATE_POST: (state, { id, data }) => state.items[state.items.findIndex(t => t.id === id)] = data,
   },
-  initialState.post,
+  initialState,
 );
 
-export const getAllPosts = ({ post }) => post;
+export const getAllPosts = ({ posts }) => ({
+  ...posts,
+  isLoading: posts.requests > 0
+});
 
-export default postsReducer;
+export const getPostBySlug = ({ posts }, slug ) => posts.postEntities[slug];
+
+export default postReducer;

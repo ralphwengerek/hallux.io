@@ -79,7 +79,7 @@ const Header = () => {
       <NavBarContainer>
         <Company>
           <Hamburger />
-          <Title to="/">Hello world</Title>
+          <Title to="/">Hallux.io</Title>
         </Company>
 
         <Navigation />
