@@ -6,7 +6,7 @@ import { px } from '../../utils/pixel';
 import { media } from '../../utils/mediaQuery';
 import Hamburger from '../Navigation/Hamburger';
 import Navigation from '../Navigation/Navigation';
-import Button from '../Button/Button';
+import { Button } from '../Button/Button';
 import Avatar from '../Avatar/Avatar';
 import { login } from '../../redux/actions/user';
 import { getUser } from '../../redux/reducers/user';

@@ -16,6 +16,10 @@ const postModel = new Schema({
     type: String,
     required: 'Enter the post summary',
   },
+  content: {
+    type: String,
+    required: true,
+  },
   state: {
     type: String,
     enum: ['draft', 'published'],
@@ -29,15 +33,7 @@ const postModel = new Schema({
     type: Date,
     default: Date.now,
   },
-  filename: {
-    type: String,
-    unique: true,
-    lowercase: true,
-  },
-  tags: [{
-    type: Schema.ObjectId,
-    ref: 'Tag',
-  }],
+  tags: [String],
   keywords: [String],
   likes: {
     type: Number,

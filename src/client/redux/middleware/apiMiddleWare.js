@@ -29,13 +29,14 @@ const apiMiddleWare = ({ dispatch, getState }) => next => (action) => {
       return;
     }
 
-    return callAPI()
+    return setTimeout(() => callAPI()
       .then((response) => {
-        setTimeout(() => dispatch(onSuccess(normalize(response.data, schema))), 2000);
+        dispatch(onSuccess(normalize(response.data, schema)));
       }).catch((error) => {
         dispatch(onError(error));
         // dispatch global error api handling
-      }).finally(() => onComplete && dispatch(onComplete()));
+      }).finally(() => onComplete && dispatch(onComplete())),
+    2000);
   }
   return next(action);
 };

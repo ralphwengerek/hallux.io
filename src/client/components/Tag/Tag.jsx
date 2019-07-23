@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { px } from '../../utils/pixel';
 
-const TagContainer = styled(Link)`
+const TagLink = styled(Link)`
   text-decoration: none;
   color: rgba(0, 0, 0, 0.87);
   border: none;
@@ -41,12 +41,14 @@ const TagValue = styled.span`
     padding-right: 12px;
 `;
 
-const Tag = ({ value }) => (
-  <TagContainer>
+export const Tag = ({ value }) => (
+  <TagLink
+    to={`/tags/${value.toLowerCase()}`}
+  >
     <TagValue>
       { value }
     </TagValue>
-  </TagContainer>
+  </TagLink>
 );
 
 Tag.propTypes = {

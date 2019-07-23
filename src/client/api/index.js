@@ -1,7 +1,6 @@
+/* eslint-disable import/prefer-default-export */
 import postApi from './postApi';
-import tagApi from './tagApi';
 
 export {
   postApi,
-  tagApi,
 };

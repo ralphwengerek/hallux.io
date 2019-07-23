@@ -1,9 +1,7 @@
 import postRoutes from './postRoutes';
-import tagRoutes from './tagRoutes';
 
 const routes = {
   postRoutes,
-  tagRoutes,
 };
 
 export default (app) => {

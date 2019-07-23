@@ -4,6 +4,7 @@ import handleActions from '../handleActions';
 import {
   FETCH_POSTS_INIT,
   FETCH_POSTS_COMPLETE,
+  FETCH_POST_COMPLETE,
   FETCH_POSTS_FAILURE,
   FETCH_POST_SUCCESS,
   FETCH_POSTS_SUCCESS,
@@ -22,6 +23,9 @@ const postReducer = handleActions(
       state.requests += 1;
     },
     [FETCH_POSTS_COMPLETE]: (state) => {
+      state.requests -= 1;
+    },
+    [FETCH_POST_COMPLETE]: (state) => {
       state.requests -= 1;
     },
     [FETCH_POSTS_FAILURE]: (state, { message }) => {

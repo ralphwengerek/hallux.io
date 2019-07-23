@@ -8,9 +8,12 @@ const lightTheme = {
     body: '#555555',
     border: '#e3e3e3',
     divider: '#BDBDBD',
+    loader: '#333',
     // Footer
     footer: '#ccc',
     footerBackground: '#333',
+    // Buttons
+    buttonActive: '#364b1e',
   },
   typography: {
     fontFamily: 'Nunito Sans, Montserrat',

@@ -3,14 +3,18 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { FaCalendarDay } from 'react-icons/fa';
-import Card from '../Card/Card';
-import Tag from '../Tag/Tag';
-import Button from '../Button/Button';
+import moment from 'moment';
+import { Card } from '../Card/Card';
 import { px } from '../../utils/pixel';
+import { TagList } from '../Tag/TagList';
 
 const ArticleLink = styled.button`
   text-decoration: none;
   color: unset;
+`;
+
+const CardWrapper = styled.div`
+  margin: ${px(32)} 0;
 `;
 
 const CardTitle = styled.h2`
@@ -19,13 +23,11 @@ const CardTitle = styled.h2`
   margin: ${px(16)} 0px;
   cursor: pointer;
   text-transform: uppercase;
-  text-decoration: none;
   color: ${({ theme }) => theme.colors.primary};
-
+  text-decoration: underline;
   transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 
   &:hover {
-    text-decoration: underline;
     color: ${({ theme }) => theme.colors.accent};
   }
 `;
@@ -53,10 +55,6 @@ const CardFooter = styled.div`
   justify-content: space-between;
 `;
 
-const TagsContainer = styled.div`
-  display: flex;
-`;
-
 const DateContainer = styled.div`
   position: absolute;
   display: flex;
@@ -76,31 +74,28 @@ const DateContainer = styled.div`
 export const PostSummary = ({
   title, image, summary, published, tags, slug,
 }) => (
-  <Card>
-    <DateContainer>
-      <FaCalendarDay />
-      <span>{published}</span>
-    </DateContainer>
-    <CardImage src={image} alt={title} title={title} height="140" />
-    <CardContent>
-      <ArticleLink as={Link} to={`/blog/${slug}`}>
-        <CardTitle to={`/blog/${slug}`}>
-          {title}
-        </CardTitle>
-        <CardSummary>
-          {summary}
-        </CardSummary>
-      </ArticleLink>
-      <CardFooter>
-        <TagsContainer>
-          {tags.map(t => <Tag key={t.id} value={t.value} />)}
-        </TagsContainer>
-        <Button as={Link} to={`/blog/${slug}`}>
-          Continue reading
-        </Button>
-      </CardFooter>
-    </CardContent>
-  </Card>
+  <CardWrapper>
+    <Card>
+      <DateContainer>
+        <FaCalendarDay />
+        <span>{moment(published).format('LL')}</span>
+      </DateContainer>
+      <CardImage src={image} alt={title} title={title} height="140" />
+      <CardContent>
+        <ArticleLink as={Link} to={`/blog/${slug}`}>
+          <CardTitle to={`/blog/${slug}`}>
+            {title}
+          </CardTitle>
+          <CardSummary>
+            {summary}
+          </CardSummary>
+        </ArticleLink>
+        <CardFooter>
+          <TagList tags={tags} />
+        </CardFooter>
+      </CardContent>
+    </Card>
+  </CardWrapper>
 );
 
 PostSummary.propTypes = {

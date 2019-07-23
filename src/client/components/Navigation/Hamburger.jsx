@@ -22,12 +22,12 @@ const HamburgerContainer = styled.div`
     .menu-button::before,
     .menu-button::after {
       display: block;
-      background-color: #808080;
+      background-color: #000;
       position: absolute;
       height: 4px;
       width: 30px;
       transition: all 400ms cubic-bezier(0.23, 1, 0.32, 1);
-      border-radius: 2px;
+      border-radius: 1px;
     }
 
     .menu-button {
