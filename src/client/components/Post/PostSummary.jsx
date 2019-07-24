@@ -14,7 +14,7 @@ const ArticleLink = styled.button`
 `;
 
 const CardWrapper = styled.div`
-  margin: ${px(32)} 0;
+  margin: ${px(32)} ${px(16)};
 `;
 
 const CardTitle = styled.h2`

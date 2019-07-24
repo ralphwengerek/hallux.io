@@ -12,6 +12,8 @@ import Callback from '../Auth/Callback';
 import ProfilePanel from '../ProfilePanel/ProfilePanel';
 import { media } from '../../utils/mediaQuery';
 import { getUserIsAuthenticated } from '../../redux/reducers/user';
+import { px } from '../../utils/pixel';
+import { EditBlog } from '../../pages/Blog/EditBlog';
 
 const Site = styled.div`
   display: flex;
@@ -35,9 +37,13 @@ const Content = styled.div`
   position:relative;
   width: 100%;
   ${media.up.desktop`
-    width: ${({ theme }) => theme.sizing.desktop};
+    width: calc(100vw - ${px(64)});
   `}
-  /* background-color: lightblue; */
+
+  ${media.up.hires`
+    width: 1080px;
+  `}
+
 `;
 
 const Layout = () => {
@@ -53,7 +59,8 @@ const Layout = () => {
             <Switch>
               <Route path="/" exact component={Home} />
               <Route path="/about" component={About} />
-              <Route path="/blog/:slug" component={Blog} />
+              <Route exact path="/blog/:slug" component={Blog} />
+              <Route path="/blog/:slug/edit" component={EditBlog} />
               <Route path="/callback" component={Callback} />
               <Route component={NotFound} />
             </Switch>

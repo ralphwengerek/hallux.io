@@ -2,12 +2,11 @@
 import handleActions from '../handleActions';
 
 import {
-  FETCH_POSTS_INIT,
-  FETCH_POSTS_COMPLETE,
-  FETCH_POST_COMPLETE,
-  FETCH_POSTS_FAILURE,
-  FETCH_POST_SUCCESS,
+  POST_API_INIT,
+  POST_API_COMPLETE,
+  POST_API_FAILURE,
   FETCH_POSTS_SUCCESS,
+  SAVE_POST_SUCCESS,
 } from '../actions/post';
 
 export const initialState = {
@@ -19,19 +18,16 @@ export const initialState = {
 
 const postReducer = handleActions(
   {
-    [FETCH_POSTS_INIT]: (state) => {
+    [POST_API_INIT]: (state) => {
       state.requests += 1;
     },
-    [FETCH_POSTS_COMPLETE]: (state) => {
+    [POST_API_COMPLETE]: (state) => {
       state.requests -= 1;
     },
-    [FETCH_POST_COMPLETE]: (state) => {
-      state.requests -= 1;
-    },
-    [FETCH_POSTS_FAILURE]: (state, { message }) => {
+    [POST_API_FAILURE]: (state, { message }) => {
       state.error = message;
     },
-    [FETCH_POST_SUCCESS]: (state, { postId, postEntity }) =>{
+    [SAVE_POST_SUCCESS]: (state, { postId, postEntity }) =>{
       state.activePost=postId;
       state.postEntities[postId] = postEntity;
       state.error = undefined;

@@ -8,22 +8,29 @@ export const FETCH_POSTS_SUCCESS = '[post] - GET ALL POSTS Success';
 export const FETCH_POSTS_FAILURE = '[post] - GET ALL POSTS Failed';
 export const FETCH_POSTS_COMPLETE = '[post] - FETCH POSTS complete';
 
-export const SELECT_POST = '[post] - Select post';
-export const FETCH_POSTS_INIT = '[post] - Fetch post/s init';
+export const SAVE_POST = '[post] - Save post';
+export const SAVE_POST_SUCCESS = '[post] - Save post Success';
+export const SAVE_POST_FAILURE = '[post] - Save post Failed';
+export const SAVE_POST_COMPLETE = '[post] - Save post complete';
 
-export const fetchPostsInit = () => ({
-  type: FETCH_POSTS_INIT,
+export const POST_API_INIT = '[post] - Api post/s init';
+export const POST_API_COMPLETE = '[post] - Api post/s complete';
+
+// INITIALISE
+export const postApiInit = () => ({
+  type: POST_API_INIT,
 });
 
-export const fetchPosts = () => ({
-  type: FETCH_POSTS,
+// COMPLETE
+export const postApiComplete = () => ({
+  type: POST_API_COMPLETE,
 });
 
+// fetch Post
 export const fetchPost = slug => ({
   type: FETCH_POST,
   payload: slug,
 });
-
 export const fetchPostSuccess = ({ entities, result }) => ({
   type: FETCH_POST_SUCCESS,
   payload: {
@@ -31,8 +38,15 @@ export const fetchPostSuccess = ({ entities, result }) => ({
     postEntity: entities.posts[result],
   },
 });
+export const fetchPostFailure = error => ({
+  type: FETCH_POST_FAILURE,
+  payload: error,
+});
 
-
+// fetch all posts
+export const fetchPosts = () => ({
+  type: FETCH_POSTS,
+});
 export const fetchPostsSuccess = ({ entities, result }) => ({
   type: FETCH_POSTS_SUCCESS,
   payload: {
@@ -40,26 +54,24 @@ export const fetchPostsSuccess = ({ entities, result }) => ({
     postEntities: entities.posts,
   },
 });
-
-export const fetchPostComplete = () => ({
-  type: FETCH_POST_COMPLETE,
-});
-
-export const fetchPostsComplete = () => ({
-  type: FETCH_POSTS_COMPLETE,
-});
-
-export const fetchPostFailure = error => ({
-  type: FETCH_POST_FAILURE,
-  payload: error,
-});
-
 export const fetchPostsFailure = error => ({
   type: FETCH_POSTS_FAILURE,
   payload: error,
 });
 
-export const selectPost = slug => ({
-  type: SELECT_POST,
-  payload: slug,
+// update/save post
+export const savePost = post => ({
+  type: SAVE_POST,
+  payload: post,
+});
+export const savePostSuccess = ({ entities, result }) => ({
+  type: SAVE_POST_SUCCESS,
+  payload: {
+    postId: result,
+    postEntity: entities.posts[result],
+  },
+});
+export const savePostFailure = error => ({
+  type: SAVE_POST_FAILURE,
+  payload: error,
 });

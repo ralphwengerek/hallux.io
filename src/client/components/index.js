@@ -1,5 +1,5 @@
 import Avatar from './Avatar/Avatar';
-import Button from './Button/Button';
+import { Button } from './Button/Button';
 import Footer from './Footer/Footer';
 import GlobalStyle from './GlobalStyle/GlobalStyle';
 import Header from './Header/Header';

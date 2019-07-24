@@ -1,15 +1,21 @@
+/* eslint-disable no-underscore-dangle */
 import {
-  FETCH_POSTS, FETCH_POST,
+  postApiInit,
+  postApiComplete,
+  FETCH_POSTS,
   fetchPostsSuccess,
-  fetchPostsComplete,
   fetchPostsFailure,
+  FETCH_POST,
   fetchPostSuccess,
-  fetchPostComplete,
   fetchPostFailure,
-  fetchPostsInit,
+  SAVE_POST,
+  savePostSuccess,
+  savePostFailure,
 } from '../actions/post';
 import { apiRequest } from '../actions/api';
-import { fetchPosts, fetchPost } from '../../api/postApi';
+import {
+  fetchPosts, fetchPost, createPost, updatePost,
+} from '../../api/postApi';
 import schema from '../schemas/post';
 
 const getSinglePost = ({ dispatch, getState }) => next => (action) => {
@@ -22,15 +28,31 @@ const getSinglePost = ({ dispatch, getState }) => next => (action) => {
     const post = posts.postEntities[slug];
 
     if (!post || !post.content) {
-      dispatch(fetchPostsInit());
+      dispatch(postApiInit());
       dispatch(apiRequest(
         () => fetchPost(slug),
         schema.POST,
         fetchPostSuccess,
         fetchPostFailure,
-        fetchPostComplete,
+        postApiComplete,
       ));
     }
+  }
+};
+
+const savePost = ({ dispatch }) => next => (action) => {
+  next(action);
+
+  if (action.type === SAVE_POST) {
+    const post = action.payload;
+    dispatch(postApiInit());
+    dispatch(apiRequest(
+      () => (post._id ? updatePost(post) : createPost(post)),
+      schema.POST,
+      savePostSuccess,
+      savePostFailure,
+      postApiComplete,
+    ));
   }
 };
 
@@ -40,13 +62,13 @@ const getPosts = ({ dispatch, getState }) => next => (action) => {
   if (action.type === FETCH_POSTS) {
     const { posts } = getState();
     if (!posts.postEntities.length) {
-      dispatch(fetchPostsInit());
+      dispatch(postApiInit());
       dispatch(apiRequest(
         fetchPosts,
         schema.POST_ARRAY,
         fetchPostsSuccess,
         fetchPostsFailure,
-        fetchPostsComplete,
+        postApiComplete,
       ));
     }
   }
@@ -55,4 +77,5 @@ const getPosts = ({ dispatch, getState }) => next => (action) => {
 export default [
   getSinglePost,
   getPosts,
+  savePost,
 ];

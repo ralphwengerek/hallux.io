@@ -1,6 +1,4 @@
 import mongoose from 'mongoose';
-import path from 'path';
-import fs from 'fs';
 
 const Post = mongoose.model('Post');
 
@@ -19,17 +17,10 @@ export const findOne = (req, res) => {
   query.findOne()
     .then((post) => {
       if (!post) {
-        throw Error('This blogpost cannot be found.');
+        throw Error('This blog post cannot be found.');
       }
-      const tmpPath = path.resolve('src/server/posts/README.mdx');
-      const markDown = fs.readFileSync(tmpPath, 'utf8');
 
-      const blogPost = {
-        ...post.toJSON(),
-        content: markDown,
-      };
-
-      res.json(blogPost);
+      res.json(post.toJSON());
     }).catch((err) => {
       res.send(err);
     });
