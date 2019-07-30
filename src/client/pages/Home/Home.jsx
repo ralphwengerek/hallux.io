@@ -5,7 +5,7 @@ import { PostSummaryList } from '../../components/Post/PostSummaryList';
 import { Loader } from '../../components/Loader/Loader';
 import { fetchPosts } from '../../redux/actions/post';
 import { getAllPosts } from '../../redux/reducers/post';
-import { TagBrowser } from '../../components/TagBrowser/TagBrowser';
+import { TagBrowser } from '../../components/Tag/TagBrowser';
 import { media } from '../../utils/mediaQuery';
 
 
@@ -25,8 +25,8 @@ const Home = () => {
   const {
     error,
     isLoading,
-    postEntities,
-    postIds,
+    entities,
+    ids,
   } = useSelector(getAllPosts);
 
   const tags = [
@@ -59,8 +59,8 @@ const Home = () => {
       <Flexbox>
         <Column>
           <PostSummaryList
-            postEntities={postEntities}
-            postIds={postIds}
+            entities={entities}
+            ids={ids}
             error={error}
           />
         </Column>

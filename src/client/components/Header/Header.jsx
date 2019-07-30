@@ -4,10 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { px } from '../../utils/pixel';
 import { media } from '../../utils/mediaQuery';
-import Hamburger from '../Navigation/Hamburger';
-import Navigation from '../Navigation/Navigation';
+import { Hamburger } from '../Navigation/Hamburger';
+import { Navigation } from '../Navigation/Navigation';
 import { Button } from '../Button/Button';
-import Avatar from '../Avatar/Avatar';
+import { Avatar } from '../Avatar/Avatar';
 import { login } from '../../redux/actions/user';
 import { getUser } from '../../redux/reducers/user';
 import { toggleProfilePanel } from '../../redux/actions/profilePanel';
@@ -69,7 +69,7 @@ const AvatarLink = styled.a`
   text-decoration: none;
 `;
 
-const Header = () => {
+export const Header = () => {
   const dispatch = useDispatch();
   const user = useSelector(getUser);
 

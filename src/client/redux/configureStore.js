@@ -1,5 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-console */
+/* eslint-disable */
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
@@ -31,7 +32,7 @@ const configureStore = () => {
 
   store.subscribe(
     throttle(() => {
-      saveState(store.getState());
+      // saveState(store.getState());
     }, 1000),
   );
 

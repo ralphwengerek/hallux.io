@@ -16,7 +16,7 @@ const Blog = () => {
 
   return (
     <div>
-      <Post {...post} />
+      <Post post={post.entity} isLoading={post.isLoading} />
     </div>
   );
 };

@@ -1,8 +1,9 @@
+/* eslint-disable no-console */
 import * as React from 'react';
 import ReactMde from 'react-mde';
 import * as Showdown from 'showdown';
 import styled from 'styled-components';
-import { Formik } from 'formik';
+import { Formik, FieldArray } from 'formik';
 import { Input, Tooltip, Icon } from 'antd';
 import 'react-mde/lib/styles/css/react-mde-all.css';
 import { PropTypes } from 'prop-types';
@@ -11,6 +12,7 @@ import { Button } from '../Button/Button';
 import { schema } from './PostEditorSchema';
 import 'antd/dist/antd.css';
 import { Loader } from '../Loader/Loader';
+import { TagForm } from '../Tag/TagForm';
 
 const PostEditorContainer = styled.div`
   margin: ${px(16)} 0;
@@ -80,25 +82,20 @@ Label.defaultProps = {
   showError: false,
 };
 
-export const PostEditor = ({ post }) => {
+export const PostEditor = ({ post, onSubmit, isLoading }) => {
   const [selectedTab, setSelectedTab] = React.useState('write');
 
   return (
     <PostEditorContainer>
       <Formik
         initialValues={post}
-        onSubmit={(values, { setSubmitting }) => {
-          // handle submit
-          console.log(values);
-          setSubmitting(false);
-        }}
+        onSubmit={onSubmit}
         validationSchema={schema}
         render={({
           values, touched, errors, dirty, isSubmitting,
           handleChange, handleBlur, setFieldValue, handleSubmit,
-        }) => (
-          <form onSubmit={handleSubmit}>
-            <Loader show={isSubmitting} />
+        }) => (isLoading ? <Loader show={isLoading || isSubmitting} /> : (
+          <form onSubmit={handleSubmit} disabled={isLoading || isSubmitting}>
             <InputGroup>
               <div><h1>{Object.keys(errors).map(e => <div key={e}>{errors[e]}</div>)}</h1></div>
               <Label text="Title" error={errors.title} showError={errors.title && touched.title} />
@@ -161,28 +158,25 @@ export const PostEditor = ({ post }) => {
 
             <InputGroup>
               <Label text="Tags" error={errors.tags} showError={errors.tags && touched.tags} />
-              <Input
-                id="tags"
+              <FieldArray
                 name="tags"
-                value={values.tags}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                autoComplete="off"
+                render={({
+                  push, form, remove,
+                }) => (<TagForm name="tags" values={form.values.tags} push={push} remove={remove} />)}
               />
+
               { errors.tags && touched.tags && (
-              <Error msg={errors.tags} />
+                <Error msg={errors.tags} />
               )}
             </InputGroup>
 
             <InputGroup>
               <Label text="Keywords" error={errors.keywords} showError={errors.keywords && touched.keywords} />
-              <Input
-                id="keywords"
+              <FieldArray
                 name="keywords"
-                value={values.keywords}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                autoComplete="off"
+                render={({
+                  push, form, remove,
+                }) => (<TagForm name="keywords" values={form.values.keywords} push={push} remove={remove} />)}
               />
               { errors.keywords && touched.keywords && (
               <Error msg={errors.keywords} />
@@ -190,18 +184,25 @@ export const PostEditor = ({ post }) => {
             </InputGroup>
 
             <ActionContainer>
-              <Button type="submit" disabled={isSubmitting}>Save</Button>
+              <Button type="submit" disabled={isLoading || isSubmitting}>Save</Button>
               <h3>{`Dirty: ${dirty}`}</h3>
             </ActionContainer>
           </form>
-        )}
+        ))}
       />
     </PostEditorContainer>
   );
 };
 
 PostEditor.propTypes = {
-  post: PropTypes.object.isRequired,
+  post: PropTypes.object,
+  isLoading: PropTypes.bool.isRequired,
+  onSubmit: PropTypes.func,
+};
+
+PostEditor.defaultProps = {
+  post: {},
+  onSubmit: values => console.log(values),
 };
 
 export default PostEditor;

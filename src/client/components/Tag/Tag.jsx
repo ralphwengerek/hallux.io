@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { FaTimes } from 'react-icons/fa';
 import { px } from '../../utils/pixel';
 
 const TagLink = styled(Link)`
@@ -41,18 +42,36 @@ const TagValue = styled.span`
     padding-right: 12px;
 `;
 
-export const Tag = ({ value }) => (
-  <TagLink
-    to={`/tags/${value.toLowerCase()}`}
-  >
-    <TagValue>
-      { value }
-    </TagValue>
-  </TagLink>
+export const Tag = ({ value, onClick }) => (
+  onClick ? (
+    <TagLink
+      as="button"
+      type="button"
+      onClick={onClick}
+    >
+      <TagValue>
+        { value }
+        <FaTimes />
+      </TagValue>
+    </TagLink>
+  ) : (
+    <TagLink
+      to={`/tags/${value.toLowerCase()}`}
+    >
+      <TagValue>
+        { value }
+      </TagValue>
+    </TagLink>
+  )
 );
 
 Tag.propTypes = {
   value: PropTypes.string.isRequired,
+  onClick: PropTypes.func,
+};
+
+Tag.defaultProps = {
+  onClick: Tag.onClick,
 };
 
 export default Tag;

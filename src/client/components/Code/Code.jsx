@@ -17,7 +17,7 @@ const lineNumberStyle = {
   color: '#797979',
 };
 
-const Code = ({ code, language, highlight }) => {
+export const Code = ({ code, language, highlight }) => {
   const shouldHighlightLine = line => highlight.some(l => l === line);
   return (
     <Highlight

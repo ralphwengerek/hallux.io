@@ -1,14 +1,16 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import * as userActions from '../../redux/actions/user';
+import { useDispatch } from 'react-redux';
+import { handleAuthentication } from '../../redux/actions/user';
 
-const Callback = ({ location, history, handleAuthentication }) => {
+export const Callback = ({ location, history }) => {
+  const dispatch = useDispatch();
+
   useEffect(() => {
     if (/access_token|id_token|error/.test(location.hash)) {
-      handleAuthentication()
+      dispatch(handleAuthentication()
         .then(() => history.push('/'))
-        .catch(err => console.log(err));
+        .catch(err => console.log(err)));
     } else {
       throw new Error('Invalid callback URL');
     }
@@ -20,11 +22,6 @@ const Callback = ({ location, history, handleAuthentication }) => {
 Callback.propTypes = {
   location: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
-  handleAuthentication: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = ({
-  handleAuthentication: userActions.handleAuthentication,
-});
-
-export default connect(null, mapDispatchToProps)(Callback);
+export default Callback;

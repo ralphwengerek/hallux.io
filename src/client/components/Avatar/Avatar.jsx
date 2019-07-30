@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const Avatar = styled.div`
+export const Avatar = styled.div`
   display: inline-block;
   background-image: url(${({ picture }) => picture});
   background-size: ${({ size }) => (size && `${size} ${size}`) || '32px 32px'};

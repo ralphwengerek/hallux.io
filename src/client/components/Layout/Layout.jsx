@@ -5,11 +5,11 @@ import { useSelector } from 'react-redux';
 import {
   About, Blog, Home, NotFound,
 } from '../../pages';
-import Footer from '../Footer/Footer';
-import Header from '../Header/Header';
-import GlobalStyle from '../GlobalStyle/GlobalStyle';
-import Callback from '../Auth/Callback';
-import ProfilePanel from '../ProfilePanel/ProfilePanel';
+import { Footer } from '../Footer/Footer';
+import { Header } from '../Header/Header';
+import { GlobalStyle } from '../GlobalStyle/GlobalStyle';
+import { Callback } from '../Auth/Callback';
+import { ProfilePanel } from '../ProfilePanel/ProfilePanel';
 import { media } from '../../utils/mediaQuery';
 import { getUserIsAuthenticated } from '../../redux/reducers/user';
 import { px } from '../../utils/pixel';
@@ -46,7 +46,7 @@ const Content = styled.div`
 
 `;
 
-const Layout = () => {
+export const Layout = () => {
   const loggedIn = useSelector(getUserIsAuthenticated);
   return (
     <>

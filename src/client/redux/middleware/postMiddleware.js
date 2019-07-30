@@ -25,7 +25,7 @@ const getSinglePost = ({ dispatch, getState }) => next => (action) => {
     const slug = action.payload;
 
     const { posts } = getState();
-    const post = posts.postEntities[slug];
+    const post = posts.entities[slug];
 
     if (!post || !post.content) {
       dispatch(postApiInit());
@@ -61,7 +61,7 @@ const getPosts = ({ dispatch, getState }) => next => (action) => {
 
   if (action.type === FETCH_POSTS) {
     const { posts } = getState();
-    if (!posts.postEntities.length) {
+    if (!posts.entities.length) {
       dispatch(postApiInit());
       dispatch(apiRequest(
         fetchPosts,

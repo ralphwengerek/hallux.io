@@ -9,7 +9,7 @@ import { lightTheme } from '../../theme';
 const store = configureStore();
 // const baseName = process.env.BASE_URL;
 
-const Provider = ({ children }) => (
+export const Provider = ({ children }) => (
   <ReduxProvider store={store}>
     <ThemeProvider theme={lightTheme}>
       <Router>

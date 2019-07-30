@@ -46,15 +46,15 @@ const PostDivider = styled.div`
   margin-bottom: ${px(8)};
 `;
 
-export const Post = ({ title, image, content, published, tags, likes, slug }) => {
+export const Post = ({ post, isLoading}) => {
   const disqusConfig = {
     url: `https://www.hallux.io/blog/${slug}`,
     identifier: slug,
     title,
   };
   const disqusShortname = 'hallux';
-
-  return (
+  const { title, image, content, published, tags, likes, slug } = post;
+  return isLoading ? <Loader show={isLoading} /> : (
     <>
       <PostMeta>
         <PostTitle>{title}</PostTitle>
@@ -71,6 +71,11 @@ export const Post = ({ title, image, content, published, tags, likes, slug }) =>
       </Container>
     </>
   );
+};
+
+Post.defaultProps = {
+  post: {},
+  isLoading: false,
 };
 
 export default Post;

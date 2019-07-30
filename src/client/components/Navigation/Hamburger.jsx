@@ -54,7 +54,7 @@ const HamburgerContainer = styled.div`
   `}
 `;
 
-const Hamburger = () => {
+export const Hamburger = () => {
   const open = useSelector(getMenuState);
   const dispatch = useDispatch();
 

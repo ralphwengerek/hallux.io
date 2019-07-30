@@ -11889,6 +11889,16 @@ react-dom@^16.8.6:
     prop-types "^15.6.2"
     scheduler "^0.13.6"
 
+"react-dom@npm:@hot-loader/react-dom":
+  version "16.8.6"
+  resolved "https://registry.yarnpkg.com/@hot-loader/react-dom/-/react-dom-16.8.6.tgz#7923ba27db1563a7cc48d4e0b2879a140df461ea"
+  integrity sha512-+JHIYh33FVglJYZAUtRjfT5qZoT2mueJGNzU5weS2CVw26BgbxGKSujlJhO85BaRbg8sqNWyW1hYBILgK3ZCgA==
+  dependencies:
+    loose-envify "^1.1.0"
+    object-assign "^4.1.1"
+    prop-types "^15.6.2"
+    scheduler "^0.13.6"
+
 react-error-overlay@^5.1.6:
   version "5.1.6"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-5.1.6.tgz#0cd73407c5d141f9638ae1e0c63e7b2bf7e9929d"
@@ -11921,7 +11931,21 @@ react-hooks-testing-library@^0.6.0:
   dependencies:
     "@testing-library/react-hooks" "~1.0.2"
 
-react-hot-loader@^4.12.6, react-hot-loader@^4.8.4:
+react-hot-loader@^4.12.10:
+  version "4.12.10"
+  resolved "https://registry.yarnpkg.com/react-hot-loader/-/react-hot-loader-4.12.10.tgz#b3457c0f733423c4827c6d2672e50c9f8bedaf6b"
+  integrity sha512-dX+ZUigxQijWLsKPnxc0khuCt2sYiZ1W59LgSBMOLeGSG3+HkknrTlnJu6BCNdhYxbEQkGvBsr7zXlNWYUIhAQ==
+  dependencies:
+    fast-levenshtein "^2.0.6"
+    global "^4.3.0"
+    hoist-non-react-statics "^3.3.0"
+    loader-utils "^1.1.0"
+    prop-types "^15.6.1"
+    react-lifecycles-compat "^3.0.4"
+    shallowequal "^1.1.0"
+    source-map "^0.7.3"
+
+react-hot-loader@^4.8.4:
   version "4.12.6"
   resolved "https://registry.yarnpkg.com/react-hot-loader/-/react-hot-loader-4.12.6.tgz#bd7a41501b02576638031482474a72bac453587d"
   integrity sha512-tRXWgF5MhQSEXX3EHIplCOWCzSg+ye7ddHeQLt7Z+CaZMeEfeCL2/uSGITIzWXOQYhefnLX8IZtr2cff4xIrww==

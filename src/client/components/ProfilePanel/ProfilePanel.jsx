@@ -7,9 +7,9 @@ import { closeProfilePanel } from '../../redux/actions/profilePanel';
 import { getUser } from '../../redux/reducers/user';
 import { px } from '../../utils/pixel';
 import { media } from '../../utils/mediaQuery';
-import Avatar from '../Avatar/Avatar';
+import { Avatar } from '../Avatar/Avatar';
 import { logout } from '../../redux/actions/user';
-import Button from '../Button/Button';
+import { Button } from '../Button/Button';
 
 const PanelContainer = styled.aside.attrs({ role: 'dialog' })`
   position: absolute;
@@ -64,7 +64,7 @@ const ProfileAction = styled.div`
   text-align: center;
 `;
 
-const ProfilePanel = () => {
+export const ProfilePanel = () => {
   const open = useSelector(getprofilePanelState);
   const user = useSelector(getUser);
   const panelRef = useRef(null);

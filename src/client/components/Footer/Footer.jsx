@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import media from '../../utils/mediaQuery';
+import { media } from '../../utils/mediaQuery';
 
 const StyledFooter = styled.footer`
     background-color: ${({ theme }) => theme.colors.footerBackground};
@@ -13,7 +13,7 @@ const StyledFooter = styled.footer`
     `}
 `;
 
-const Footer = () => (
+export const Footer = () => (
   <StyledFooter>
     FOOTER
   </StyledFooter>

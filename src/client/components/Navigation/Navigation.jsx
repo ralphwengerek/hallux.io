@@ -67,7 +67,7 @@ const NavButton = styled(NavLink)`
   }
 `;
 
-const Navigation = () => {
+export const Navigation = () => {
   const open = useSelector(getMenuState);
   const dispatch = useDispatch();
   const closeMenuAction = () => dispatch(closeMenu());

@@ -3,18 +3,18 @@ import PropTypes from 'prop-types';
 import { PostSummary } from './PostSummary';
 
 export const PostSummaryList = ({
-  postIds, postEntities, error,
+  ids, entities, error,
 }) => (
   <>
-    { postIds.length > 0 && postIds.map(slug => (
+    { ids.length > 0 && ids.map(slug => (
       <PostSummary
         key={slug}
         slug={slug}
-        title={postEntities[slug].title}
-        image={postEntities[slug].image}
-        published={postEntities[slug].published}
-        summary={postEntities[slug].summary}
-        tags={postEntities[slug].tags}
+        title={entities[slug].title}
+        image={entities[slug].image}
+        published={entities[slug].published}
+        summary={entities[slug].summary}
+        tags={entities[slug].tags}
       />
     ))}
     {error && (
@@ -32,8 +32,8 @@ export default PostSummaryList;
 
 
 PostSummaryList.propTypes = {
-  postEntities: PropTypes.object.isRequired,
-  postIds: PropTypes.array.isRequired,
+  entities: PropTypes.object.isRequired,
+  ids: PropTypes.array.isRequired,
   error: PropTypes.any,
 };
 

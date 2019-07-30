@@ -34,8 +34,8 @@ export const fetchPost = slug => ({
 export const fetchPostSuccess = ({ entities, result }) => ({
   type: FETCH_POST_SUCCESS,
   payload: {
-    postId: result,
-    postEntity: entities.posts[result],
+    id: result,
+    entity: entities.posts[result],
   },
 });
 export const fetchPostFailure = error => ({
@@ -50,8 +50,8 @@ export const fetchPosts = () => ({
 export const fetchPostsSuccess = ({ entities, result }) => ({
   type: FETCH_POSTS_SUCCESS,
   payload: {
-    postIds: result,
-    postEntities: entities.posts,
+    ids: result,
+    entities: entities.posts,
   },
 });
 export const fetchPostsFailure = error => ({
@@ -67,8 +67,8 @@ export const savePost = post => ({
 export const savePostSuccess = ({ entities, result }) => ({
   type: SAVE_POST_SUCCESS,
   payload: {
-    postId: result,
-    postEntity: entities.posts[result],
+    id: result,
+    entity: entities.posts[result],
   },
 });
 export const savePostFailure = error => ({

@@ -11,6 +11,9 @@ import { TagList } from '../Tag/TagList';
 const ArticleLink = styled.button`
   text-decoration: none;
   color: unset;
+  &:hover {
+    color: ${({ theme }) => theme.colors.accent};
+  }
 `;
 
 const CardWrapper = styled.div`

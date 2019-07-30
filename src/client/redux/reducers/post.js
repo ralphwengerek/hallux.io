@@ -1,17 +1,19 @@
 /* eslint-disable */
 import handleActions from '../handleActions';
+import merge from 'lodash/merge';
 
 import {
   POST_API_INIT,
   POST_API_COMPLETE,
   POST_API_FAILURE,
+  FETCH_POST_SUCCESS,
   FETCH_POSTS_SUCCESS,
   SAVE_POST_SUCCESS,
 } from '../actions/post';
 
 export const initialState = {
-  postEntities: {},
-  postIds: [],
+  entities: {},
+  ids: [],
   requests: 0,
   error: undefined,
 };
@@ -27,14 +29,20 @@ const postReducer = handleActions(
     [POST_API_FAILURE]: (state, { message }) => {
       state.error = message;
     },
-    [SAVE_POST_SUCCESS]: (state, { postId, postEntity }) =>{
-      state.activePost=postId;
-      state.postEntities[postId] = postEntity;
+    [SAVE_POST_SUCCESS]: (state, { id, entity }) =>{
+      debugger;
+      state.active=id;
+      state.entities[id] = entity;
       state.error = undefined;
     },
-    [FETCH_POSTS_SUCCESS]: (state, { postEntities, postIds }) => {
-      state.postEntities = postEntities;
-      state.postIds = postIds;
+    [FETCH_POST_SUCCESS]: (state, { entity, id }) => {
+      state.active=id;
+      state.entities[id] = entity;
+      state.error = undefined;
+    },
+    [FETCH_POSTS_SUCCESS]: (state, { entities, ids }) => {
+      state.entities = merge({}, state.entities, entities);
+      state.ids = ids;
       state.error = undefined;
     },
   },
@@ -46,6 +54,9 @@ export const getAllPosts = ({ posts }) => ({
   isLoading: posts.requests > 0
 });
 
-export const getPostBySlug = ({ posts }, slug ) => posts.postEntities[slug];
+export const getPostBySlug = ({ posts }, slug ) => ({
+  entity: posts.entities[slug],
+  isLoading: posts.requests > 0,
+});
 
 export default postReducer;
