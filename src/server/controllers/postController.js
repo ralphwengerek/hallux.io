@@ -19,7 +19,6 @@ export const findOne = (req, res) => {
       if (!post) {
         throw Error('This blog post cannot be found.');
       }
-
       res.json(post.toJSON());
     }).catch((err) => {
       res.send(err);
@@ -38,7 +37,7 @@ export const createPost = (req, res) => {
 };
 
 export const updatePost = (req, res) => {
-  Post.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true })
+  Post.findOneAndUpdate({ slug: req.params.slug }, req.body, { new: true })
     .then((post) => {
       res.json(post);
     })

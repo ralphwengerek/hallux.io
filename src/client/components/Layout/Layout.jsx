@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import {
-  About, Blog, Home, NotFound,
+  AboutPage, ListPostsPage, NotFoundPage, EditPostPage, ViewPostPage,
 } from '../../pages';
 import { Footer } from '../Footer/Footer';
 import { Header } from '../Header/Header';
@@ -12,8 +12,7 @@ import { Callback } from '../Auth/Callback';
 import { ProfilePanel } from '../ProfilePanel/ProfilePanel';
 import { media } from '../../utils/mediaQuery';
 import { getUserIsAuthenticated } from '../../redux/reducers/user';
-import { px } from '../../utils/pixel';
-import { EditBlog } from '../../pages/Blog/EditBlog';
+import ScrollToTop from '../ScrollToTop/ScrollToTop';
 
 const Site = styled.div`
   display: flex;
@@ -36,14 +35,10 @@ const ContentContainer = styled.div`
 const Content = styled.div`
   position:relative;
   width: 100%;
-  ${media.up.desktop`
-    width: calc(100vw - ${px(64)});
-  `}
 
   ${media.up.hires`
     width: 1080px;
   `}
-
 `;
 
 export const Layout = () => {
@@ -51,18 +46,19 @@ export const Layout = () => {
   return (
     <>
       <GlobalStyle />
+      <ScrollToTop />
       <Site>
         <Header />
         <ContentContainer>
           <Content>
             { loggedIn && <ProfilePanel /> }
             <Switch>
-              <Route path="/" exact component={Home} />
-              <Route path="/about" component={About} />
-              <Route exact path="/blog/:slug" component={Blog} />
-              <Route path="/blog/:slug/edit" component={EditBlog} />
+              <Route path={['/tag/:tag', '/']} exact component={ListPostsPage} />
+              <Route path="/about" component={AboutPage} />
+              <Route path="/blog/:slug/edit" component={EditPostPage} />
+              <Route exact path="/blog/:slug" component={ViewPostPage} />
               <Route path="/callback" component={Callback} />
-              <Route component={NotFound} />
+              <Route component={NotFoundPage} />
             </Switch>
           </Content>
         </ContentContainer>

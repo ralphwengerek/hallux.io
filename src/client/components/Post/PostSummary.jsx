@@ -1,18 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import { FaCalendarDay } from 'react-icons/fa';
 import moment from 'moment';
+import { Link } from '../Link/Link';
 import { Card } from '../Card/Card';
 import { px } from '../../utils/pixel';
 import { TagList } from '../Tag/TagList';
 
-const ArticleLink = styled.button`
+const ArticleLink = styled(Link)`
   text-decoration: none;
   color: unset;
   &:hover {
-    color: ${({ theme }) => theme.colors.accent};
+    color: ${({ theme }) => theme.colors.body};
+    text-decoration: none;
   }
 `;
 
@@ -28,11 +29,6 @@ const CardTitle = styled.h2`
   text-transform: uppercase;
   color: ${({ theme }) => theme.colors.primary};
   text-decoration: underline;
-  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-
-  &:hover {
-    color: ${({ theme }) => theme.colors.accent};
-  }
 `;
 
 const CardImage = styled.img`
@@ -85,8 +81,8 @@ export const PostSummary = ({
       </DateContainer>
       <CardImage src={image} alt={title} title={title} height="140" />
       <CardContent>
-        <ArticleLink as={Link} to={`/blog/${slug}`}>
-          <CardTitle to={`/blog/${slug}`}>
+        <ArticleLink to={`/blog/${slug}`}>
+          <CardTitle>
             {title}
           </CardTitle>
           <CardSummary>

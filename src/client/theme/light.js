@@ -3,7 +3,7 @@ import { px } from '../utils/pixel';
 const lightTheme = {
   colors: {
     background: '#ffffff',
-    primary: '#1976D2',
+    primary: '#40a9ff',
     accent: '#8BC34A',
     body: '#555555',
     border: '#e3e3e3',
@@ -13,7 +13,7 @@ const lightTheme = {
     footer: '#ccc',
     footerBackground: '#333',
     // Buttons
-    buttonActive: '#364b1e',
+    buttonActive: '#096dd9',
   },
   typography: {
     fontFamily: 'Nunito Sans, Montserrat',

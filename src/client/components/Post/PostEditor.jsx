@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+/* eslint-disable max-len */
 import * as React from 'react';
 import ReactMde from 'react-mde';
 import * as Showdown from 'showdown';
@@ -9,6 +10,7 @@ import 'react-mde/lib/styles/css/react-mde-all.css';
 import { PropTypes } from 'prop-types';
 import { px } from '../../utils/pixel';
 import { Button } from '../Button/Button';
+import { Link } from '../Link/Link';
 import { schema } from './PostEditorSchema';
 import 'antd/dist/antd.css';
 import { Loader } from '../Loader/Loader';
@@ -85,112 +87,115 @@ Label.defaultProps = {
 export const PostEditor = ({ post, onSubmit, isLoading }) => {
   const [selectedTab, setSelectedTab] = React.useState('write');
 
-  return (
-    <PostEditorContainer>
-      <Formik
-        initialValues={post}
-        onSubmit={onSubmit}
-        validationSchema={schema}
-        render={({
-          values, touched, errors, dirty, isSubmitting,
-          handleChange, handleBlur, setFieldValue, handleSubmit,
-        }) => (isLoading ? <Loader show={isLoading || isSubmitting} /> : (
-          <form onSubmit={handleSubmit} disabled={isLoading || isSubmitting}>
-            <InputGroup>
-              <div><h1>{Object.keys(errors).map(e => <div key={e}>{errors[e]}</div>)}</h1></div>
-              <Label text="Title" error={errors.title} showError={errors.title && touched.title} />
-              <Input
-                id="title"
-                name="title"
-                value={values.title}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                autoComplete="off"
-              />
-              { errors.title && touched.title && (
-              <Error msg={errors.title} />
-              )}
-            </InputGroup>
+  return (!post || isLoading ? <Loader show />
+    : (
+      <PostEditorContainer>
+        <Formik
+          initialValues={post}
+          onSubmit={onSubmit}
+          validationSchema={schema}
+          render={({
+            values, touched, errors, dirty, isSubmitting,
+            handleChange, handleBlur, setFieldValue, handleSubmit,
+          }) => (
+            <form disabled={isLoading || isSubmitting}>
+              <InputGroup>
+                <Label text="Title" error={errors.title} showError={errors.title && touched.title} />
+                <Input
+                  id="title"
+                  name="title"
+                  value={values.title}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  autoComplete="off"
+                />
+                { errors.title && touched.title && (
+                <Error msg={errors.title} />
+                )}
+              </InputGroup>
 
-            <InputGroup>
-              <Label text="Image" error={errors.image} showError={errors.image && touched.image} />
-              <Input
-                id="image"
-                name="image"
-                value={values.image}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                autoComplete="off"
-              />
-              { errors.image && touched.image && (
-              <Error msg={errors.image} />
-              )}
-            </InputGroup>
+              <InputGroup>
+                <Label text="Image" error={errors.image} showError={errors.image && touched.image} />
+                <Input
+                  id="image"
+                  name="image"
+                  value={values.image}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  autoComplete="off"
+                />
+                { errors.image && touched.image && (
+                <Error msg={errors.image} />
+                )}
+              </InputGroup>
 
-            <InputGroup>
-              <Label text="Summary" error={errors.summary} showError={errors.summary && touched.summary} />
-              <Input.TextArea
-                id="summary"
-                name="summary"
-                value={values.summary}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                autoComplete="off"
-                rows={4}
-              />
-              { errors.summary && touched.summary && (
-              <Error msg={errors.summary} />
-              )}
-            </InputGroup>
+              <InputGroup>
+                <Label text="Summary" error={errors.summary} showError={errors.summary && touched.summary} />
+                <Input.TextArea
+                  id="summary"
+                  name="summary"
+                  value={values.summary}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  autoComplete="off"
+                  rows={4}
+                />
+                { errors.summary && touched.summary && (
+                <Error msg={errors.summary} />
+                )}
+              </InputGroup>
 
-            <InputGroup>
-              <Label text="Content" error={errors.content} showError={errors.content} />
-              <ReactMde
-                minEditorHeight="calc(100vh - 275px)"
-                value={values.content}
-                onChange={value => setFieldValue('content', value, true)}
-                onBlur={handleBlur}
-                selectedTab={selectedTab}
-                onTabChange={setSelectedTab}
-                generateMarkdownPreview={markdown => Promise.resolve(converter.makeHtml(markdown))}
-              />
-            </InputGroup>
+              <InputGroup>
+                <Label text="Content" error={errors.content} showError={errors.content} />
+                <ReactMde
+                  minEditorHeight="calc(100vh - 275px)"
+                  value={values.content}
+                  onChange={value => setFieldValue('content', value, true)}
+                  onBlur={handleBlur}
+                  selectedTab={selectedTab}
+                  onTabChange={setSelectedTab}
+                  generateMarkdownPreview={markdown => Promise.resolve(converter.makeHtml(markdown))}
+                />
+              </InputGroup>
 
-            <InputGroup>
-              <Label text="Tags" error={errors.tags} showError={errors.tags && touched.tags} />
-              <FieldArray
-                name="tags"
-                render={({
-                  push, form, remove,
-                }) => (<TagForm name="tags" values={form.values.tags} push={push} remove={remove} />)}
-              />
+              <InputGroup>
+                <Label text="Tags" error={errors.tags} showError={errors.tags && touched.tags} />
+                <FieldArray
+                  name="tags"
+                  render={({
+                    push, form, remove,
+                  }) => (<TagForm name="tags" values={form.values.tags} push={push} remove={remove} />)}
+                />
 
-              { errors.tags && touched.tags && (
+                { errors.tags && touched.tags && (
                 <Error msg={errors.tags} />
-              )}
-            </InputGroup>
+                )}
+              </InputGroup>
 
-            <InputGroup>
-              <Label text="Keywords" error={errors.keywords} showError={errors.keywords && touched.keywords} />
-              <FieldArray
-                name="keywords"
-                render={({
-                  push, form, remove,
-                }) => (<TagForm name="keywords" values={form.values.keywords} push={push} remove={remove} />)}
-              />
-              { errors.keywords && touched.keywords && (
-              <Error msg={errors.keywords} />
-              )}
-            </InputGroup>
+              <InputGroup>
+                <Label text="Keywords" error={errors.keywords} showError={errors.keywords && touched.keywords} />
+                <FieldArray
+                  name="keywords"
+                  render={({
+                    push, form, remove,
+                  }) => (<TagForm name="keywords" values={form.values.keywords} push={push} remove={remove} />)}
+                />
+                { errors.keywords && touched.keywords && (
+                <Error msg={errors.keywords} />
+                )}
+              </InputGroup>
 
-            <ActionContainer>
-              <Button type="submit" disabled={isLoading || isSubmitting}>Save</Button>
+              <ActionContainer>
+                <Link to={`/blog/${post.slug}`}>Cancel</Link>
+                &nbsp;
+                <Button link disabled={isLoading || isSubmitting} onClick={handleSubmit}>Save</Button>
+              </ActionContainer>
               <h3>{`Dirty: ${dirty}`}</h3>
-            </ActionContainer>
-          </form>
-        ))}
-      />
-    </PostEditorContainer>
+            </form>
+          )}
+        />
+      </PostEditorContainer>
+    )
   );
 };
 

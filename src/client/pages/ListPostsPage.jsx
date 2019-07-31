@@ -1,12 +1,13 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { PostSummaryList } from '../../components/Post/PostSummaryList';
-import { Loader } from '../../components/Loader/Loader';
-import { fetchPosts } from '../../redux/actions/post';
-import { getAllPosts } from '../../redux/reducers/post';
-import { TagBrowser } from '../../components/Tag/TagBrowser';
-import { media } from '../../utils/mediaQuery';
+import { PostSummaryList } from '../components/Post/PostSummaryList';
+import { Loader } from '../components/Loader/Loader';
+import { fetchPosts } from '../redux/actions/post';
+import { getPostsByTag } from '../redux/reducers/post';
+import { TagBrowser } from '../components/Tag/TagBrowser';
+import { media } from '../utils/mediaQuery';
+import { useRouter } from '../hooks';
 
 
 const Flexbox = styled.div`
@@ -20,14 +21,16 @@ const Flexbox = styled.div`
 const Column = styled.div`
 `;
 
-const Home = () => {
+const ListPostsPage = () => {
+  const { match: { params: { tag } } } = useRouter();
+
   const dispatch = useDispatch();
   const {
     error,
     isLoading,
     entities,
     ids,
-  } = useSelector(getAllPosts);
+  } = useSelector(state => getPostsByTag(state, tag));
 
   const tags = [
     {
@@ -74,4 +77,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default ListPostsPage;

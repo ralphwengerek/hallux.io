@@ -37,10 +37,6 @@ const NavBarContainer = styled.div`
     min-height: 60px;
   `}
 
-  ${media.up.desktop`
-    max-width: ${({ theme }) => theme.sizing.desktop};
-  `}
-
   ${media.up.hires`
       max-width: 1080px;
   `}

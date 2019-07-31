@@ -1,9 +1,12 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import { px } from '../../utils/pixel';
 
-const StyledButton = styled.button.attrs({ 'data-testid': 'button' })`
+const StyledButton = styled.button.attrs({
+  'data-testid': 'button',
+  type: 'button',
+})`
   margin: 0;
   text-decoration: none;
   color: ${({ theme }) => theme.colors.primary};
@@ -31,6 +34,26 @@ const StyledButton = styled.button.attrs({ 'data-testid': 'button' })`
     >span {
     }
   }
+
+  ${({ link }) => link && css`
+    border: none;
+    padding: 0;
+    background-color: transparent;
+    border-radius: 0;
+    box-shadow: none;
+
+    &:active {
+      color: ${({ theme }) => theme.colors.buttonActive};
+    }
+    &:hover {
+      border: none;
+      box-shadow: none;
+      cursor: pointer;
+      >span {
+        text-decoration: underline;
+      }
+    }
+  `}
 `;
 
 export const Button = ({ children, ...rest }) => (

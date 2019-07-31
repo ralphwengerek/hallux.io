@@ -2,19 +2,28 @@
 /* eslint-disable no-console */
 /* eslint-disable */
 import { createStore, applyMiddleware, compose } from 'redux';
+import { createBrowserHistory } from 'history'
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import throttle from 'lodash/throttle';
 import apiMiddleWare from './middleware/apiMiddleWare';
 import postMiddleWare from './middleware/postMiddleware';
+import { routerMiddleware } from 'connected-react-router'
 import rootReducer from './reducers';
 import { loadState, saveState } from '../utils/localStorage';
 import initialState from './initialState';
 
+export const history = createBrowserHistory();
+
 const configureStore = () => {
   let composeEnhancers = compose;
 
-  const middlewares = [thunk, apiMiddleWare, ...postMiddleWare];
+  const middlewares = [
+    routerMiddleware(history),
+    thunk,
+    apiMiddleWare,
+    ...postMiddleWare,
+  ];
 
   if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line no-underscore-dangle
@@ -25,7 +34,7 @@ const configureStore = () => {
   const persistedState = loadState();
 
   const store = createStore(
-    rootReducer,
+    rootReducer(history),
     persistedState || initialState,
     composeEnhancers(applyMiddleware(...middlewares)),
   );

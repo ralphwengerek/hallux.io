@@ -10,9 +10,11 @@ export const schema = yup.object().shape({
   content: yup.string()
     .required(),
   tags: yup.array().of(yup.string())
-    .default([]),
+    .default([])
+    .required(),
   keywords: yup.array().of(yup.string())
-    .default([]),
+    .default([])
+    .required(),
   slug: yup.string()
     .required(),
 });

@@ -56,7 +56,7 @@ export const Tag = ({ value, onClick }) => (
     </TagLink>
   ) : (
     <TagLink
-      to={`/tags/${value.toLowerCase()}`}
+      to={`/tag/${value.toLowerCase()}`}
     >
       <TagValue>
         { value }

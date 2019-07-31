@@ -1,5 +1,5 @@
 import { normalize } from 'normalizr';
-
+import { actions as toastrActions } from 'react-redux-toastr';
 import { API_REQUEST } from '../actions/api';
 
 const apiMiddleWare = ({ dispatch, getState }) => next => (action) => {
@@ -29,14 +29,18 @@ const apiMiddleWare = ({ dispatch, getState }) => next => (action) => {
       return;
     }
 
-    return setTimeout(() => callAPI()
+    return callAPI()
       .then((response) => {
         dispatch(onSuccess(normalize(response.data, schema)));
       }).catch((error) => {
         dispatch(onError(error));
+        dispatch(toastrActions.add({
+          type: 'error',
+          title: 'Error',
+          message: error.message,
+        }));
         // dispatch global error api handling
-      }).finally(() => onComplete && dispatch(onComplete())),
-    2000);
+      }).finally(() => onComplete && dispatch(onComplete()));
   }
   return next(action);
 };

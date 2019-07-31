@@ -30,7 +30,6 @@ const postReducer = handleActions(
       state.error = message;
     },
     [SAVE_POST_SUCCESS]: (state, { id, entity }) =>{
-      debugger;
       state.active=id;
       state.entities[id] = entity;
       state.error = undefined;
@@ -49,10 +48,26 @@ const postReducer = handleActions(
   initialState,
 );
 
-export const getAllPosts = ({ posts }) => ({
-  ...posts,
+export const getAllPosts = (state) => ({
+  ...state.posts,
+  isLoading: state.posts.requests > 0
+});
+
+export const getPostsByTag = (state, tag) => {
+const allPosts = getAllPosts(state);
+debugger;
+if (allPosts.entities.length) {
+
+const filteredPosts = getAllPosts(state)
+                        .entities
+                        .filter(p=> p.tags.some(t=> t.toLowerCase() === tag));
+
+ return  ({
+  entities: filteredPosts,
   isLoading: posts.requests > 0
 });
+}
+};
 
 export const getPostBySlug = ({ posts }, slug ) => ({
   entity: posts.entities[slug],

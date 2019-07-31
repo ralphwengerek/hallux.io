@@ -1,9 +1,10 @@
 import React from 'react';
 import { Provider as ReduxProvider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { ConnectedRouter } from 'connected-react-router';
+import ReduxToastr from 'react-redux-toastr';
 import PropTypes from 'prop-types';
-import configureStore from '../../redux/configureStore';
+import configureStore, { history } from '../../redux/configureStore';
 import { lightTheme } from '../../theme';
 
 const store = configureStore();
@@ -12,10 +13,19 @@ const store = configureStore();
 export const Provider = ({ children }) => (
   <ReduxProvider store={store}>
     <ThemeProvider theme={lightTheme}>
-      <Router>
+      <ConnectedRouter history={history}>
         { children}
-      </Router>
+      </ConnectedRouter>
     </ThemeProvider>
+    <ReduxToastr
+      timeOut={4000}
+      newestOnTop
+      preventDuplicates
+      position="top-right"
+      transitionIn="fadeIn"
+      transitionOut="fadeOut"
+      closeOnToastrClick
+    />
   </ReduxProvider>
 );
 

@@ -9,6 +9,7 @@ import { Loader } from '../Loader/Loader';
 import { FaSignLanguage } from 'react-icons/fa'
 import { TagList } from '../Tag/TagList';
 import { px } from './../../utils/pixel';
+import { Link } from '../Link/Link';
 
 const converter = new Showdown.Converter({
   tables: true,
@@ -46,6 +47,11 @@ const PostDivider = styled.div`
   margin-bottom: ${px(8)};
 `;
 
+const EditPostButton = styled(Link)`
+  position: absolute;
+  right: 0px;
+`;
+
 export const Post = ({ post, isLoading}) => {
   const disqusConfig = {
     url: `https://www.hallux.io/blog/${slug}`,
@@ -56,6 +62,7 @@ export const Post = ({ post, isLoading}) => {
   const { title, image, content, published, tags, likes, slug } = post;
   return isLoading ? <Loader show={isLoading} /> : (
     <>
+      <EditPostButton to={`/blog/${slug}/edit`} >Edit post</EditPostButton>
       <PostMeta>
         <PostTitle>{title}</PostTitle>
         <PublishDate>{moment(published).format('LL')}</PublishDate>

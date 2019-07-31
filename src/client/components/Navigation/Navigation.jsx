@@ -76,11 +76,9 @@ export const Navigation = () => {
       in={open}
       classNames="slide"
       timeout={400}
-
     >
       <NavigationContainer open={open}>
-        <NavButton to="/" exact activeClassName="active" onClick={closeMenuAction}>Home</NavButton>
-        <NavButton to="/blog" activeClassName="active" onClick={closeMenuAction}>Blog</NavButton>
+        <NavButton to="/" exact activeClassName="active" onClick={closeMenuAction}>Blog</NavButton>
         <NavButton to="/about" activeClassName="active" onClick={closeMenuAction}>About</NavButton>
       </NavigationContainer>
     </CSSTransition>

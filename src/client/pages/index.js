@@ -1,11 +1,13 @@
-import About from './About/About';
-import Blog from './Blog/Blog';
-import Home from './Home/Home';
-import NotFound from './NotFound/NotFound';
+import AboutPage from './AboutPage';
+import EditPostPage from './EditPostPage';
+import ListPostsPage from './ListPostsPage';
+import NotFoundPage from './NotFoundPage';
+import ViewPostPage from './ViewPostPage';
 
 export {
-  About,
-  Blog,
-  Home,
-  NotFound,
+  AboutPage,
+  EditPostPage,
+  ListPostsPage,
+  NotFoundPage,
+  ViewPostPage,
 };
