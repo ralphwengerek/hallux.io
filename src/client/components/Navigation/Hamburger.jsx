@@ -6,7 +6,7 @@ import { getMenuState } from '../../redux/reducers/menu';
 import { toggleMenu } from '../../redux/actions/menu';
 
 const HamburgerContainer = styled.div`
-  ${({ open }) => css`
+  ${({ open, theme }) => css`
     height: 20px;
     width: 30px;
     cursor: pointer;
@@ -22,7 +22,7 @@ const HamburgerContainer = styled.div`
     .menu-button::before,
     .menu-button::after {
       display: block;
-      background-color: #000;
+      background:linear-gradient(90deg, ${theme.colors.primary} 0%, ${theme.colors.accent} 100%);
       position: absolute;
       height: 4px;
       width: 30px;
@@ -32,7 +32,7 @@ const HamburgerContainer = styled.div`
 
     .menu-button {
       ${open && css`
-        background-color: #fff;
+        background:none;
       `}
     }
 

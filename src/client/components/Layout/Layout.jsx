@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { useSelector } from 'react-redux';
 import {
-  AboutPage, ListPostsPage, NotFoundPage, EditPostPage, ViewPostPage,
+  AboutPage, ContactPage, ListPostsPage, NotFoundPage, EditPostPage, ViewPostPage,
 } from '../../pages';
 import { Footer } from '../Footer/Footer';
 import { Header } from '../Header/Header';
@@ -15,9 +15,13 @@ import { getUserIsAuthenticated } from '../../redux/reducers/user';
 import ScrollToTop from '../ScrollToTop/ScrollToTop';
 
 const Site = styled.div`
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
+  ${({ theme }) => css`
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    background-color: ${theme.colors.background};
+  `}
+
 `;
 
 const ContentContainer = styled.div`
@@ -55,6 +59,7 @@ export const Layout = () => {
             <Switch>
               <Route path={['/tag/:tag', '/']} exact component={ListPostsPage} />
               <Route path="/about" component={AboutPage} />
+              <Route exact path="/contact" component={ContactPage} />
               <Route path="/blog/:slug/edit" component={EditPostPage} />
               <Route exact path="/blog/:slug" component={ViewPostPage} />
               <Route path="/callback" component={Callback} />

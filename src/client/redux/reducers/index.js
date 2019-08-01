@@ -6,6 +6,7 @@ import menu from './menu';
 import posts from './post';
 import user from './user';
 import profilePanel from './profilePanel';
+import ui from './ui';
 
 
 const entityState = {};
@@ -29,4 +30,5 @@ export default history => combineReducers({
   posts,
   user,
   toastr: toastrReducer,
+  ui,
 });

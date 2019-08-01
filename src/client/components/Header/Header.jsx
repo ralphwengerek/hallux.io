@@ -1,16 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Switch } from 'antd';
+import { FaSun, FaRegMoon } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { px } from '../../utils/pixel';
 import { media } from '../../utils/mediaQuery';
 import { Hamburger } from '../Navigation/Hamburger';
 import { Navigation } from '../Navigation/Navigation';
-import { Button } from '../Button/Button';
 import { Avatar } from '../Avatar/Avatar';
-import { login } from '../../redux/actions/user';
 import { getUser } from '../../redux/reducers/user';
 import { toggleProfilePanel } from '../../redux/actions/profilePanel';
+import { setTheme } from '../../redux/actions/ui';
+import { getTheme } from '../../redux/reducers/ui';
 
 const HeaderContainer = styled.header`
   box-shadow: 0 0 5px #cccccc;
@@ -18,7 +20,7 @@ const HeaderContainer = styled.header`
   top: 0;
   width: 100%;
   z-index: 101;
-  background-color: #fff;
+  background-color: ${({ theme }) => theme.colors.background};
   display: flex;
   justify-content: center;
 `;
@@ -65,13 +67,27 @@ const AvatarLink = styled.a`
   text-decoration: none;
 `;
 
+const RightSection = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const SwitchIcon = styled.div`
+  margin-top: 2px;
+`;
+
 export const Header = () => {
   const dispatch = useDispatch();
   const user = useSelector(getUser);
+  const theme = useSelector(getTheme);
 
   const onAvatarClick = (event) => {
     event.stopPropagation();
     dispatch(toggleProfilePanel());
+  };
+
+  const onThemeChange = (checked) => {
+    dispatch(setTheme(checked ? 'light' : 'dark'));
   };
 
   return (
@@ -82,15 +98,21 @@ export const Header = () => {
           <Title to="/">Hallux.io</Title>
         </Company>
 
-        <Navigation />
-        { user.isAuthenticated
-          ? (
+        <RightSection>
+          <Navigation />
+          <Switch
+            checkedChildren={<SwitchIcon><FaSun /></SwitchIcon>}
+            unCheckedChildren={<SwitchIcon><FaRegMoon /></SwitchIcon>}
+            onChange={onThemeChange}
+            checked={theme === 'light'}
+          />
+          { user.isAuthenticated && (
             <AvatarLink onClick={onAvatarClick}>
               <Avatar picture={user.picture}>&nbsp;</Avatar>
             </AvatarLink>
           )
-          : <Button onClick={() => dispatch(login())}>Sign in</Button>
         }
+        </RightSection>
       </NavBarContainer>
     </HeaderContainer>
   );

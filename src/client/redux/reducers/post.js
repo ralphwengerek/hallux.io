@@ -1,5 +1,6 @@
 /* eslint-disable */
 import handleActions from '../handleActions';
+import { combineReducers } from 'redux';
 import merge from 'lodash/merge';
 
 import {
@@ -48,25 +49,52 @@ const postReducer = handleActions(
   initialState,
 );
 
-export const getAllPosts = (state) => ({
-  ...state.posts,
-  isLoading: state.posts.requests > 0
-});
+const tagsReducer = handleActions({
+  [FETCH_POSTS_SUCCESS] : (state, { entities, ids }) => {
+    let tags = [];
+    entities.forEach(post => {
+      tags = tags.concat(post.tags);
+    });
+
+    const distinct = Array.from(new Set(tags.map(t=>t))).map(tag => {
+      let count = 0;
+      tags.forEach(t=> t === tag && count++);
+      return {
+        value: tag,
+        count
+      };
+    });
+
+    state = distinct;
+  },
+}, [],
+);
+
+
+// SELECTORS ///////////////////////////
+
+export const getAllPosts = (state) =>{
+  const { posts } = state;
+  return  ({
+    entities: posts.ids.map(slug => posts.entities[slug]),
+    isLoading: posts.requests > 0,
+    error: posts.error,
+  });
+};
 
 export const getPostsByTag = (state, tag) => {
-const allPosts = getAllPosts(state);
-debugger;
-if (allPosts.entities.length) {
+  const allPosts = getAllPosts(state);
 
-const filteredPosts = getAllPosts(state)
-                        .entities
-                        .filter(p=> p.tags.some(t=> t.toLowerCase() === tag));
+  if (tag === undefined) {
+    return allPosts;
+  }
 
- return  ({
-  entities: filteredPosts,
-  isLoading: posts.requests > 0
-});
-}
+  const filteredPosts = allPosts.entities.filter(p=> p.tags.some(t=> t.toLowerCase() === tag));
+
+  return  ({
+    ...allPosts,
+    entities: filteredPosts,
+  });
 };
 
 export const getPostBySlug = ({ posts }, slug ) => ({
@@ -74,4 +102,25 @@ export const getPostBySlug = ({ posts }, slug ) => ({
   isLoading: posts.requests > 0,
 });
 
+export const getDistinctTags = (state) => {
+  let tags = [];
+  getAllPosts(state).entities.forEach(post => {
+    tags = tags.concat(post.tags);
+  });
+
+  return Array.from(new Set(tags.map(t=>t))).map(tag => {
+    let count = 0;
+    tags.forEach(t=> t === tag && count++);
+    return {
+      value: tag,
+      count
+    };
+  });
+};
+
 export default postReducer;
+
+// export default combineReducers({
+//   post: postReducer,
+//   tags: tagsReducer,
+// });

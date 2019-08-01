@@ -1,6 +1,6 @@
 import { px } from '../utils/pixel';
 
-const lightTheme = {
+export const light = {
   colors: {
     background: '#ffffff',
     primary: '#40a9ff',
@@ -30,4 +30,4 @@ const lightTheme = {
   },
 };
 
-export default lightTheme;
+export default light;

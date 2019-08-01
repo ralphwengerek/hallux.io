@@ -13,7 +13,6 @@ const StyledButton = styled.button.attrs({
   transition: all 0.2s;
   border: solid 2px #1976D2;
   padding: ${px(7)};
-  background-color: #fff;
   border-radius: ${px(4)};
   box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 2px 1px -1px rgba(0,0,0,0.12);
 

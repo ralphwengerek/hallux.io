@@ -1,14 +1,33 @@
-const darkTheme = {
+import { px } from '../utils/pixel';
+
+export const dark = {
   colors: {
-    background: '#ffffff',
-    primary: '#1976D2',
+    background: '#313131',
+    primary: '#40a9ff',
     accent: '#8BC34A',
     body: '#555555',
+    border: '#e3e3e3',
     divider: '#BDBDBD',
+    loader: '#333',
+    // Footer
+    footer: '#ccc',
+    footerBackground: '#333',
+    // Buttons
+    buttonActive: '#096dd9',
   },
   typography: {
-    fontFamily: 'Roboto',
+    fontFamily: 'Nunito Sans, Montserrat',
+    title: px(32),
+    larger: px(24),
+    large: px(20),
+    normal: px(16),
+    small: px(12),
+    smaller: px(8),
+  },
+  sizing: {
+    desktop: '860px',
+    mobile: '100%',
   },
 };
 
-export default darkTheme;
+export default dark;

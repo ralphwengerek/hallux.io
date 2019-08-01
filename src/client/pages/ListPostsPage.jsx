@@ -4,9 +4,10 @@ import styled from 'styled-components';
 import { PostSummaryList } from '../components/Post/PostSummaryList';
 import { Loader } from '../components/Loader/Loader';
 import { fetchPosts } from '../redux/actions/post';
-import { getPostsByTag } from '../redux/reducers/post';
+import { getPostsByTag, getDistinctTags } from '../redux/reducers/post';
 import { TagBrowser } from '../components/Tag/TagBrowser';
 import { media } from '../utils/mediaQuery';
+import { px } from '../utils/pixel';
 import { useRouter } from '../hooks';
 
 
@@ -18,7 +19,11 @@ const Flexbox = styled.div`
   `}
 `;
 
-const Column = styled.div`
+const Column = styled.div``;
+
+const PageTitle = styled.h1`
+  padding: 0 ${px(16)};
+  text-align: center;
 `;
 
 const ListPostsPage = () => {
@@ -29,27 +34,9 @@ const ListPostsPage = () => {
     error,
     isLoading,
     entities,
-    ids,
   } = useSelector(state => getPostsByTag(state, tag));
 
-  const tags = [
-    {
-      count: 10,
-      value: 'React.js',
-    },
-    {
-      count: 4,
-      value: 'Node.js',
-    },
-    {
-      count: 7,
-      value: 'MongoDB',
-    },
-    {
-      count: 2,
-      value: 'javascript',
-    },
-  ];
+  const tags = useSelector(getDistinctTags);
 
   React.useEffect(() => {
     dispatch(fetchPosts());
@@ -58,13 +45,16 @@ const ListPostsPage = () => {
   return (
     <>
       <Loader size={50} show={isLoading} />
+      <PageTitle>
+        { (tag && `'${tag}'`) || 'Welcome' }
+      </PageTitle>
       {!isLoading && (
       <Flexbox>
         <Column>
           <PostSummaryList
             entities={entities}
-            ids={ids}
             error={error}
+            isLoading={isLoading}
           />
         </Column>
         <Column>

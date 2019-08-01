@@ -22,9 +22,8 @@ const CardWrapper = styled.div`
 `;
 
 const CardTitle = styled.h2`
-  font-size: 24px;
   display: block;
-  margin: ${px(16)} 0px;
+  /* margin: ${px(16)} 0px; */
   cursor: pointer;
   text-transform: uppercase;
   color: ${({ theme }) => theme.colors.primary};

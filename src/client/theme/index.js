@@ -1,7 +1,7 @@
-import darkTheme from './dark';
-import lightTheme from './light';
+import { dark } from './dark';
+import { light } from './light';
 
 export {
-  darkTheme,
-  lightTheme,
+  dark,
+  light,
 };

@@ -1,22 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import { PostSummary } from './PostSummary';
+import { Loader } from '../Loader/Loader';
+
+const ListContainer = styled.div`
+  &:first-child div {
+    margin-top: 0px;
+  }
+`;
 
 export const PostSummaryList = ({
-  ids, entities, error,
+  entities, error, isLoading,
 }) => (
   <>
-    { ids.length > 0 && ids.map(slug => (
-      <PostSummary
-        key={slug}
-        slug={slug}
-        title={entities[slug].title}
-        image={entities[slug].image}
-        published={entities[slug].published}
-        summary={entities[slug].summary}
-        tags={entities[slug].tags}
-      />
-    ))}
+    <Loader show={isLoading} />
+    <ListContainer>
+      { entities.length > 0 && entities.map(post => (
+        <PostSummary
+          key={post.slug}
+          slug={post.slug}
+          title={post.title}
+          image={post.image}
+          published={post.published}
+          summary={post.summary}
+          tags={post.tags}
+        />
+      ))}
+    </ListContainer>
     {error && (
       <h2>
       Error:
@@ -32,11 +43,13 @@ export default PostSummaryList;
 
 
 PostSummaryList.propTypes = {
-  entities: PropTypes.object.isRequired,
-  ids: PropTypes.array.isRequired,
+  entities: PropTypes.array,
   error: PropTypes.any,
+  isLoading: PropTypes.bool,
 };
 
 PostSummaryList.defaultProps = {
+  entities: [],
   error: undefined,
+  isLoading: false,
 };
