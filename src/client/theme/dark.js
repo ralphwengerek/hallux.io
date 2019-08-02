@@ -8,8 +8,10 @@ export const dark = {
     body: '#fff',
     border: '#e3e3e3',
     divider: '#BDBDBD',
-    loader: '#333',
+    loader: '#fff',
     shadow: '#171717',
+    error: '#d01010',
+    disabled: '#4b4b4b',
     // Footer
     footer: '#ccc',
     footerBackground: '#333',
@@ -17,6 +19,8 @@ export const dark = {
     buttonActive: '#096dd9',
     // Tag,
     tagBackground: '#3d3d3d',
+    // Input
+    inputBorder: '#3fa9ff3d',
   },
   typography: {
     fontFamily: 'Nunito Sans, Montserrat',

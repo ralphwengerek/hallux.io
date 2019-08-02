@@ -2,8 +2,8 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { FaBlog, FaInfoCircle, FaEnvelope } from 'react-icons/fa';
 import { CSSTransition } from 'react-transition-group';
-import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { NavButton } from './NavButton';
 import { px } from '../../utils/pixel';
 import { media } from '../../utils/mediaQuery';
 import { getMenuState } from '../../redux/reducers/uiReducer';
@@ -64,43 +64,6 @@ const NavigationContainer = styled.nav`
 
 `;
 
-const NavButton = styled(NavLink)`
-  margin: ${px(16)};
-  text-decoration: none;
-  color: ${({ theme }) => theme.colors.primary};
-  transition: all 0.2s;
-  cursor: pointer;
-  text-align: center;
-
-  border-radius: 24px;
-  border: solid 1px;
-  padding: ${px(16)} ${px(32)};
-
-  &.active {
-    color: ${({ theme }) => theme.colors.accent};
-  }
-  &:hover {
-    transform: scale(1.2);
-  }
-
-  ${media.up.phone`
-    border: none;
-    padding: 0px;
-    display: flex;
-    align-items: center;
-    margin: 0px ${px(16)};
-  `}
-`;
-
-const NavIcon = styled.div`
-  text-align: center;
-  font-size: ${px(24)};
-  display: flex;
-  margin: 0px 8px;
-  justify-content: center;
-`;
-
-const NavText = styled.span``;
 
 export const Navigation = () => {
   const open = useSelector(getMenuState);
@@ -113,18 +76,9 @@ export const Navigation = () => {
       timeout={300}
     >
       <NavigationContainer open={open}>
-        <NavButton to="/" exact activeClassName="active" onClick={closeMenuAction}>
-          <NavIcon><FaBlog /></NavIcon>
-          <NavText>Blog</NavText>
-        </NavButton>
-        <NavButton to="/about" activeClassName="active" onClick={closeMenuAction}>
-          <NavIcon><FaInfoCircle /></NavIcon>
-          <NavText>About</NavText>
-        </NavButton>
-        <NavButton to="/contact" activeClassName="active" onClick={closeMenuAction}>
-          <NavIcon><FaEnvelope /></NavIcon>
-          <NavText>Contact</NavText>
-        </NavButton>
+        <NavButton to="/" onClick={closeMenuAction} icon={<FaBlog />} text="Blog" />
+        <NavButton to="/about" onClick={closeMenuAction} icon={<FaInfoCircle />} text="About" />
+        <NavButton to="/contact" onClick={closeMenuAction} icon={<FaEnvelope />} text="Contact" />
       </NavigationContainer>
     </CSSTransition>
   );

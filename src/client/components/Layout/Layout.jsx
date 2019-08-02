@@ -13,12 +13,17 @@ import { ProfilePanel } from '../ProfilePanel/ProfilePanel';
 import { media } from '../../utils/mediaQuery';
 import { getUserIsAuthenticated } from '../../redux/reducers/userReducer';
 import ScrollToTop from '../ScrollToTop/ScrollToTop';
+import LineBackground from '../../images/bg.svg';
 
 const Site = styled.div`
   ${({ theme }) => css`
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    /* background-image: url(${LineBackground}); */
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
     background-color: ${theme.colors.background};
   `}
 

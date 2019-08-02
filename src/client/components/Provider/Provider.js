@@ -5,6 +5,7 @@ import ReduxToastr from 'react-redux-toastr';
 import PropTypes from 'prop-types';
 import configureStore, { history } from '../../redux/configureStore';
 import { ConnectedThemeProvider } from '../ConnectedThemeProvider/ConnectedThemeProvider';
+import 'antd/dist/antd.css';
 
 const store = configureStore();
 // const baseName = process.env.BASE_URL;

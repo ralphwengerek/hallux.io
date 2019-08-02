@@ -8,15 +8,19 @@ export const light = {
     body: '#555555',
     border: '#e3e3e3',
     divider: '#BDBDBD',
-    loader: '#333',
+    loader: '#313131',
     shadow: '#d0d0d0',
+    error: '#ff0000',
+    disabled: '#dfdfdf',
     // Footer
     footer: '#ccc',
-    footerBackground: '#333',
+    footerBackground: '#313131',
     // Buttons
     buttonActive: '#096dd9',
     // Tag,
     tagBackground: '#f7f7f7',
+    // Input
+    inputBorder: '#d9d9d9',
   },
   typography: {
     fontFamily: 'Nunito Sans, Montserrat',

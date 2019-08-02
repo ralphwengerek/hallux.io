@@ -1,20 +1,21 @@
 /* eslint-disable no-console */
 /* eslint-disable max-len */
-import * as React from 'react';
+import React from 'react';
 import ReactMde from 'react-mde';
 import * as Showdown from 'showdown';
 import styled from 'styled-components';
 import { Formik, FieldArray } from 'formik';
-import { Input, Tooltip, Icon } from 'antd';
+import { Input } from 'antd';
 import 'react-mde/lib/styles/css/react-mde-all.css';
 import { PropTypes } from 'prop-types';
 import { px } from '../../utils/pixel';
 import { Button } from '../Button/Button';
 import { Link } from '../Link/Link';
 import { schema } from './PostEditorSchema';
-import 'antd/dist/antd.css';
 import { Loader } from '../Loader/Loader';
+import { Label } from '../Label/Label';
 import { TagForm } from '../Tag/TagForm';
+import { FormError } from '../FormError/FormError';
 
 const PostEditorContainer = styled.div`
   margin: ${px(16)} 0;
@@ -34,55 +35,9 @@ const converter = new Showdown.Converter({
   tasklists: true,
 });
 
-const LabelContainer = styled.div`
-  min-width: 100px;
-  position: relative;
-
-  > i {
-    margin-left: ${px(8)};
-  }
-`;
-
 const InputGroup = styled.div`
   padding: ${px(8)} ${px(16)};
 `;
-
-const ErrorContainer = styled.div`
-  position:absolute;
-  right: ${px(16)};
-  font-size: ${({ theme }) => theme.typography.small};
-  color: red;
-`;
-
-const Error = ({ msg }) => (
-  <ErrorContainer>
-    <span>{`* ${msg}`}</span>
-  </ErrorContainer>
-);
-Error.propTypes = {
-  msg: PropTypes.string.isRequired,
-};
-
-const Label = ({ text, error, showError }) => (
-  <LabelContainer>
-    {`${text} `}
-    { !!error && !!showError
-    && (
-      <Tooltip title={error}>
-        <Icon type="info-circle" style={{ color: 'red' }} />
-      </Tooltip>
-    )}
-  </LabelContainer>
-);
-Label.propTypes = {
-  text: PropTypes.string.isRequired,
-  error: PropTypes.string,
-  showError: PropTypes.bool,
-};
-Label.defaultProps = {
-  error: undefined,
-  showError: false,
-};
 
 export const PostEditor = ({ post, onSubmit, isLoading }) => {
   const [selectedTab, setSelectedTab] = React.useState('write');
@@ -110,7 +65,7 @@ export const PostEditor = ({ post, onSubmit, isLoading }) => {
                   autoComplete="off"
                 />
                 { errors.title && touched.title && (
-                <Error msg={errors.title} />
+                <FormError msg={errors.title} />
                 )}
               </InputGroup>
 
@@ -125,7 +80,7 @@ export const PostEditor = ({ post, onSubmit, isLoading }) => {
                   autoComplete="off"
                 />
                 { errors.image && touched.image && (
-                <Error msg={errors.image} />
+                <FormError msg={errors.image} />
                 )}
               </InputGroup>
 
@@ -141,7 +96,7 @@ export const PostEditor = ({ post, onSubmit, isLoading }) => {
                   rows={4}
                 />
                 { errors.summary && touched.summary && (
-                <Error msg={errors.summary} />
+                <FormError msg={errors.summary} />
                 )}
               </InputGroup>
 
@@ -168,7 +123,7 @@ export const PostEditor = ({ post, onSubmit, isLoading }) => {
                 />
 
                 { errors.tags && touched.tags && (
-                <Error msg={errors.tags} />
+                <FormError msg={errors.tags} />
                 )}
               </InputGroup>
 
@@ -181,7 +136,7 @@ export const PostEditor = ({ post, onSubmit, isLoading }) => {
                   }) => (<TagForm name="keywords" values={form.values.keywords} push={push} remove={remove} />)}
                 />
                 { errors.keywords && touched.keywords && (
-                <Error msg={errors.keywords} />
+                <FormError msg={errors.keywords} />
                 )}
               </InputGroup>
 

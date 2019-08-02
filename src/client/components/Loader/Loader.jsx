@@ -2,11 +2,12 @@ import React from 'react';
 import { CSSTransition } from 'react-transition-group';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
+import { px } from '../../utils/pixel';
 
 const LoaderWrapper = styled.div.attrs({
   'data-testid': 'loader',
 })`
-top: -40px;
+  top: -40px;
   position: absolute;
   display: flex;
   justify-content: center;
@@ -39,8 +40,8 @@ top: -40px;
           transform: rotateZ(45deg);
 
   ${({ size }) => size && css`
-    width: ${size}px;
-    height: ${size}px;
+    width: ${px(size)};
+    height: ${px(size)};
   `}
 
 }
@@ -61,7 +62,7 @@ top: -40px;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: ${({ theme, color }) => color || theme.colors.loader};
+  background: ${({ theme }) => theme.colors.loader};
   -webkit-animation: sk-foldCubeAngle 2.4s infinite linear both;
           animation: sk-foldCubeAngle 2.4s infinite linear both;
   -webkit-transform-origin: 100% 100%;
@@ -125,14 +126,14 @@ top: -40px;
 }
 `;
 
-export const Loader = ({ size, color, show }) => (
+export const Loader = ({ size, show }) => (
   <CSSTransition
     in={show}
     classNames="fade"
     timeout={400}
     unmountOnExit
   >
-    <LoaderWrapper size={size} color={color}>
+    <LoaderWrapper size={size}>
       <div className="sk-folding-cube">
         <div className="sk-cube1 sk-cube" />
         <div className="sk-cube2 sk-cube" />
@@ -146,13 +147,11 @@ export const Loader = ({ size, color, show }) => (
 
 Loader.propTypes = {
   size: PropTypes.number,
-  color: PropTypes.string,
   show: PropTypes.bool,
 };
 
 Loader.defaultProps = {
   size: 40,
-  color: '#333',
   show: true,
 };
 

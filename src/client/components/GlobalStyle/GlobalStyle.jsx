@@ -6,7 +6,7 @@ export const GlobalStyle = createGlobalStyle`
   ${({ theme }) => css`
     body {
       font-family: ${theme.typography.fontFamily};
-      font-size: 16px;
+      font-size: ${px(16)};
       color: ${theme.colors.body};
     }
     *:focus {
@@ -58,9 +58,13 @@ export const GlobalStyle = createGlobalStyle`
       `}
     }
 
-    #disqus_thread {
-      color:pink;
+    /* Ant Overrides */
+    .ant-input {
+      background-color: ${theme.colors.background};
+      color: ${theme.colors.body};
+      border-color: ${theme.colors.inputBorder};
     }
+
   `}
 `;
 

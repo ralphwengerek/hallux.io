@@ -7,30 +7,32 @@ const StyledButton = styled.button.attrs({
   'data-testid': 'button',
   type: 'button',
 })`
-  ${({ theme, link }) => css`
+  ${({ theme: { colors }, link }) => css`
+    cursor: pointer;
     margin: 0;
     text-decoration: none;
-    color: ${theme.colors.primary};
+    color: ${colors.primary};
     transition: all 0.2s;
-    border: solid 2px #1976D2;
+    border: solid 2px ${colors.primary};
     padding: ${px(7)};
     border-radius: ${px(4)};
-    box-shadow: 0 0 5px ${theme.colors.shadow};
+    box-shadow: 0 0 5px ${colors.shadow};
+    background-color: ${colors.background};
 
     &.active {
-      color: ${theme.colors.accent};
+      color: ${colors.accent};
     }
     &:focus {
       outline: none;
     }
     &:active {
-      color: ${theme.colors.buttonActive};
-      border-color: ${theme.colors.buttonActive};
+      color: ${colors.buttonActive};
+      border-color: ${colors.buttonActive};
     }
     &:hover {
-      color: ${theme.colors.accent};
-      border: solid ${px(2)} ${theme.colors.accent};
-      box-shadow: 0 0 2px ${theme.colors.shadow};
+      color: ${colors.accent};
+      border: solid ${px(2)} ${colors.accent};
+      box-shadow: 0 0 2px ${colors.shadow};
       >span {
       }
     }
@@ -43,7 +45,7 @@ const StyledButton = styled.button.attrs({
       box-shadow: none;
 
       &:active {
-        color: ${theme.colors.buttonActive};
+        color: ${colors.buttonActive};
       }
       &:hover {
         border: none;
@@ -54,6 +56,13 @@ const StyledButton = styled.button.attrs({
         }
       }
     `}
+
+    &:disabled {
+      color: ${colors.disabled};
+      border-color: ${colors.disabled};
+      cursor: default;
+      box-shadow: none;
+    }
   `}
 `;
 
