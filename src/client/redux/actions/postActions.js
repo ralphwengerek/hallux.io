@@ -1,12 +1,12 @@
 export const FETCH_POST = '[post] - GET Single post';
-export const FETCH_POST_SUCCESS = '[post] - GET Single post Success';
-export const FETCH_POST_FAILURE = '[post] - GET Single post Failed';
-export const FETCH_POST_COMPLETE = '[post] - GET Single post complete';
+export const FETCH_POST_SUCCESS = '[post] - Get Single post Success';
+export const FETCH_POST_FAILURE = '[post] - Get Single post Failed';
+export const FETCH_POST_COMPLETE = '[post] - Get Single post complete';
 
-export const FETCH_POSTS = '[post] - GET ALL POSTS';
-export const FETCH_POSTS_SUCCESS = '[post] - GET ALL POSTS Success';
-export const FETCH_POSTS_FAILURE = '[post] - GET ALL POSTS Failed';
-export const FETCH_POSTS_COMPLETE = '[post] - FETCH POSTS complete';
+export const FETCH_POSTS = '[post] - Get all posts';
+export const FETCH_POSTS_SUCCESS = '[post] - Get all posts Success';
+export const FETCH_POSTS_FAILURE = '[post] - GET all posts Failed';
+export const FETCH_POSTS_COMPLETE = '[post] - Get posts complete';
 
 export const SAVE_POST = '[post] - Save post';
 export const SAVE_POST_SUCCESS = '[post] - Save post Success';

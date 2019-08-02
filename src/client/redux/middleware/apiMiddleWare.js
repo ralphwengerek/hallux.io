@@ -1,6 +1,6 @@
 import { normalize } from 'normalizr';
 import { actions as toastrActions } from 'react-redux-toastr';
-import { API_REQUEST } from '../actions/api';
+import { API_REQUEST } from '../actions/apiActions';
 
 const apiMiddleWare = ({ dispatch, getState }) => next => (action) => {
   if (action.type === API_REQUEST) {

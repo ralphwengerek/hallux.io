@@ -1,4 +1,5 @@
 import { Avatar } from './Avatar/Avatar';
+import { Bio } from './Bio/Bio';
 import { Button } from './Button/Button';
 import { Card } from './Card/Card';
 import { Code } from './Code/Code';
@@ -17,6 +18,7 @@ import { Tag } from './Tag/Tag';
 
 export {
   Avatar,
+  Bio,
   Button,
   Card,
   Code,

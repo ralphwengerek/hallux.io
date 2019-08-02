@@ -11,7 +11,7 @@ import { GlobalStyle } from '../GlobalStyle/GlobalStyle';
 import { Callback } from '../Auth/Callback';
 import { ProfilePanel } from '../ProfilePanel/ProfilePanel';
 import { media } from '../../utils/mediaQuery';
-import { getUserIsAuthenticated } from '../../redux/reducers/user';
+import { getUserIsAuthenticated } from '../../redux/reducers/userReducer';
 import ScrollToTop from '../ScrollToTop/ScrollToTop';
 
 const Site = styled.div`

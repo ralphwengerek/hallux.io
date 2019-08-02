@@ -7,7 +7,7 @@ export const GlobalStyle = createGlobalStyle`
     body {
       font-family: ${theme.typography.fontFamily};
       font-size: 16px;
-      color: #555555;
+      color: ${theme.colors.body};
     }
     *:focus {
       outline: none;
@@ -58,6 +58,9 @@ export const GlobalStyle = createGlobalStyle`
       `}
     }
 
+    #disqus_thread {
+      color:pink;
+    }
   `}
 `;
 

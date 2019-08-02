@@ -5,15 +5,18 @@ export const dark = {
     background: '#313131',
     primary: '#40a9ff',
     accent: '#8BC34A',
-    body: '#555555',
+    body: '#fff',
     border: '#e3e3e3',
     divider: '#BDBDBD',
     loader: '#333',
+    shadow: '#171717',
     // Footer
     footer: '#ccc',
     footerBackground: '#333',
     // Buttons
     buttonActive: '#096dd9',
+    // Tag,
+    tagBackground: '#3d3d3d',
   },
   typography: {
     fontFamily: 'Nunito Sans, Montserrat',

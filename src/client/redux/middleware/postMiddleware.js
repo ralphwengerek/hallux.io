@@ -14,8 +14,8 @@ import {
   savePostSuccess,
   savePostFailure,
   SAVE_POST_SUCCESS,
-} from '../actions/post';
-import { apiRequest } from '../actions/api';
+} from '../actions/postActions';
+import { apiRequest } from '../actions/apiActions';
 import {
   fetchPosts, fetchPost, createPost, updatePost,
 } from '../../api/postApi';

@@ -2,8 +2,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Post } from '../components/Post/Post';
-import { fetchPost } from '../redux/actions/post';
-import { getPostBySlug } from '../redux/reducers/post';
+import { fetchPost } from '../redux/actions/postActions';
+import { getPostBySlug } from '../redux/reducers/postReducer';
 import useRouter from '../hooks/useRouter';
 
 const ViewPostPage = () => {

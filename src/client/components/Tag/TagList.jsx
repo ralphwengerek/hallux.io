@@ -2,15 +2,16 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Tag } from './Tag';
-import { px } from '../../utils/pixel';
-
 
 const TagsContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  padding: ${px(8)} 0;
   flex-wrap: wrap;
+
+  > .tag {
+    margin: 8px;
+  }
 `;
 
 export const TagList = ({ tags }) => (

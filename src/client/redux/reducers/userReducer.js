@@ -1,6 +1,12 @@
 /* eslint-disable */
 import handleActions from '../handleActions';
 import merge from 'lodash/merge';
+import {
+  LOGOUT,
+  LOGIN,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE,
+} from '../actions/userActions';
 
 export const initialState = {
   accessToken: undefined,
@@ -14,13 +20,13 @@ export const initialState = {
 
 const userReducer = handleActions(
   {
-    LOGOUT: (user) => {
+    [LOGOUT]: (user) => {
       merge(user, initialState.user);
     },
-    LOGIN: (user) => {
+    [LOGIN]: (user) => {
       user.loginAttempts += 1;
     },
-    LOGIN_SUCCESS: (user, authResponse) => {
+    [LOGIN_SUCCESS]: (user, authResponse) => {
       user.accessToken = authResponse.accessToken;
       user.expiresIn = authResponse.expiresIn;
       user.email = authResponse.idTokenPayload.email;
@@ -28,7 +34,7 @@ const userReducer = handleActions(
       user.picture = authResponse.idTokenPayload.picture;
       user.isAuthenticated = true;
     },
-    LOGIN_FAILURE: (user, payload) => {
+    [LOGIN_FAILURE]: (user, payload) => {
       console.log('LOGIN_FAILURE: ', payload);
     },
   },

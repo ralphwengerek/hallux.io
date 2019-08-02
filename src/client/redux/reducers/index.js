@@ -1,13 +1,10 @@
 import { combineReducers } from 'redux';
 import { connectRouter } from 'connected-react-router';
-import { reducer as toastrReducer } from 'react-redux-toastr';
+import { reducer as toastr } from 'react-redux-toastr';
 import merge from 'lodash/merge';
-import menu from './menu';
-import posts from './post';
-import user from './user';
-import profilePanel from './profilePanel';
-import ui from './ui';
-
+import posts from './postReducer';
+import user from './userReducer';
+import ui from './uiReducer';
 
 const entityState = {};
 
@@ -25,10 +22,8 @@ const entities = (state = entityState, action) => {
 export default history => combineReducers({
   router: connectRouter(history),
   entities,
-  menu,
-  profilePanel,
   posts,
-  user,
-  toastr: toastrReducer,
   ui,
+  user,
+  toastr,
 });

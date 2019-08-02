@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Switch } from 'antd';
+import { Switch, Tooltip } from 'antd';
 import { FaSun, FaRegMoon } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -9,13 +9,13 @@ import { media } from '../../utils/mediaQuery';
 import { Hamburger } from '../Navigation/Hamburger';
 import { Navigation } from '../Navigation/Navigation';
 import { Avatar } from '../Avatar/Avatar';
-import { getUser } from '../../redux/reducers/user';
-import { toggleProfilePanel } from '../../redux/actions/profilePanel';
-import { setTheme } from '../../redux/actions/ui';
-import { getTheme } from '../../redux/reducers/ui';
+import { getUser } from '../../redux/reducers/userReducer';
+import { toggleProfilePanel } from '../../redux/actions/ui/profilePanelActions';
+import { setTheme } from '../../redux/actions/ui/themeActions';
+import { getTheme } from '../../redux/reducers/uiReducer';
 
 const HeaderContainer = styled.header`
-  box-shadow: 0 0 5px #cccccc;
+  box-shadow: 0 0 5px ${({ theme }) => theme.colors.shadow};
   position: fixed;
   top: 0;
   width: 100%;
@@ -100,12 +100,14 @@ export const Header = () => {
 
         <RightSection>
           <Navigation />
-          <Switch
-            checkedChildren={<SwitchIcon><FaSun /></SwitchIcon>}
-            unCheckedChildren={<SwitchIcon><FaRegMoon /></SwitchIcon>}
-            onChange={onThemeChange}
-            checked={theme === 'light'}
-          />
+          <Tooltip placement="bottomRight" title={theme === 'light' ? 'Turn off the lights' : 'Turn on the lights'}>
+            <Switch
+              checkedChildren={<SwitchIcon><FaSun /></SwitchIcon>}
+              unCheckedChildren={<SwitchIcon><FaRegMoon /></SwitchIcon>}
+              onChange={onThemeChange}
+              checked={theme === 'light'}
+            />
+          </Tooltip>
           { user.isAuthenticated && (
             <AvatarLink onClick={onAvatarClick}>
               <Avatar picture={user.picture}>&nbsp;</Avatar>

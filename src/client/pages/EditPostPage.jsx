@@ -1,8 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchPost, savePost } from '../redux/actions/post';
+import { fetchPost, savePost } from '../redux/actions/postActions';
 import useRouter from '../hooks/useRouter';
-import { getPostBySlug } from '../redux/reducers/post';
+import { getPostBySlug } from '../redux/reducers/postReducer';
 import { PostEditor } from '../components/Post/PostEditor';
 
 const EditPostPage = () => {

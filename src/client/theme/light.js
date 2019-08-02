@@ -9,11 +9,14 @@ export const light = {
     border: '#e3e3e3',
     divider: '#BDBDBD',
     loader: '#333',
+    shadow: '#d0d0d0',
     // Footer
     footer: '#ccc',
     footerBackground: '#333',
     // Buttons
     buttonActive: '#096dd9',
+    // Tag,
+    tagBackground: '#f7f7f7',
   },
   typography: {
     fontFamily: 'Nunito Sans, Montserrat',

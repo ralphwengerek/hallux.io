@@ -10,7 +10,7 @@ import {
   FETCH_POST_SUCCESS,
   FETCH_POSTS_SUCCESS,
   SAVE_POST_SUCCESS,
-} from '../actions/post';
+} from '../actions/postActions';
 
 export const initialState = {
   entities: {},
@@ -119,8 +119,3 @@ export const getDistinctTags = (state) => {
 };
 
 export default postReducer;
-
-// export default combineReducers({
-//   post: postReducer,
-//   tags: tagsReducer,
-// });

@@ -10,6 +10,7 @@ import { FaSignLanguage } from 'react-icons/fa'
 import { TagList } from '../Tag/TagList';
 import { px } from './../../utils/pixel';
 import { Link } from '../Link/Link';
+import media from '../../utils/mediaQuery';
 
 const converter = new Showdown.Converter({
   tables: true,
@@ -29,12 +30,18 @@ const PostImage = styled.img`
   height: auto;
 `;
 
-const PublishDate = styled.div``;
+const PublishDate = styled.div`
+  padding-bottom: ${px(16)};
+`;
 
 const PostContent = styled.div.attrs({
   'data-testid': 'post-container',
 })`
   padding: ${px(16)};
+
+  ${media.up.phone`
+    padding: ${px(32)};
+  `}
 `;
 
 const Container = styled.div`

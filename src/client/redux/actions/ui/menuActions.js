@@ -1,6 +1,6 @@
-const OPEN_MENU = 'OPEN_MENU';
-const CLOSE_MENU = 'CLOSE_MENU';
-const TOGGLE_MENU = 'TOGGLE_MENU';
+export const OPEN_MENU = '[ui] - Open menu';
+export const CLOSE_MENU = '[ui] - Close menu';
+export const TOGGLE_MENU = '[ui] - Toggle menu';
 
 export const openMenu = () => ({
   type: OPEN_MENU,

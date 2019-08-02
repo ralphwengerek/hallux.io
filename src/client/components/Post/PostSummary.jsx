@@ -7,6 +7,7 @@ import { Link } from '../Link/Link';
 import { Card } from '../Card/Card';
 import { px } from '../../utils/pixel';
 import { TagList } from '../Tag/TagList';
+import { media } from '../../utils/mediaQuery';
 
 const ArticleLink = styled(Link)`
   text-decoration: none;
@@ -23,7 +24,7 @@ const CardWrapper = styled.div`
 
 const CardTitle = styled.h2`
   display: block;
-  /* margin: ${px(16)} 0px; */
+  margin-bottom: 0px;
   cursor: pointer;
   text-transform: uppercase;
   color: ${({ theme }) => theme.colors.primary};
@@ -46,6 +47,10 @@ const CardSummary = styled.div`
 
 const CardContent = styled.div`
   padding: ${px(16)};
+
+  ${media.up.phone`
+    padding: ${px(32)};
+  `}
 `;
 
 const CardFooter = styled.div`
@@ -54,14 +59,9 @@ const CardFooter = styled.div`
 `;
 
 const DateContainer = styled.div`
-  position: absolute;
   display: flex;
   align-items: center;
-  background-color: white;
-  border-bottom-left-radius: 3px;
-  border-top-right-radius: 3px;
-  right: 0px;
-  padding: 4px;
+  margin: ${px(8)} 0;
   font-size: ${px(14)};
   text-transform: uppercase;
   > span {
@@ -74,16 +74,16 @@ export const PostSummary = ({
 }) => (
   <CardWrapper>
     <Card>
-      <DateContainer>
-        <FaCalendarDay />
-        <span>{moment(published).format('LL')}</span>
-      </DateContainer>
       <CardImage src={image} alt={title} title={title} height="140" />
       <CardContent>
         <ArticleLink to={`/blog/${slug}`}>
           <CardTitle>
             {title}
           </CardTitle>
+          <DateContainer>
+            <FaCalendarDay />
+            <span>{moment(published).format('LL')}</span>
+          </DateContainer>
           <CardSummary>
             {summary}
           </CardSummary>

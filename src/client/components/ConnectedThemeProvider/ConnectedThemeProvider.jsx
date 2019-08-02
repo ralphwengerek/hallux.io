@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { ThemeProvider } from 'styled-components';
 import { useSelector } from 'react-redux';
 import { light, dark } from '../../theme';
-import { getTheme } from '../../redux/reducers/ui';
+import { getTheme } from '../../redux/reducers/uiReducer';
 
 const themes = {
   light,
@@ -12,8 +12,6 @@ const themes = {
 
 export const ConnectedThemeProvider = ({ children }) => {
   const currentTheme = useSelector(getTheme);
-  console.log('THEME:', currentTheme);
-  console.log('THEMES:', themes);
   return (
     <ThemeProvider theme={themes[currentTheme]}>
       { children }

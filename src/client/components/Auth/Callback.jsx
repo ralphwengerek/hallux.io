@@ -1,7 +1,8 @@
+/* eslint-disable */
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { handleAuthentication } from '../../redux/actions/user';
+import { handleAuthentication } from '../../redux/actions/userActions';
 
 export const Callback = ({ location, history }) => {
   const dispatch = useDispatch();

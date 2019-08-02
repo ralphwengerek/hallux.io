@@ -6,8 +6,8 @@ import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { px } from '../../utils/pixel';
 import { media } from '../../utils/mediaQuery';
-import { getMenuState } from '../../redux/reducers/menu';
-import { closeMenu } from '../../redux/actions/menu';
+import { getMenuState } from '../../redux/reducers/uiReducer';
+import { closeMenu } from '../../redux/actions/ui/menuActions';
 
 const NavigationContainer = styled.nav`
   display: flex;
@@ -21,7 +21,7 @@ const NavigationContainer = styled.nav`
   height: 100vh;
   z-index: 10;
   transition: all .3s cubic-bezier(0.42, 0.01, 0.21, 1);
-  background: #fff linear-gradient(to bottom,#f5f5f5,#e8e8e8);
+  background: ${({ theme }) => theme.colors.background};
 
   ${media.down.phone`
     &.fade-enter {

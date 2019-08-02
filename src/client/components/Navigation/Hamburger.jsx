@@ -2,8 +2,8 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { media } from '../../utils/mediaQuery';
-import { getMenuState } from '../../redux/reducers/menu';
-import { toggleMenu } from '../../redux/actions/menu';
+import { getMenuState } from '../../redux/reducers/uiReducer';
+import { toggleMenu } from '../../redux/actions/ui/menuActions';
 
 const HamburgerContainer = styled.div`
   ${({ open, theme }) => css`
