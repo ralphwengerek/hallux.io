@@ -52,7 +52,7 @@ const NavButtonContainer = styled.div`
   flex-direction: column;
 
   ${media.up.phone`
-
+    flex-direction: row;
   `}
 
 `;

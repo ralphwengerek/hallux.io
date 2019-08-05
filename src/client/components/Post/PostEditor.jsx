@@ -1,18 +1,17 @@
 /* eslint-disable no-console */
 /* eslint-disable max-len */
 import React from 'react';
-import ReactMde from 'react-mde';
 import * as Showdown from 'showdown';
 import styled from 'styled-components';
 import { Formik, FieldArray } from 'formik';
 import { Input } from 'antd';
-import 'react-mde/lib/styles/css/react-mde-all.css';
 import { PropTypes } from 'prop-types';
 import { px } from '../../utils/pixel';
 import { Button } from '../Button/Button';
 import { Link } from '../Link/Link';
 import { schema } from './PostEditorSchema';
 import { Loader } from '../Loader/Loader';
+import { MarkdownEditor } from '../MarkdownEditor/MarkdownEditor';
 import { Label } from '../Label/Label';
 import { TagForm } from '../Tag/TagForm';
 import { FormError } from '../FormError/FormError';
@@ -102,7 +101,7 @@ export const PostEditor = ({ post, onSubmit, isLoading }) => {
 
               <InputGroup>
                 <Label text="Content" error={errors.content} showError={errors.content} />
-                <ReactMde
+                <MarkdownEditor
                   minEditorHeight="calc(100vh - 275px)"
                   value={values.content}
                   onChange={value => setFieldValue('content', value, true)}

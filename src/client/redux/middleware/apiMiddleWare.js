@@ -45,4 +45,4 @@ const apiMiddleWare = ({ dispatch, getState }) => next => (action) => {
   return next(action);
 };
 
-export default apiMiddleWare;
+export default [apiMiddleWare];

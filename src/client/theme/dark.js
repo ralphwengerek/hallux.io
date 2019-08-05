@@ -5,7 +5,7 @@ export const dark = {
     background: '#313131',
     primary: '#40a9ff',
     accent: '#8BC34A',
-    body: '#fff',
+    body: '#d8d8d8',
     border: '#e3e3e3',
     divider: '#BDBDBD',
     loader: '#fff',

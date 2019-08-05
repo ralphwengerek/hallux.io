@@ -8,6 +8,7 @@ import logger from 'redux-logger';
 import throttle from 'lodash/throttle';
 import apiMiddleWare from './middleware/apiMiddleWare';
 import postMiddleWare from './middleware/postMiddleware';
+import userMiddleware from './middleware/userMiddleware';
 import { routerMiddleware } from 'connected-react-router'
 import rootReducer from './reducers';
 import { loadState, saveState } from '../utils/localStorage';
@@ -21,8 +22,9 @@ const configureStore = () => {
   const middlewares = [
     routerMiddleware(history),
     thunk,
-    apiMiddleWare,
+    ...apiMiddleWare,
     ...postMiddleWare,
+    ...userMiddleware,
   ];
 
   if (process.env.NODE_ENV !== 'production') {

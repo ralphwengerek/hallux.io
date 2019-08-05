@@ -64,6 +64,21 @@ export const GlobalStyle = createGlobalStyle`
       color: ${theme.colors.body};
       border-color: ${theme.colors.inputBorder};
     }
+    .ant-input-group-addon {
+      background-color: ${theme.colors.background};
+      border-color: ${theme.colors.inputBorder};
+      color: ${theme.colors.body};
+    }
+
+    /* React Markdown Editor */
+    .react-mde.react-mde-tabbed-layout {
+      border: none;
+    }
+    .react-mde .grip {
+      background-color: ${theme.colors.background};
+      color: ${theme.colors.body};
+      border-top: none;
+    }
 
   `}
 `;

@@ -5,7 +5,6 @@ export const Avatar = styled.div`
   ${({
     theme, picture, size, shadow,
   }) => css`
-    display: inline-block;
     background-image: url(${picture});
     background-size: ${(size && `${size} ${size}`) || '32px 32px'};
     border-radius: 50%;
@@ -14,6 +13,7 @@ export const Avatar = styled.div`
     width: ${(size && `${size}`) || '32px'};
     min-width: ${(size && `${size}`) || '32px'};
     z-index: 0;
+    display: inline-flex;
 
     /* modifier */
     ${shadow && css`

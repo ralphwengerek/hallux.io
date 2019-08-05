@@ -103,11 +103,7 @@ export const ProfilePanel = () => {
               Sign out
           </Button>
         </ProfileAction>
-        <ProfileAction>
-          <Button onClick={signOut}>
-              Sign out
-          </Button>
-        </ProfileAction>
+
       </PanelContainer>
     </CSSTransition>
   );

@@ -48,7 +48,7 @@ const ListPostsPage = () => {
       <Loader size={50} show={isLoading} />
       { tag ? (
         <PageTitle>
-          {tag}
+          {`'${tag}'`}
         </PageTitle>
       ) : <Bio /> }
 

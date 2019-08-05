@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
 import { media } from '../../utils/mediaQuery';
+import * as loginActions from '../../redux/actions/userActions';
+import { Button } from '../Button/Button';
 
 const StyledFooter = styled.footer`
     background-color: ${({ theme }) => theme.colors.footerBackground};
@@ -13,10 +16,14 @@ const StyledFooter = styled.footer`
     `}
 `;
 
-export const Footer = () => (
-  <StyledFooter>
-    FOOTER
-  </StyledFooter>
-);
+export const Footer = () => {
+  const dispatch = useDispatch();
+  return (
+    <StyledFooter>
+      <h3>footer</h3>
+      <Button onClick={() => dispatch(loginActions.login())}>Login</Button>
+    </StyledFooter>
+  );
+};
 
 export default Footer;

@@ -1,9 +1,9 @@
 import authService from '../../utils/AuthService';
 
-const LOGIN_SUCCESS = '[user] - Login success';
-const LOGIN_FAILURE = '[user] - Login failure';
-const LOGOUT = '[user] - Logout';
-const LOGIN = '[user] - Login';
+export const LOGIN_SUCCESS = '[user] - Login success';
+export const LOGIN_FAILURE = '[user] - Login failure';
+export const LOGOUT = '[user] - Logout';
+export const LOGIN = '[user] - Login';
 
 export const login = () => (dispatch) => {
   dispatch({

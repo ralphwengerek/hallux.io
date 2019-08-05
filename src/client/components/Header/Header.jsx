@@ -29,7 +29,7 @@ const NavBarContainer = styled.div`
   align-items: center;
   display:flex;
   justify-content: space-between;
-  padding: 0 ${px(8)};
+  padding: 0 ${px(16)};
   min-height: 50px;
   color: #fff;
   transition: all 0.5s ease;
@@ -50,7 +50,7 @@ const Company = styled.div`
 `;
 
 const Title = styled(Link)`
-  margin-left: ${px(8)};
+  margin-left: ${px(16)};
   color: ${({ theme }) => theme.colors.primary};
   text-decoration: none;
   font-weight: bold;
@@ -61,10 +61,10 @@ const Title = styled(Link)`
   `}
 `;
 
-const AvatarLink = styled.a`
-  color: #000;
+const AvatarLink = styled.div`
   cursor: pointer;
-  text-decoration: none;
+  margin-left: ${px(32)};
+  margin-right: ${px(16)};
 `;
 
 const RightSection = styled.div`

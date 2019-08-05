@@ -32,10 +32,12 @@ export const Bio = () => (
       <BioTitle>
       Personal blog of
         {' '}
-        <span style={{ 'white-space': 'nowrap' }}>Ralph Wengerek</span>
+        <span style={{ whiteSpace: 'nowrap' }}>Ralph Wengerek</span>
       </BioTitle>
       <div>
-        Develop, Listen, Surf, Eat.
+        Develop, Listen, Surf, Eat
+        {' '}
+        <span role="img" aria-label="shaka">🤙</span>
       </div>
     </BioInformation>
   </BioContainer>

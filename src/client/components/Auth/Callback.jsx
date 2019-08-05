@@ -9,9 +9,7 @@ export const Callback = ({ location, history }) => {
 
   useEffect(() => {
     if (/access_token|id_token|error/.test(location.hash)) {
-      dispatch(handleAuthentication()
-        .then(() => history.push('/'))
-        .catch(err => console.log(err)));
+      dispatch(handleAuthentication());
     } else {
       throw new Error('Invalid callback URL');
     }
