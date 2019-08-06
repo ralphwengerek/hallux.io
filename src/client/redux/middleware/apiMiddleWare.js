@@ -1,5 +1,5 @@
 import { normalize } from 'normalizr';
-import { actions as toastrActions } from 'react-redux-toastr';
+import { message } from 'antd';
 import { API_REQUEST } from '../actions/apiActions';
 
 const apiMiddleWare = ({ dispatch, getState }) => next => (action) => {
@@ -39,11 +39,7 @@ const apiMiddleWare = ({ dispatch, getState }) => next => (action) => {
         //   location.reload(true);
         // }
         dispatch(onError(error));
-        dispatch(toastrActions.add({
-          type: 'error',
-          title: 'Error',
-          message: error.message,
-        }));
+        message.error(error.message);
         // dispatch global error api handling
       }).finally(() => onComplete && dispatch(onComplete()));
   }

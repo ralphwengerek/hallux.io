@@ -1,6 +1,7 @@
 import { px } from '../utils/pixel';
 
 export const light = {
+  name: 'light',
   colors: {
     background: '#ffffff',
     primary: '#40a9ff',

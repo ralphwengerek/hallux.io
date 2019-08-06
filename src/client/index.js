@@ -4,7 +4,6 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Layout, Provider } from './components';
 import 'normalize.css';
-import 'react-redux-toastr/lib/css/react-redux-toastr.min.css';
 
 const root = document.getElementById('root');
 

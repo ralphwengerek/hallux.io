@@ -5636,7 +5636,7 @@ etag@~1.8.1:
   resolved "https://registry.yarnpkg.com/etag/-/etag-1.8.1.tgz#41ae2eeb65efa62268aebfea83ac7d79299b0887"
   integrity sha1-Qa4u62XvpiJorr/qg6x9eSmbCIc=
 
-eventemitter3@^3.0.0, eventemitter3@^3.1.0:
+eventemitter3@^3.0.0:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/eventemitter3/-/eventemitter3-3.1.2.tgz#2d3d48f9c346698fce83a85d7d664e98535df6e7"
   integrity sha512-tvtQIeLVHjDkJYnzf2dgVMxfuSGJeM/7UCG17TT4EumTfNtF+0nebF/4zWOIkCreAbtNqhGEboB6BWrwqNaw4Q==
@@ -12417,14 +12417,6 @@ react-perfect-scrollbar@^1.5.0:
   dependencies:
     perfect-scrollbar "^1.4.0"
     prop-types "^15.6.1"
-
-react-redux-toastr@^7.5.1:
-  version "7.5.1"
-  resolved "https://registry.yarnpkg.com/react-redux-toastr/-/react-redux-toastr-7.5.1.tgz#7adc9b21665a0f6656493376b9775ea610a105cb"
-  integrity sha512-1iD0Ci3SznIK+GHAAy0q331W5J9mA2EV7FO/63ajj+AaJjb9h6SAfTjMUxFcpOaEunicUuQjc72p8aEQ8B3qKA==
-  dependencies:
-    classnames "^2.2.3"
-    eventemitter3 "^3.1.0"
 
 react-redux@^7.1.0:
   version "7.1.0"

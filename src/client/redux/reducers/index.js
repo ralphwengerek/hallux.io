@@ -1,6 +1,5 @@
 import { combineReducers } from 'redux';
 import { connectRouter } from 'connected-react-router';
-import { reducer as toastr } from 'react-redux-toastr';
 import merge from 'lodash/merge';
 import posts from './postReducer';
 import user from './userReducer';
@@ -25,5 +24,4 @@ export default history => combineReducers({
   posts,
   ui,
   user,
-  toastr,
 });

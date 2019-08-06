@@ -1,6 +1,7 @@
 import { px } from '../utils/pixel';
 
 export const dark = {
+  name: 'dark',
   colors: {
     background: '#313131',
     primary: '#40a9ff',

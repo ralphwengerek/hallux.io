@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { CSSTransition } from 'react-transition-group';
 import { useSelector, useDispatch } from 'react-redux';
 import { getprofilePanelState } from '../../redux/reducers/uiReducer';
@@ -13,18 +13,22 @@ import { Button } from '../Button/Button';
 
 const PanelContainer = styled.aside.attrs({ role: 'dialog' })`
   display: flex;
+  color: ${({ theme }) => theme.colors.body};
   position: absolute;
   display: inline-block;
-  background: #f6f7f9 linear-gradient(to bottom,#fff,#fff 4.75rem,#e8ebf1 4.75rem,#e8ebf1 4.8125rem,#f6f7f9 4.8125rem,#f6f7f9);
   box-shadow: 0 0 5px ${({ theme }) => theme.colors.shadow};
   transition: all .4s cubic-bezier(0.42, 0.01, 0.21, 1);
-  z-index: 100;
+  z-index: 10;
   right: 0px;
-  top: 0;
+  top: 0px;
   border-bottom: solid 1px ${({ theme }) => theme.colors.border};
   height: 100vh;
   overflow: hidden;
   width: 100%;
+
+  ${({ theme }) => css`
+    background: ${theme.name === 'light' ? '#f6f7f9 linear-gradient(to bottom,#fff,#fff 4.75rem,#e8ebf1 4.75rem,#e8ebf1 4.8125rem,#f6f7f9 4.8125rem,#f6f7f9)' : theme.colors.background};
+  `}
 
   ${media.up.tablet`
     height: 350px;
@@ -103,7 +107,6 @@ export const ProfilePanel = () => {
               Sign out
           </Button>
         </ProfileAction>
-
       </PanelContainer>
     </CSSTransition>
   );

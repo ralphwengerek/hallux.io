@@ -1,6 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import { push } from 'connected-react-router';
-import { actions as toastrActions } from 'react-redux-toastr';
+import { message } from 'antd';
 import {
   postApiInit,
   postApiComplete,
@@ -63,15 +63,9 @@ const onSavePostSuccess = ({ dispatch }) => next => (action) => {
   next(action);
 
   if (action.type === SAVE_POST_SUCCESS) {
-    const { id, entity } = action.payload;
+    const { id } = action.payload;
     dispatch(push(`/blog/${id}`));
-
-    dispatch(toastrActions.add({
-      type: 'success',
-      title: 'Success',
-      attention: true, // This will add a shadow like the confirm method.
-      message: `Post saved. (${entity.state})`,
-    }));
+    message.info('Post saved');
   }
 };
 
