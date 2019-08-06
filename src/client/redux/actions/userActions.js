@@ -4,11 +4,11 @@ export const LOGIN_SUCCESS = '[user] - Login success';
 export const LOGIN_FAILURE = '[user] - Login failure';
 export const LOGOUT = '[user] - Logout';
 export const LOGIN = '[user] - Login';
+export const SET_CURRENT_USER = '[user] - Set current user';
 
 export const login = () => (dispatch) => {
   dispatch({
     type: LOGIN,
-    payload: null,
   });
   authService.login();
 };
@@ -39,3 +39,8 @@ export const handleAuthentication = () => dispatch => authService
   .catch((err) => {
     dispatch(loginFailure(err));
   });
+
+export const setCurrentUser = user => ({
+  type: SET_CURRENT_USER,
+  payload: user,
+});

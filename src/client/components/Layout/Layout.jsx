@@ -11,22 +11,20 @@ import { GlobalStyle } from '../GlobalStyle/GlobalStyle';
 import { Callback } from '../Auth/Callback';
 import { ProfilePanel } from '../ProfilePanel/ProfilePanel';
 import { media } from '../../utils/mediaQuery';
-import { getUserIsAuthenticated } from '../../redux/reducers/userReducer';
+import { getUserIsAuthenticated, getUser } from '../../redux/reducers/userReducer';
 import ScrollToTop from '../ScrollToTop/ScrollToTop';
-import LineBackground from '../../images/bg.svg';
+import { hasRole } from '../../../shared/utils/rbac';
 
 const Site = styled.div`
   ${({ theme }) => css`
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-    /* background-image: url(${LineBackground}); */
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
     background-color: ${theme.colors.background};
   `}
-
 `;
 
 const ContentContainer = styled.div`
@@ -38,7 +36,6 @@ const ContentContainer = styled.div`
   ${media.up.tablet`
     padding-top: 60px;
   `}
-
 `;
 
 const Content = styled.div`
@@ -52,6 +49,8 @@ const Content = styled.div`
 
 export const Layout = () => {
   const loggedIn = useSelector(getUserIsAuthenticated);
+  const user = useSelector(getUser);
+
   return (
     <>
       <GlobalStyle />
@@ -65,7 +64,7 @@ export const Layout = () => {
               <Route path={['/tag/:tag', '/']} exact component={ListPostsPage} />
               <Route path="/about" component={AboutPage} />
               <Route exact path="/contact" component={ContactPage} />
-              <Route path="/blog/:slug/edit" component={EditPostPage} />
+              { hasRole('admin', user) && <Route path="/blog/:slug/edit" component={EditPostPage} />}
               <Route exact path="/blog/:slug" component={ViewPostPage} />
               <Route path="/callback" component={Callback} />
               <Route component={NotFoundPage} />

@@ -1,4 +1,6 @@
 import auth0 from 'auth0-js';
+import axios from 'axios';
+import { configuration } from '../config';
 
 class AuthService {
   constructor() {
@@ -7,7 +9,8 @@ class AuthService {
       clientID: process.env.AUTH0_CLIENTID,
       redirectUri: process.env.AUTH0_REDIRECT_URI,
       responseType: 'token id_token',
-      scope: 'openid profile email',
+
+      audience: `https://${configuration.auth0Domain}/userinfo`,
       // audience: 'https://' + YOUR_DOMAIN + '/userinfo',
     });
   }
@@ -21,6 +24,7 @@ class AuthService {
       this.auth0.parseHash((err, authResult) => {
         if (authResult && authResult.accessToken && authResult.idToken) {
           this.setSession(authResult);
+          this.setAuthorizationToken();
           resolve(authResult);
         } else if (err) {
           reject(authResult);
@@ -60,6 +64,17 @@ class AuthService {
       throw new Error('No access token found');
     }
     return accessToken;
+  }
+
+  setAuthorizationToken = () => {
+    const token = localStorage.getItem('id_token');
+    if (token) {
+      axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+    } else {
+      delete axios.defaults.headers.common.Authorization;
+    }
+
+    return token;
   }
 
   getProfile = (callback) => {

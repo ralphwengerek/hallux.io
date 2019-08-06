@@ -1,42 +1,38 @@
 /* eslint-disable */
 import handleActions from '../handleActions';
 import merge from 'lodash/merge';
+import isEmpty from 'lodash/isEmpty';
+
 import {
   LOGOUT,
   LOGIN,
-  LOGIN_SUCCESS,
   LOGIN_FAILURE,
+  SET_CURRENT_USER,
 } from '../actions/userActions';
 
 export const initialState = {
-  accessToken: undefined,
-  expiresIn: undefined,
-  email: undefined,
-  name: undefined,
-  picture: undefined,
+  user: {},
   isAuthenticated: false,
   loginAttempts: 0,
 };
 
 const userReducer = handleActions(
   {
-    [LOGOUT]: (user) => {
-      merge(user, initialState.user);
+    [LOGOUT]: (state) => {
+      state = initialState;
     },
-    [LOGIN]: (user) => {
-      user.loginAttempts += 1;
+    [LOGIN]: (state) => {
+      state.loginAttempts += 1;
     },
-    [LOGIN_SUCCESS]: (user, authResponse) => {
-      user.accessToken = authResponse.accessToken;
-      user.expiresIn = authResponse.expiresIn;
-      user.email = authResponse.idTokenPayload.email;
-      user.name = authResponse.idTokenPayload.name;
-      user.picture = authResponse.idTokenPayload.picture;
-      user.isAuthenticated = true;
-    },
-    [LOGIN_FAILURE]: (user, payload) => {
+    [LOGIN_FAILURE]: (state, payload) => {
       console.log('LOGIN_FAILURE: ', payload);
     },
+    [SET_CURRENT_USER]: (state, user) => {
+      user.roles = user['https://hallux.io/roles'];
+      delete user['https://hallux.io/roles'];
+      merge(state.user, user);
+      state.isAuthenticated = !isEmpty(user);
+    }
   },
   initialState,
 );
@@ -47,6 +43,6 @@ export default userReducer;
 
 export const getUserIsAuthenticated = ({ user }) => user.isAuthenticated;
 
-export const getUserPicture = ({ user }) => user.picture;
+export const getUserPicture = ({ user }) => user.user.picture;
 
-export const getUser = ({ user }) => user;
+export const getUser = ({ user }) => user.user;

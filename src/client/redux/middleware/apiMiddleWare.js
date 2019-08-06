@@ -33,6 +33,11 @@ const apiMiddleWare = ({ dispatch, getState }) => next => (action) => {
       .then((response) => {
         dispatch(onSuccess(normalize(response.data, schema)));
       }).catch((error) => {
+        // if ([401, 403].indexOf(response.status) !== -1) {
+        //   // auto logout if 401 Unauthorized or 403 Forbidden response returned from api
+        //   dispatch(logout);
+        //   location.reload(true);
+        // }
         dispatch(onError(error));
         dispatch(toastrActions.add({
           type: 'error',

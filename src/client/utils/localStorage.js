@@ -21,6 +21,18 @@ const saveState = (state) => {
   }
 };
 
+const loadToken = () => {
+  try {
+    const token = localStorage.getItem('id_token');
+    if (token === null) {
+      return undefined;
+    }
+    return token;
+  } catch (err) {
+    return undefined;
+  }
+};
+
 const clearState = () => {
   localStorage.removeItem(STATE);
 };
@@ -28,5 +40,6 @@ const clearState = () => {
 export {
   clearState,
   loadState,
+  loadToken,
   saveState,
 };

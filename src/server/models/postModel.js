@@ -33,6 +33,9 @@ const postModel = new Schema({
     type: Date,
     default: Date.now,
   },
+  author: {
+    type: String,
+  },
   tags: [String],
   keywords: [String],
   likes: {

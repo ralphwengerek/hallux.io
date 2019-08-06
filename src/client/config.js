@@ -1,4 +1,4 @@
-const configuration = {
+export const configuration = {
   baseUrl: process.env.BASE_URL,
   auth0Domain: process.env.AUTH0_DOMAIN,
   auth0ClientId: process.env.AUTH0_CLIENTID,

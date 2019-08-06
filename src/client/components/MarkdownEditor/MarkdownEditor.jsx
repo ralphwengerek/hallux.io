@@ -27,9 +27,7 @@ const StyledMarkdownEditor = styled(ReactMde)`
 `;
 
 export const MarkdownEditor = props => (
-  <div className="markdown-editor">
-    <StyledMarkdownEditor textAreaProps={{ className: 'ant-input' }} {...props} />
-  </div>
+  <StyledMarkdownEditor textAreaProps={{ className: 'ant-input' }} {...props} />
 );
 
 export default MarkdownEditor;

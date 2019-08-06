@@ -1,8 +1,6 @@
 import axios from 'axios';
 import { apiUrl } from '../config';
 
-// axios.defaults.headers.common = { Authorization: `bearer ${token}` };
-
 const createPost = post => axios.post(`${apiUrl}/posts`, post);
 
 const fetchPosts = () => axios.get(`${apiUrl}/posts`);

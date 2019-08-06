@@ -1,9 +1,20 @@
 import mongoose from 'mongoose';
+import { hasRole } from '../../shared/utils/rbac';
 
 const Post = mongoose.model('Post');
 
 export const findAll = (req, res) => {
-  Post.find()
+  const isAdmin = hasRole('admin', req.user);
+
+  const query = isAdmin
+    ? Post.where({})
+    : Post.where({
+      published: { $exists: true },
+    });
+
+  console.log('ISADMIN:', isAdmin);
+
+  query.find()
     .then((posts) => {
       res.json(posts);
     })

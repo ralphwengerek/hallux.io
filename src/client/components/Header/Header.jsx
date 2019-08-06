@@ -9,7 +9,7 @@ import { media } from '../../utils/mediaQuery';
 import { Hamburger } from '../Navigation/Hamburger';
 import { Navigation } from '../Navigation/Navigation';
 import { Avatar } from '../Avatar/Avatar';
-import { getUser } from '../../redux/reducers/userReducer';
+import { getUser, getUserIsAuthenticated } from '../../redux/reducers/userReducer';
 import { toggleProfilePanel } from '../../redux/actions/ui/profilePanelActions';
 import { setTheme } from '../../redux/actions/ui/themeActions';
 import { getTheme } from '../../redux/reducers/uiReducer';
@@ -79,6 +79,7 @@ const SwitchIcon = styled.div`
 export const Header = () => {
   const dispatch = useDispatch();
   const user = useSelector(getUser);
+  const isAuthenticated = useSelector(getUserIsAuthenticated);
   const theme = useSelector(getTheme);
 
   const onAvatarClick = (event) => {
@@ -108,7 +109,7 @@ export const Header = () => {
               checked={theme === 'light'}
             />
           </Tooltip>
-          { user.isAuthenticated && (
+          { isAuthenticated && (
             <AvatarLink onClick={onAvatarClick}>
               <Avatar picture={user.picture}>&nbsp;</Avatar>
             </AvatarLink>

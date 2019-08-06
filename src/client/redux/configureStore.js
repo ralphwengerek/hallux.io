@@ -12,7 +12,10 @@ import userMiddleware from './middleware/userMiddleware';
 import { routerMiddleware } from 'connected-react-router'
 import rootReducer from './reducers';
 import { loadState, saveState } from '../utils/localStorage';
+import AuthService from '../utils/AuthService';
 import initialState from './initialState';
+import jwtDecode from 'jwt-decode';
+import { setCurrentUser } from './actions/userActions';
 
 export const history = createBrowserHistory();
 
@@ -40,6 +43,11 @@ const configureStore = () => {
     persistedState || initialState,
     composeEnhancers(applyMiddleware(...middlewares)),
   );
+
+  const token = AuthService.setAuthorizationToken();
+  if (token) {
+    store.dispatch(setCurrentUser(jwtDecode(token)));
+  }
 
   store.subscribe(
     throttle(() => {

@@ -12,18 +12,18 @@ import { logout } from '../../redux/actions/userActions';
 import { Button } from '../Button/Button';
 
 const PanelContainer = styled.aside.attrs({ role: 'dialog' })`
+  display: flex;
   position: absolute;
   display: inline-block;
-  height: auto;
   background: #f6f7f9 linear-gradient(to bottom,#fff,#fff 4.75rem,#e8ebf1 4.75rem,#e8ebf1 4.8125rem,#f6f7f9 4.8125rem,#f6f7f9);
   box-shadow: 0 0 5px ${({ theme }) => theme.colors.shadow};
-  overflow-y: auto;
   transition: all .4s cubic-bezier(0.42, 0.01, 0.21, 1);
   z-index: 100;
   right: 0px;
   top: 0;
   border-bottom: solid 1px ${({ theme }) => theme.colors.border};
-  height: 100%;
+  height: 100vh;
+  overflow: hidden;
   width: 100%;
 
   ${media.up.tablet`
