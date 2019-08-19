@@ -15,6 +15,8 @@ import seedDatabase from './utils/seedDatabase';
 
 mongoose.Promise = global.Promise;
 
+console.log(chalk.green.bold('CONFIGURATION:\n'), config);
+
 const app = express();
 
 app.use(cors());
@@ -26,8 +28,8 @@ app.use(bodyParser.json());
 // }));
 
 configureRoutes(app);
-
 if (config.isProduction) {
+  console.log('Serving from: ', path.join(__dirname, 'public'));
   app.use(express.static(path.join(__dirname, 'public')));
 } else {
   app.get('*', (req, res) => {
@@ -40,6 +42,7 @@ const connectionString = config.isProduction
   ? `mongodb+srv://${config.mongoUser}:${config.mongoPassword}@hallux-2uzsf.mongodb.net/test?retryWrites=true&w=majority`
   : `mongodb://${config.mongoHost}:${config.mongoPort}/hallux`;
 
+console.log('Connecting to database...');
 mongoose.connect(connectionString, {
   useNewUrlParser: true,
   useCreateIndex: true,
@@ -50,9 +53,9 @@ mongoose.connect(connectionString, {
     seedDatabase();
   }
 
+  console.log('Starting express...');
   app.listen(config.serverPort, config.serverHost, () => {
     console.log(chalk.blue.bold('Server started: ') + chalk.blue.underline.bold(`http://${config.serverHost}:${config.serverPort}`));
     console.log(chalk.blue.bold(`Serving site from: ${__dirname}/public/index.html`));
-    console.log(chalk.green.bold('CONFIGURATION:\n'), config);
   });
 }).catch((err) => console.log(err));
