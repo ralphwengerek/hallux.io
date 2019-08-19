@@ -46,6 +46,7 @@ const PostContent = styled.div.attrs({
 
 const Container = styled.div`
   padding: 0 ${px(16)};
+  margin-bottom: 40px;
 `;
 
 const PostDivider = styled.div`
@@ -57,6 +58,15 @@ const PostDivider = styled.div`
 const EditPostButton = styled(Link)`
   position: absolute;
   right: 0px;
+`;
+
+const DisqusFix = styled.div`
+  display: block;
+  min-height: 40px;
+
+  ${media.up.tablet`
+    display: none;
+  `}
 `;
 
 export const Post = ({ post, isLoading}) => {

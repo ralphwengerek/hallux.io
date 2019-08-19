@@ -12,8 +12,6 @@ export const findAll = (req, res) => {
       published: { $exists: true },
     });
 
-  console.log('ISADMIN:', isAdmin);
-
   query.find()
     .then((posts) => {
       res.json(posts);

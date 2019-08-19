@@ -36,7 +36,11 @@ if (config.isProduction) {
   app.use(errorHandler());
 }
 
-mongoose.connect(`mongodb://${config.mongoHost}:${config.mongoPort}/hallux`, {
+const connectionString = config.isProduction
+  ? `mongodb+srv://${config.mongoUser}:${config.mongoPassword}@hallux-2uzsf.mongodb.net/test?retryWrites=true&w=majority`
+  : `mongodb://${config.mongoHost}:${config.mongoPort}/hallux`;
+
+mongoose.connect(connectionString, {
   useNewUrlParser: true,
   useCreateIndex: true,
 }).then(() => {
@@ -51,4 +55,4 @@ mongoose.connect(`mongodb://${config.mongoHost}:${config.mongoPort}/hallux`, {
     console.log(chalk.blue.bold(`Serving site from: ${__dirname}/public/index.html`));
     console.log(chalk.green.bold('CONFIGURATION:\n'), config);
   });
-}).catch(err => console.log(err));
+}).catch((err) => console.log(err));

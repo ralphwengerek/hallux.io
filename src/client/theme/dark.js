@@ -15,7 +15,7 @@ export const dark = {
     disabled: '#4b4b4b',
     // Footer
     footer: '#ccc',
-    footerBackground: '#333',
+    footerBackground: '#313131',
     // Buttons
     buttonActive: '#096dd9',
     // Tag,
