@@ -6,7 +6,7 @@ import {
   LOGIN_SUCCESS, setCurrentUser,
 } from '../actions/userActions';
 
-const onLoginSuccess = ({ dispatch }) => next => (action) => {
+const onLoginSuccess = ({ dispatch }) => (next) => (action) => {
   next(action);
 
   if (action.type === LOGIN_SUCCESS) {

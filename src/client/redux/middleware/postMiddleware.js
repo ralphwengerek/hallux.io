@@ -21,7 +21,7 @@ import {
 } from '../../api/postApi';
 import schema from '../schemas/post';
 
-const getSinglePost = ({ dispatch, getState }) => next => (action) => {
+const getSinglePost = ({ dispatch, getState }) => (next) => (action) => {
   next(action);
 
   if (action.type === FETCH_POST) {
@@ -43,7 +43,7 @@ const getSinglePost = ({ dispatch, getState }) => next => (action) => {
   }
 };
 
-const savePost = ({ dispatch }) => next => (action) => {
+const savePost = ({ dispatch }) => (next) => (action) => {
   next(action);
 
   if (action.type === SAVE_POST) {
@@ -59,7 +59,7 @@ const savePost = ({ dispatch }) => next => (action) => {
   }
 };
 
-const onSavePostSuccess = ({ dispatch }) => next => (action) => {
+const onSavePostSuccess = ({ dispatch }) => (next) => (action) => {
   next(action);
 
   if (action.type === SAVE_POST_SUCCESS) {
@@ -69,7 +69,7 @@ const onSavePostSuccess = ({ dispatch }) => next => (action) => {
   }
 };
 
-const getPosts = ({ dispatch, getState }) => next => (action) => {
+const getPosts = ({ dispatch, getState }) => (next) => (action) => {
   next(action);
 
   if (action.type === FETCH_POSTS) {

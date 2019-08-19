@@ -21,17 +21,17 @@ export const logout = () => (dispatch) => {
   authService.logout();
 };
 
-export const loginSuccess = authResult => ({
+export const loginSuccess = (authResult) => ({
   type: LOGIN_SUCCESS,
   payload: authResult,
 });
 
-export const loginFailure = err => ({
+export const loginFailure = (err) => ({
   type: LOGIN_FAILURE,
   payload: err,
 });
 
-export const handleAuthentication = () => dispatch => authService
+export const handleAuthentication = () => (dispatch) => authService
   .handleAuthentication()
   .then((authResult) => {
     dispatch(loginSuccess(authResult));
@@ -40,7 +40,7 @@ export const handleAuthentication = () => dispatch => authService
     dispatch(loginFailure(err));
   });
 
-export const setCurrentUser = user => ({
+export const setCurrentUser = (user) => ({
   type: SET_CURRENT_USER,
   payload: user,
 });

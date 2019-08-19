@@ -18,7 +18,7 @@ const entities = (state = entityState, action) => {
   return state;
 };
 
-export default history => combineReducers({
+export default (history) => combineReducers({
   router: connectRouter(history),
   entities,
   posts,

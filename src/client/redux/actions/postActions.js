@@ -27,7 +27,7 @@ export const postApiComplete = () => ({
 });
 
 // fetch Post
-export const fetchPost = slug => ({
+export const fetchPost = (slug) => ({
   type: FETCH_POST,
   payload: slug,
 });
@@ -38,7 +38,7 @@ export const fetchPostSuccess = ({ entities, result }) => ({
     entity: entities.posts[result],
   },
 });
-export const fetchPostFailure = error => ({
+export const fetchPostFailure = (error) => ({
   type: FETCH_POST_FAILURE,
   payload: error,
 });
@@ -54,13 +54,13 @@ export const fetchPostsSuccess = ({ entities, result }) => ({
     entities: entities.posts,
   },
 });
-export const fetchPostsFailure = error => ({
+export const fetchPostsFailure = (error) => ({
   type: FETCH_POSTS_FAILURE,
   payload: error,
 });
 
 // update/save post
-export const savePost = post => ({
+export const savePost = (post) => ({
   type: SAVE_POST,
   payload: post,
 });
@@ -71,7 +71,7 @@ export const savePostSuccess = ({ entities, result }) => ({
     entity: entities.posts[result],
   },
 });
-export const savePostFailure = error => ({
+export const savePostFailure = (error) => ({
   type: SAVE_POST_FAILURE,
   payload: error,
 });

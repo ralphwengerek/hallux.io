@@ -2,7 +2,7 @@ import { normalize } from 'normalizr';
 import { message } from 'antd';
 import { API_REQUEST } from '../actions/apiActions';
 
-const apiMiddleWare = ({ dispatch, getState }) => next => (action) => {
+const apiMiddleWare = ({ dispatch, getState }) => (next) => (action) => {
   if (action.type === API_REQUEST) {
     const { meta } = action;
 

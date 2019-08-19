@@ -1,7 +1,7 @@
 import { schema } from 'normalizr';
 
 const postSchema = new schema.Entity('posts', {}, {
-  idAttribute: post => post.slug,
+  idAttribute: (post) => post.slug,
 });
 
 export default {
