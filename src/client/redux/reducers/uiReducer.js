@@ -12,6 +12,11 @@ import {
   CLOSE_PROFILE_PANEL,
 } from '../actions/ui/profilePanelActions';
 
+import {
+  SHOW_LOADER,
+  HIDE_LOADER,
+} from '../actions/ui/loaderActions';
+
 import { SET_THEME } from '../actions/ui/themeActions';
 
 export const initialState = {
@@ -22,6 +27,13 @@ export const initialState = {
 
 const uiReducer = handleActions(
   {
+    // Loader
+    [SHOW_LOADER]: (ui) => {
+      ui.showLoader = true;
+    },
+    [HIDE_LOADER]: (ui) => {
+      ui.showLoader = false;
+    },
     // Menu
     [TOGGLE_MENU]: (ui) => {
       ui.showMenu = !ui.showMenu;
@@ -58,3 +70,5 @@ export const getTheme = ({ ui }) => ui.theme;
 export const getMenuState = ({ ui }) => ui.showMenu;
 
 export const getprofilePanelState = ({ ui }) => ui.showProfilePanel;
+
+export const getLoaderState = ({ ui }) => ui.showLoader;

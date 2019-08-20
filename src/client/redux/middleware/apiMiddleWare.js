@@ -18,9 +18,6 @@ const apiMiddleWare = ({ dispatch, getState }) => (next) => (action) => {
     if (!onSuccess || !onError) {
       throw new Error('Expected onSuccess and onFailure action types');
     }
-    if (!schema) {
-      throw new Error('Specify a schema for normalizr');
-    }
     if (typeof callAPI !== 'function') {
       throw new Error('Expected callAPI to be a function.');
     }
@@ -31,7 +28,7 @@ const apiMiddleWare = ({ dispatch, getState }) => (next) => (action) => {
 
     return callAPI()
       .then((response) => {
-        dispatch(onSuccess(normalize(response.data, schema)));
+        dispatch(onSuccess(schema ? normalize(response.data, schema) : response.data));
       }).catch((error) => {
         // if ([401, 403].indexOf(response.status) !== -1) {
         //   // auto logout if 401 Unauthorized or 403 Forbidden response returned from api

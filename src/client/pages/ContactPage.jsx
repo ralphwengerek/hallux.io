@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
 import { px } from '../utils/pixel';
 import { ContactForm } from '../components/ContactForm/ContactForm';
+import { sendMail } from '../redux/actions/serviceActions';
 
 const PageTitle = styled.h1`
   padding: 0 ${px(16)};
@@ -9,7 +11,11 @@ const PageTitle = styled.h1`
 `;
 
 const ContactPage = () => {
-  const onSubmit = values => console.log('Submitting form:', values);
+  const dispatch = useDispatch();
+  const onSubmit = (values) => {
+    dispatch(sendMail(values));
+  };
+
   return (
     <>
       <PageTitle>Contact Me</PageTitle>

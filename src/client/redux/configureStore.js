@@ -8,6 +8,7 @@ import logger from 'redux-logger';
 import throttle from 'lodash/throttle';
 import apiMiddleWare from './middleware/apiMiddleWare';
 import postMiddleWare from './middleware/postMiddleware';
+import serviceMiddleware from './middleware/serviceMiddleware';
 import userMiddleware from './middleware/userMiddleware';
 import { routerMiddleware } from 'connected-react-router'
 import rootReducer from './reducers';
@@ -27,6 +28,7 @@ const configureStore = () => {
     thunk,
     ...apiMiddleWare,
     ...postMiddleWare,
+    ...serviceMiddleware,
     ...userMiddleware,
   ];
 
