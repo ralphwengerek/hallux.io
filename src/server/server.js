@@ -5,6 +5,7 @@ import bodyParser from 'body-parser';
 // import session from 'express-session';
 import cors from 'cors';
 import errorHandler from 'errorhandler';
+import helmet from 'helmet';
 import mongoose from 'mongoose';
 import morgan from 'morgan';
 import chalk from 'chalk';
@@ -18,7 +19,7 @@ mongoose.Promise = global.Promise;
 console.log(chalk.green.bold('CONFIGURATION:\n'), config);
 
 const app = express();
-
+app.use(helmet());
 app.use(cors());
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
