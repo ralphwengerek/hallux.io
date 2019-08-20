@@ -1,5 +1,4 @@
 /* eslint-disable */
-import 'react-hot-loader';
 import React from 'react';
 import { render } from 'react-dom';
 import { Layout, Provider } from './components';
@@ -17,5 +16,3 @@ const renderApp = () => {
 };
 
 renderApp();
-
-module.hot.accept();
