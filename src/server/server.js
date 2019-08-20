@@ -55,7 +55,7 @@ mongoose.connect(connectionString, {
   }
 
   console.log('Starting express...');
-  app.listen(config.serverPort, config.serverHost, () => {
+  app.listen(config.serverPort, () => {
     console.log(chalk.blue.bold('Server started: ') + chalk.blue.underline.bold(`http://${config.serverHost}:${config.serverPort}`));
     console.log(chalk.blue.bold(`Serving site from: ${__dirname}/public/index.html`));
   });
