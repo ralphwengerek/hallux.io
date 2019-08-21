@@ -9,6 +9,8 @@ export const configuration = {
   apiRoutePrefix: process.env.API_ROUTE_PREFIX,
 };
 
-export const apiUrl = `http://${configuration.serverHost}:${configuration.serverPort}${configuration.apiRoutePrefix}`;
+export const apiUrl = configuration.isProduction
+  ? `http://${configuration.baseUrl}${configuration.apiRoutePrefix}`
+  : `http://${configuration.serverHost}:${configuration.serverPort}${configuration.apiRoutePrefix}`;
 
 export default configuration;
