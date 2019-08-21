@@ -2,7 +2,7 @@ import { config } from 'dotenv';
 
 const env = process.env.NODE_ENV;
 const result = config({
-  path: `./.env.${env === 'production' ? 'production' : 'development'}`,
+  path: `./.env.${env}`,
 });
 
 if (result.error) {
@@ -23,9 +23,8 @@ const configuration = {
   serverHost: process.env.SERVER_HOST,
   serverPort: process.env.PORT,
   isProduction: process.env.NODE_ENV === 'production',
+  isStaging: process.env.NODE_ENV === 'staging',
   apiRoutePrefix: process.env.API_ROUTE_PREFIX,
 };
-
-export const apiUrl = `https://${configuration.serverHost}${configuration.apiRoutePrefix}`;
 
 export default configuration;

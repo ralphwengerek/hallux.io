@@ -29,10 +29,12 @@ app.use(bodyParser.json());
 // }));
 
 configureRoutes(app);
-if (config.isProduction) {
+
+if (config.isProduction || config.isStaging) {
   console.log('Serving from: ', path.join(__dirname, 'public'));
   app.use(express.static(path.join(__dirname, 'public')));
 } else {
+  // Redirect to local dev server
   app.get('*', (req, res) => {
     res.redirect(config.baseUrl);
   });
