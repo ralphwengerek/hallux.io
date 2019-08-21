@@ -20,11 +20,19 @@ const PostEditorContainer = styled.div`
   margin: ${px(16)} 0;
 `;
 
+const Title = styled.h1`
+  text-align: center;
+`;
+
 const ActionContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
   padding: ${px(16)};
+`;
+
+const Action = styled.div`
+  padding: 0 ${px(8)};
 `;
 
 const converter = new Showdown.Converter({
@@ -40,16 +48,20 @@ const InputGroup = styled.div`
 
 export const PostEditor = ({ post, onSubmit, isLoading }) => {
   const [selectedTab, setSelectedTab] = React.useState('write');
+  const title = post.slug ? 'Edit post' : 'Create post';
 
   return (!post || isLoading ? <Loader show />
     : (
       <PostEditorContainer>
+        <Title>
+          {title}
+        </Title>
         <Formik
           initialValues={post}
           onSubmit={onSubmit}
           validationSchema={schema}
           render={({
-            values, touched, errors, dirty, isSubmitting,
+            values, touched, errors, isSubmitting,
             handleChange, handleBlur, setFieldValue, handleSubmit,
           }) => (
             <form disabled={isLoading || isSubmitting}>
@@ -104,11 +116,11 @@ export const PostEditor = ({ post, onSubmit, isLoading }) => {
                 <MarkdownEditor
                   minEditorHeight="calc(100vh - 275px)"
                   value={values.content}
-                  onChange={value => setFieldValue('content', value, true)}
+                  onChange={(value) => setFieldValue('content', value, true)}
                   onBlur={handleBlur}
                   selectedTab={selectedTab}
                   onTabChange={setSelectedTab}
-                  generateMarkdownPreview={markdown => Promise.resolve(converter.makeHtml(markdown))}
+                  generateMarkdownPreview={(markdown) => Promise.resolve(converter.makeHtml(markdown))}
                 />
               </InputGroup>
 
@@ -139,12 +151,29 @@ export const PostEditor = ({ post, onSubmit, isLoading }) => {
                 )}
               </InputGroup>
 
+              <InputGroup>
+                <Label text="Slug" error={errors.slug} showError={errors.slug && touched.slug} />
+                <Input
+                  id="slug"
+                  name="slug"
+                  value={values.slug}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  autoComplete="off"
+                />
+                { errors.slug && touched.slug && (
+                <FormError msg={errors.slug} />
+                )}
+              </InputGroup>
+
               <ActionContainer>
-                <Link to={`/blog/${post.slug}`}>Cancel</Link>
-                &nbsp;
-                <Button link disabled={isLoading || isSubmitting} onClick={handleSubmit}>Save</Button>
+                <Action>
+                  <Link to={post.slug ? `/blog/${post.slug}` : '/'}>Cancel</Link>
+                </Action>
+                <Action>
+                  <Button link disabled={isLoading || isSubmitting} onClick={handleSubmit}>Save</Button>
+                </Action>
               </ActionContainer>
-              <h3>{`Dirty: ${dirty}`}</h3>
             </form>
           )}
         />
@@ -161,7 +190,7 @@ PostEditor.propTypes = {
 
 PostEditor.defaultProps = {
   post: {},
-  onSubmit: values => console.log(values),
+  onSubmit: (values) => console.log(values),
 };
 
 export default PostEditor;

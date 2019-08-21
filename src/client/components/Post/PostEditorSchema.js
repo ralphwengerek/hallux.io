@@ -20,3 +20,17 @@ export const schema = yup.object().shape({
 });
 
 export default schema;
+
+
+export const initialValues = {
+  entity: {
+    title: '',
+    image: '',
+    summary: '',
+    content: '',
+    tags: [],
+    keywords: [],
+    slug: '',
+  },
+  isLoading: false,
+};

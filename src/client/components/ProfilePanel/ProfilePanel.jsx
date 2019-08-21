@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import { CSSTransition } from 'react-transition-group';
 import { useSelector, useDispatch } from 'react-redux';
+import { push } from 'connected-react-router';
 import { getprofilePanelState } from '../../redux/reducers/uiReducer';
 import { closeProfilePanel } from '../../redux/actions/ui/profilePanelActions';
 import { getUser } from '../../redux/reducers/userReducer';
@@ -75,7 +76,11 @@ export const ProfilePanel = () => {
   const dispatch = useDispatch();
   const isOpen = useSelector(getprofilePanelState);
 
-  const signOut = () => dispatch(logout());
+  const signOutClick = () => dispatch(logout());
+  const createPostClick = () => {
+    dispatch(push('/blog/create'));
+    dispatch(closeProfilePanel());
+  };
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -103,7 +108,12 @@ export const ProfilePanel = () => {
         </ProfileContainer>
 
         <ProfileAction>
-          <Button onClick={signOut}>
+          <Button onClick={createPostClick}>
+              Create post
+          </Button>
+        </ProfileAction>
+        <ProfileAction>
+          <Button onClick={signOutClick}>
               Sign out
           </Button>
         </ProfileAction>

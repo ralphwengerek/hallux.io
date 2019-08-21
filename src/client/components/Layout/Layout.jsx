@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import { useSelector } from 'react-redux';
 import {
-  AboutPage, ContactPage, ListPostsPage, NotFoundPage, EditPostPage, ViewPostPage,
+  AboutPage, ContactPage, ListPostsPage, NotFoundPage, ManagePostPage, ViewPostPage,
 } from '../../pages';
 import { Footer } from '../Footer/Footer';
 import { Header } from '../Header/Header';
@@ -64,7 +64,8 @@ export const Layout = () => {
               <Route path={['/tag/:tag', '/']} exact component={ListPostsPage} />
               <Route path="/about" component={AboutPage} />
               <Route exact path="/contact" component={ContactPage} />
-              { hasRole('admin', user) && <Route path="/blog/:slug/edit" component={EditPostPage} />}
+              { hasRole('admin', user) && <Route path="/blog/:slug/edit" component={ManagePostPage} />}
+              { hasRole('admin', user) && <Route path="/blog/create" component={ManagePostPage} />}
               <Route exact path="/blog/:slug" component={ViewPostPage} />
               <Route path="/callback" component={Callback} />
               <Route component={NotFoundPage} />

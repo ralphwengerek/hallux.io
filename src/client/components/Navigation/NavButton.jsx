@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import styled from 'styled-components';
@@ -32,6 +33,7 @@ const StyledNavLink = styled(NavLink)`
   }
   &:hover {
     transform: scale(1.2);
+    color: ${({ theme }) => theme.colors.accent};
   }
 
   ${media.up.phone`

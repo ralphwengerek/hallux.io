@@ -96,7 +96,9 @@ export const Header = () => {
       <NavBarContainer>
         <Company>
           <Hamburger />
-          <Title to="/">Hallux.io</Title>
+          <Title to="/">
+            Hallux.io
+          </Title>
         </Company>
 
         <RightSection>
@@ -113,8 +115,7 @@ export const Header = () => {
             <AvatarLink onClick={onAvatarClick}>
               <Avatar picture={user.picture}>&nbsp;</Avatar>
             </AvatarLink>
-          )
-        }
+          )}
         </RightSection>
       </NavBarContainer>
     </HeaderContainer>

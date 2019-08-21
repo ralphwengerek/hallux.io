@@ -74,7 +74,8 @@ const getPosts = ({ dispatch, getState }) => (next) => (action) => {
 
   if (action.type === FETCH_POSTS) {
     const { posts } = getState();
-    if (!posts.entities.length) {
+
+    if (!posts.ids.length) {
       dispatch(postApiInit());
       dispatch(apiRequest(
         fetchPosts,

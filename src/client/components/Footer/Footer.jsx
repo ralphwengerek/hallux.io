@@ -30,6 +30,7 @@ const FooterLink = styled.a`
     transition: all 0.2s;
     &:hover {
     transform: scale(1.2);
+    color: ${({ theme }) => theme.colors.accent};
     }
   }
 `;

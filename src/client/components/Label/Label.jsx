@@ -31,7 +31,7 @@ export const Label = ({ text, error, showError }) => (
 Label.propTypes = {
   text: PropTypes.string.isRequired,
   error: PropTypes.string,
-  showError: PropTypes.bool,
+  showError: PropTypes.any,
 };
 Label.defaultProps = {
   error: undefined,

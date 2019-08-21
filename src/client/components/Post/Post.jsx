@@ -4,13 +4,16 @@ import styled from 'styled-components';
 import moment from 'moment';
 import Disqus from 'disqus-react';
 import * as Showdown from 'showdown';
+import { useDispatch } from 'react-redux';
+import { Switch, Tooltip } from 'antd';
 import { FaWindowMinimize } from 'react-icons/fa';
 import { Loader } from '../Loader/Loader';
-import { FaSignLanguage } from 'react-icons/fa'
 import { TagList } from '../Tag/TagList';
 import { px } from './../../utils/pixel';
 import { Link } from '../Link/Link';
+import { hasRole } from '../../../shared/utils/rbac';
 import media from '../../utils/mediaQuery';
+import { savePost } from '../../redux/actions/postActions';
 
 const converter = new Showdown.Converter({
   tables: true,
@@ -55,10 +58,12 @@ const PostDivider = styled.div`
   margin-bottom: ${px(8)};
 `;
 
-const EditPostButton = styled(Link)`
-  position: absolute;
-  right: 0px;
+const PostActions = styled.div`
+  padding: ${px(8)};
 `;
+
+const EditPostButton = styled(Link)``;
+
 
 const DisqusFix = styled.div`
   display: block;
@@ -69,18 +74,48 @@ const DisqusFix = styled.div`
   `}
 `;
 
-export const Post = ({ post, isLoading}) => {
+export const Post = ({ post, isLoading, user }) => {
+  const { title, image, content, published, tags, likes, slug, state } = post;
+
+  const dispatch = useDispatch();
   const disqusConfig = {
     url: `https://www.hallux.io/blog/${slug}`,
     identifier: slug,
     title,
   };
   const disqusShortname = 'hallux';
-  const { title, image, content, published, tags, likes, slug } = post;
+
+  const changeState = (value) => {
+    const state = value ? 'published' : 'draft';
+    const updatedPost = {
+      ...post,
+      published: Date.now(),
+      state
+    };
+    dispatch(savePost(updatedPost));
+  };
+
   return isLoading ? <Loader show={isLoading} /> : (
     <>
-      <EditPostButton to={`/blog/${slug}/edit`} >Edit post</EditPostButton>
+
       <PostMeta>
+      { hasRole('admin', user) &&
+        <PostActions>
+          <div>
+          <EditPostButton to={`/blog/${slug}/edit`} >Edit post</EditPostButton>
+          </div>
+          <div>
+          Post state: <Tooltip placement="bottom" title={state === 'published' ? 'Change to Draft state' : 'Change to Published state'}>
+            <Switch
+              checkedChildren={<div>Published</div>}
+              unCheckedChildren={<div>Draft</div>}
+              onChange={changeState}
+              checked={state === 'published'}
+            />
+          </Tooltip>
+          </div>
+        </PostActions>
+      }
         <PostTitle>{title}</PostTitle>
         <PublishDate>{moment(published).format('LL')}</PublishDate>
         <PostImage src={image} alt={title} />

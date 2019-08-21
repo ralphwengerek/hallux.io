@@ -2,6 +2,7 @@
 import handleActions from '../handleActions';
 import { combineReducers } from 'redux';
 import merge from 'lodash/merge';
+import orderBy from 'lodash/orderBy';
 
 import {
   POST_API_INIT,
@@ -76,7 +77,7 @@ const tagsReducer = handleActions({
 export const getAllPosts = (state) =>{
   const { posts } = state;
   return  ({
-    entities: posts.ids.map(slug => posts.entities[slug]),
+    entities: orderBy(posts.ids.map(slug => posts.entities[slug]), ['published'], ['desc']),
     isLoading: posts.requests > 0,
     error: posts.error,
   });

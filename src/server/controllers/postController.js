@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import mongoose from 'mongoose';
 import { hasRole } from '../../shared/utils/rbac';
 
@@ -8,9 +9,7 @@ export const findAll = (req, res) => {
 
   const query = isAdmin
     ? Post.where({})
-    : Post.where({
-      published: { $exists: true },
-    });
+    : Post.where('state').equals('published');
 
   query.find()
     .then((posts) => {
@@ -46,7 +45,7 @@ export const createPost = (req, res) => {
 };
 
 export const updatePost = (req, res) => {
-  Post.findOneAndUpdate({ slug: req.params.slug }, req.body, { new: true })
+  Post.findOneAndUpdate({ _id: req.body._id }, req.body, { new: true })
     .then((post) => {
       res.json(post);
     })

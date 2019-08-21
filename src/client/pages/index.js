@@ -1,6 +1,6 @@
 import AboutPage from './AboutPage';
 import ContactPage from './ContactPage';
-import EditPostPage from './EditPostPage';
+import ManagePostPage from './ManagePostPage';
 import ListPostsPage from './ListPostsPage';
 import NotFoundPage from './NotFoundPage';
 import ViewPostPage from './ViewPostPage';
@@ -8,7 +8,7 @@ import ViewPostPage from './ViewPostPage';
 export {
   AboutPage,
   ContactPage,
-  EditPostPage,
+  ManagePostPage,
   ListPostsPage,
   NotFoundPage,
   ViewPostPage,

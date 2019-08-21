@@ -1,6 +1,7 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 
-const SvgHallux = props => (
+const SvgHallux = (props) => (
   <svg height="1em" viewBox="0 -2 479.395 479" width="1em" {...props}>
     <linearGradient id="hallux_svg__a">
       <stop offset={0} stopColor="#006df0" />

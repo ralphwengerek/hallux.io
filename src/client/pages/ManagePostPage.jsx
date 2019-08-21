@@ -4,17 +4,22 @@ import { fetchPost, savePost } from '../redux/actions/postActions';
 import useRouter from '../hooks/useRouter';
 import { getPostBySlug } from '../redux/reducers/postReducer';
 import { PostEditor } from '../components/Post/PostEditor';
+import { initialValues } from '../components/Post/PostEditorSchema';
 
-const EditPostPage = () => {
-  const { match: { params: { slug } } } = useRouter();
+const ManagePostPage = () => {
   const dispatch = useDispatch();
-  const post = useSelector(state => getPostBySlug(state, slug));
+
+  const { match: { params: { slug } } } = useRouter();
+
+  const post = slug ? useSelector((state) => getPostBySlug(state, slug)) : initialValues;
 
   React.useEffect(() => {
-    dispatch(fetchPost(slug));
+    if (slug) {
+      dispatch(fetchPost(slug));
+    }
   }, [slug]);
 
-  const submitPost = values => dispatch(savePost(values));
+  const submitPost = (values) => dispatch(savePost(values));
 
   return (
     <div>
@@ -23,4 +28,4 @@ const EditPostPage = () => {
   );
 };
 
-export default EditPostPage;
+export default ManagePostPage;
