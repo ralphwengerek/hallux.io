@@ -157,5 +157,8 @@
     "staticPath": [
       "./src/client/static"
     ]
+  },
+  "engines": {
+    "node": "12.4.0"
   }
 }
