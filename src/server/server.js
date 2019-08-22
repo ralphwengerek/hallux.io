@@ -36,7 +36,7 @@ if (config.isProduction || config.isStaging) {
   console.log('Serving from: ', path.join(__dirname, 'public'));
   app.use(express.static(path.join(__dirname, 'public')));
   app.get('*', (req, res) => {
-    res.sendfile(path.join(__dirname, 'index.html'));
+    res.sendfile(path.join(__dirname, 'public/index.html'));
   });
 } else {
   // Redirect to local dev server
