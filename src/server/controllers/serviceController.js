@@ -12,7 +12,7 @@ export const sendMail = (req, res) => {
     from: contactForm.email,
     subject: 'HALLUX.IO: CONTACT',
     text: contactForm.message,
-    html: '<strong>NEW REQUEST</strong>',
+    html: `<strong>NEW REQUEST</strong><p>${contactForm.message}</p>`,
   };
 
   if (config.isProduction) {

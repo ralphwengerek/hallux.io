@@ -28,11 +28,16 @@ app.use(bodyParser.json());
 //   secret: 'hallux.io', cookie: { maxAge: 60000 }, resave: false, saveUninitialized: false,
 // }));
 
+// API ROUTES
 configureRoutes(app);
 
+// STATIC ROUTES
 if (config.isProduction || config.isStaging) {
   console.log('Serving from: ', path.join(__dirname, 'public'));
   app.use(express.static(path.join(__dirname, 'public')));
+  app.get('*', (req, res) => {
+    res.sendfile(path.join(__dirname, 'index.html'));
+  });
 } else {
   // Redirect to local dev server
   app.get('*', (req, res) => {
