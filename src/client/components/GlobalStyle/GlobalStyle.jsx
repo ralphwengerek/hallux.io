@@ -43,23 +43,23 @@ export const GlobalStyle = createGlobalStyle`
       font-size: ${px(24)};
 
       ${media.up.tablet`
-        font-size: ${px(32)};
+        font-size: ${px(28)};
       `}
 
       ${media.up.desktop`
-        font-size: ${px(40)};
+        font-size: ${px(32)};
       `}
     }
 
     h3 {
-      font-size: ${px(16)};
+      font-size: ${px(18)};
 
       ${media.up.tablet`
         font-size: ${px(24)};
       `}
 
       ${media.up.desktop`
-        font-size: ${px(40)};
+        font-size: ${px(28)};
       `}
     }
 
@@ -85,6 +85,10 @@ export const GlobalStyle = createGlobalStyle`
       border-top: none;
     }
 
+    /* Highlight.js */
+    .hljs {
+      border-radius: 4px;
+    }
   `}
 `;
 

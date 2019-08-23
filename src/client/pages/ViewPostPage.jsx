@@ -24,12 +24,14 @@ const ViewPostPage = () => {
       { post.entity && (
       <Helmet>
         <title>
-        Hallux.io -
-          {' '}
           {post.entity.title}
         </title>
         <link rel="canonical" href={`${config.baseUrl}/blog/${post.entity.slug}`} />
         <meta name="description" content={post.entity.summary.substring(0, 145).concat('...')} />
+        <meta name="og:title" property="og:title" content={post.entity.title} />
+        <meta name="og:description" property="og:description" content={post.entity.summary} />
+        <meta name="og:image" property="og:image" content={`${config.baseUrl}${post.entity.image}`} />
+        <meta name="twitter:card" content={post.entity.summary} />
       </Helmet>
       )}
       <Post post={post.entity} isLoading={post.isLoading} user={user} />
