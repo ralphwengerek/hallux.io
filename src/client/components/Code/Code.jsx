@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import PropTypes from 'prop-types';
 import Highlight, { defaultProps } from 'prism-react-renderer';
@@ -18,7 +19,7 @@ const lineNumberStyle = {
 };
 
 export const Code = ({ code, language, highlight }) => {
-  const shouldHighlightLine = line => highlight.some(l => l === line);
+  const shouldHighlightLine = (line) => highlight.some((l) => l === line);
   return (
     <Highlight
       {...defaultProps}

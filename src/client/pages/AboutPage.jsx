@@ -1,5 +1,6 @@
 import React from 'react';
+import { PageTitle } from '../components/PageTitle/PageTitle';
 
-const AboutPage = () => (<h1>About</h1>);
+const AboutPage = () => (<PageTitle>About</PageTitle>);
 
 export default AboutPage;

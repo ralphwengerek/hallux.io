@@ -12,6 +12,11 @@ export const GlobalStyle = createGlobalStyle`
     *:focus {
       outline: none;
     }
+
+    iframe {
+      min-height: 320px;
+    }
+
     .react-icons {
       vertical-align: middle;
     }

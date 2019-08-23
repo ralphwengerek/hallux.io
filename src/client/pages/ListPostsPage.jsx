@@ -2,12 +2,12 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { PostSummaryList } from '../components/Post/PostSummaryList';
+import { PageTitle } from '../components/PageTitle/PageTitle';
 import { Loader } from '../components/Loader/Loader';
 import { fetchPosts } from '../redux/actions/postActions';
 import { getPostsByTag, getDistinctTags } from '../redux/reducers/postReducer';
 import { TagBrowser } from '../components/Tag/TagBrowser';
 import { media } from '../utils/mediaQuery';
-import { px } from '../utils/pixel';
 import { useRouter } from '../hooks';
 import { Bio } from '../components/Bio/Bio';
 
@@ -22,11 +22,6 @@ const Flexbox = styled.div`
 
 const Column = styled.div``;
 
-const PageTitle = styled.h1`
-  padding: 0 ${px(16)};
-  text-align: center;
-`;
-
 const ListPostsPage = () => {
   const { match: { params: { tag } } } = useRouter();
 
@@ -35,7 +30,7 @@ const ListPostsPage = () => {
     error,
     isLoading,
     entities,
-  } = useSelector(state => getPostsByTag(state, tag));
+  } = useSelector((state) => getPostsByTag(state, tag));
 
   const tags = useSelector(getDistinctTags);
 
@@ -65,8 +60,7 @@ const ListPostsPage = () => {
           <TagBrowser tags={tags} />
         </Column>
       </Flexbox>
-      )
-      }
+      )}
     </>
   );
 };

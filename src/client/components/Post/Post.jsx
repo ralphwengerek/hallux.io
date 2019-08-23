@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import moment from 'moment';
 import Disqus from 'disqus-react';
 import * as Showdown from 'showdown';
+import showdownHighlight from 'showdown-highlight';
 import { useDispatch } from 'react-redux';
 import { Switch, Tooltip } from 'antd';
 import { FaWindowMinimize } from 'react-icons/fa';
@@ -20,7 +21,9 @@ const converter = new Showdown.Converter({
   simplifiedAutoLink: true,
   strikethrough: true,
   tasklists: true,
+  extensions: [showdownHighlight],
 });
+converter.setFlavor('github');
 
 const PostMeta = styled.div`
   text-align: center;
@@ -126,6 +129,10 @@ export const Post = ({ post, isLoading, user }) => {
           <FaWindowMinimize />
         </PostDivider>
         <TagList tags={tags} />
+        <PostContent style={{ textAlign: 'center'}}>
+          Did the article help you? Share it with your friends on social media or comment below!<br/>
+          Recommendations and improvements are always welcome!
+        </PostContent>
         <Disqus.DiscussionEmbed shortname={disqusShortname} config={disqusConfig} />
       </Container>
     </>
