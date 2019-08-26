@@ -22,6 +22,8 @@ export const light = {
     tagBackground: '#f7f7f7',
     // Input
     inputBorder: '#d9d9d9',
+    // Code Styling
+    code: '#efefef',
   },
   typography: {
     fontFamily: 'Nunito Sans, Montserrat',

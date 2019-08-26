@@ -49,6 +49,13 @@ const PostContent = styled.div.attrs({
     padding: ${px(32)};
   `}
 
+code {
+  padding: 0 ${px(3)};
+  border-radius: ${px(4)};
+  background-color: ${({ theme })=> theme.colors.code };
+  font-size: ${px(14)};
+}
+
 .hljs {
   display: block;
   overflow-x: auto;

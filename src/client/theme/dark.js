@@ -22,6 +22,8 @@ export const dark = {
     tagBackground: '#3d3d3d',
     // Input
     inputBorder: '#3fa9ff3d',
+    // Code Styling
+    code: '#484848',
   },
   typography: {
     fontFamily: 'Nunito Sans, Montserrat',
