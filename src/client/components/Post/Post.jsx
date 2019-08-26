@@ -57,6 +57,7 @@ const PostContent = styled.div.attrs({
   color: #ddd;
   border-radius: 5px;
   border: solid 2px #666;
+  font-size: ${px(14)};
 }
 
 .hljs-tag,

@@ -30,8 +30,7 @@ const formValues = {
 
 export const ContactForm = ({ onSubmit, isLoading }) => {
   const [token, setToken] = React.useState(null);
-  // sitekey="6LdlCbEUAAAAAG__gqDYZjZQoVcc_6NPRui0urfR"
-  console.log('TOKEN:', token);
+
   const verifyCallback = (recaptchaToken) => {
     setToken(recaptchaToken);
   };
