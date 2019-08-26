@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { FaBlog, FaInfoCircle, FaEnvelope } from 'react-icons/fa';
+import { FaBlog, FaEnvelope } from 'react-icons/fa';
 import { CSSTransition } from 'react-transition-group';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavButton } from './NavButton';
@@ -77,7 +77,6 @@ export const Navigation = () => {
     >
       <NavigationContainer open={open}>
         <NavButton to="/" onClick={closeMenuAction} icon={<FaBlog />} text="Blog" />
-        <NavButton to="/about" onClick={closeMenuAction} icon={<FaInfoCircle />} text="About" />
         <NavButton to="/contact" onClick={closeMenuAction} icon={<FaEnvelope />} text="Contact" />
       </NavigationContainer>
     </CSSTransition>

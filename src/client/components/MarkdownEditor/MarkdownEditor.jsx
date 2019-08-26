@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import ReactMde from 'react-mde';
 import styled, { css } from 'styled-components';
@@ -5,6 +6,16 @@ import 'react-mde/lib/styles/css/react-mde-all.css';
 
 const StyledMarkdownEditor = styled(ReactMde)`
   ${({ theme }) => css`
+    /* React Markdown Editor */
+    .react-mde.react-mde-tabbed-layout {
+      border: none;
+    }
+    .react-mde .grip {
+      background-color: ${theme.colors.background};
+      color: ${theme.colors.body};
+      border-top: none;
+    }
+
     .mde-header ul.mde-header-group li.mde-header-item button {
       color: ${theme.colors.body};
 
@@ -26,7 +37,7 @@ const StyledMarkdownEditor = styled(ReactMde)`
   `}
 `;
 
-export const MarkdownEditor = props => (
+export const MarkdownEditor = (props) => (
   <StyledMarkdownEditor textAreaProps={{ className: 'ant-input' }} {...props} />
 );
 

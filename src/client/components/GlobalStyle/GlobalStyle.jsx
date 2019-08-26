@@ -75,22 +75,6 @@ export const GlobalStyle = createGlobalStyle`
       color: ${theme.colors.body};
     }
 
-    /* React Markdown Editor */
-    .react-mde.react-mde-tabbed-layout {
-      border: none;
-    }
-    .react-mde .grip {
-      background-color: ${theme.colors.background};
-      color: ${theme.colors.body};
-      border-top: none;
-    }
-
-    /* Highlight.js */
-    .hljs {
-      border-radius: 4px;
-      font-size: 14px;
-    }
-
   `}
 `;
 
