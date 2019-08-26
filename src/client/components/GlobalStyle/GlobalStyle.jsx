@@ -35,7 +35,7 @@ export const GlobalStyle = createGlobalStyle`
       `}
 
       ${media.up.desktop`
-        font-size: ${px(56)};
+        font-size: ${px(48)};
       `}
     }
 
@@ -88,7 +88,9 @@ export const GlobalStyle = createGlobalStyle`
     /* Highlight.js */
     .hljs {
       border-radius: 4px;
+      font-size: 14px;
     }
+
   `}
 `;
 
