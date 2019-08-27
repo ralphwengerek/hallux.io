@@ -7,7 +7,7 @@ export const roles = {
 
 export const hasRole = (role, user) => {
   if (!isEmpty(user)) {
-    return user.roles.includes(role);
+    return user.roles && user.roles.includes(role);
   }
   return false;
 };
