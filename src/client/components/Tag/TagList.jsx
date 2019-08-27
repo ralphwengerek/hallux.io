@@ -16,7 +16,7 @@ const TagsContainer = styled.div`
 
 export const TagList = ({ tags }) => (
   <TagsContainer>
-    {tags.map(t => <Tag key={t} value={t} />)}
+    {tags.map((t) => <Tag key={t} value={t} />)}
   </TagsContainer>
 );
 

@@ -16,7 +16,7 @@ export const PostSummaryList = ({
   <>
     <Loader show={isLoading} />
     <ListContainer>
-      { entities.length > 0 && entities.map(post => (
+      { entities.length > 0 && entities.map((post) => (
         <PostSummary
           key={post.slug}
           slug={post.slug}

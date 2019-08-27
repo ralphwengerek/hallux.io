@@ -55,7 +55,7 @@ const reduxRender = (node,
 
   return {
     ...rendered,
-    rerender: ui => customRender(ui,
+    rerender: (ui) => customRender(ui,
       {
         container: rendered.container,
       }),

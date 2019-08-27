@@ -9,8 +9,6 @@
     "prebuild": "rm -rf .cache/ src/server/public/* build",
     "build": "cross-env NODE_ENV=production babel src -d build && parcel build src/client/index.html --out-dir build/server/public --no-source-maps",
     "heroku-postbuild": "NODE_ENV=production babel src -d build && parcel build src/client/index.html --out-dir build/server/public --no-source-maps",
-    "pretest": "yarn run test:eslint",
-    "test:eslint": "eslint src/ --ext .js --ext .jsx",
     "test": "jest --watch",
     "e2e": "cypress run --reporter junit --reporter-options mochaFile=results/output.xml",
     "lint:css": "stylelint './src/**/*.jsx'",
@@ -123,16 +121,21 @@
     }
   },
   "lint-staged": {
-    "*.{js,jsx}": [
+    "src/**/*.{js,jsx}": [
       "eslint --fix",
-      "git add ."
+      "git add"
     ],
     "*.{scss,css,md}": [
       "prettier --write",
-      "git add ."
+      "git add"
     ]
   },
   "jest": {
+    "testPathIgnorePatterns": [
+      "<rootDir>/build/",
+      "<rootDir>/node_modules/",
+      "<rootDir>/cypress/"
+    ],
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}",
       "!<rootDir>/src/**/index.js"
@@ -142,7 +145,6 @@
       "html"
     ],
     "setupFilesAfterEnv": [
-      "@testing-library/react/cleanup-after-each",
       "@testing-library/jest-dom/extend-expect",
       "jest-styled-components",
       "<rootDir>/src/config/setupTests.js"

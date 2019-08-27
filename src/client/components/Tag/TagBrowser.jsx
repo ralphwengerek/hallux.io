@@ -21,7 +21,7 @@ const TagLink = styled(Link)`
 
 export const TagBrowser = ({ tags }) => (
   <TagBrowserContainer>
-    {tags.map(t => <TagLink key={t.value} to={`/tag/${t.value.toLowerCase()}`}>{`${t.value} (${t.count})`}</TagLink>)}
+    {tags.map((t) => <TagLink key={t.value} to={`/tag/${t.value.toLowerCase()}`}>{`${t.value} (${t.count})`}</TagLink>)}
   </TagBrowserContainer>
 );
 

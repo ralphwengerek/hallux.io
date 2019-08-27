@@ -12,7 +12,7 @@ import { Loader } from '../Loader/Loader';
 import { TagList } from '../Tag/TagList';
 import { px } from './../../utils/pixel';
 import { Link } from '../Link/Link';
-import { hasRole } from '../../../shared/utils/rbac';
+import { hasRole, roles } from '../../../shared/utils/rbac';
 import media from '../../utils/mediaQuery';
 import { savePost } from '../../redux/actions/postActions';
 
@@ -180,7 +180,7 @@ export const Post = ({ post, isLoading, user }) => {
     <>
 
       <PostMeta>
-      { hasRole('admin', user) &&
+      { hasRole(roles.ADMIN, user) &&
         <PostActions>
           <div>
           <EditPostButton to={`/blog/${slug}/edit`} >Edit post</EditPostButton>

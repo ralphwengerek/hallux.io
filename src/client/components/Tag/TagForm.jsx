@@ -19,7 +19,7 @@ export const TagForm = ({
   const [value, setValue] = React.useState('');
 
   const addTag = () => {
-    if (value && !values.some(v => v === value)) {
+    if (value && !values.some((v) => v === value)) {
       push(value);
       setValue('');
     }
@@ -41,7 +41,7 @@ export const TagForm = ({
         id={name}
         name={name}
         value={value}
-        onChange={e => setValue(e.target.value)}
+        onChange={(e) => setValue(e.target.value)}
         autoComplete="off"
         placeholder="Type and press enter to add"
         onKeyDown={handleKeyDown}

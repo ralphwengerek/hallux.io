@@ -1,5 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Helmet } from 'react-helmet';
 import { fetchPost, savePost } from '../redux/actions/postActions';
 import useRouter from '../hooks/useRouter';
 import { getPostBySlug } from '../redux/reducers/postReducer';
@@ -22,9 +23,14 @@ const ManagePostPage = () => {
   const submitPost = (values) => dispatch(savePost(values));
 
   return (
-    <div>
+    <>
+      <Helmet>
+        <title>
+          Edit Post
+        </title>
+      </Helmet>
       <PostEditor post={post.entity} isLoading={post.isLoading} onSubmit={submitPost} />
-    </div>
+    </>
   );
 };
 

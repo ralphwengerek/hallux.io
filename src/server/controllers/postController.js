@@ -1,11 +1,11 @@
 /* eslint-disable no-underscore-dangle */
 import mongoose from 'mongoose';
-import { hasRole } from '../../shared/utils/rbac';
+import { hasRole, roles } from '../../shared/utils/rbac';
 
 const Post = mongoose.model('Post');
 
 export const findAll = (req, res) => {
-  const isAdmin = hasRole('admin', req.user);
+  const isAdmin = hasRole(roles.ADMIN, req.user);
 
   const query = isAdmin
     ? Post.where({})

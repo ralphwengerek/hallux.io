@@ -13,7 +13,7 @@ import { ProfilePanel } from '../ProfilePanel/ProfilePanel';
 import { media } from '../../utils/mediaQuery';
 import { getUserIsAuthenticated, getUser } from '../../redux/reducers/userReducer';
 import ScrollToTop from '../ScrollToTop/ScrollToTop';
-import { hasRole } from '../../../shared/utils/rbac';
+import { hasRole, roles } from '../../../shared/utils/rbac';
 
 const Site = styled.div`
   ${({ theme }) => css`
@@ -63,8 +63,8 @@ export const Layout = () => {
             <Switch>
               <Route path={['/tag/:tag', '/']} exact component={ListPostsPage} />
               <Route exact path="/contact" component={ContactPage} />
-              { hasRole('admin', user) && <Route path="/blog/:slug/edit" component={ManagePostPage} />}
-              { hasRole('admin', user) && <Route path="/blog/create" component={ManagePostPage} />}
+              { hasRole(roles.ADMIN, user) && <Route path="/blog/:slug/edit" component={ManagePostPage} />}
+              { hasRole(roles.ADMIN, user) && <Route path="/blog/create" component={ManagePostPage} />}
               <Route exact path="/blog/:slug" component={ViewPostPage} />
               <Route path="/callback" component={Callback} />
               <Route component={NotFoundPage} />
