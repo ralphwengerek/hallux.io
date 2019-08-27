@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import { Helmet } from 'react-helmet';
 import { PostSummaryList } from '../components/Post/PostSummaryList';
 import { PageTitle } from '../components/PageTitle/PageTitle';
 import { Loader } from '../components/Loader/Loader';
@@ -40,6 +41,9 @@ const ListPostsPage = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Hallux.io - Personal blog of Ralph Wengerek</title>
+      </Helmet>
       <Loader size={50} show={isLoading} />
       { tag ? (
         <PageTitle>
