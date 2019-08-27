@@ -40,19 +40,7 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     h2 {
-      font-size: ${px(24)};
-
-      ${media.up.tablet`
-        font-size: ${px(28)};
-      `}
-
-      ${media.up.desktop`
-        font-size: ${px(32)};
-      `}
-    }
-
-    h3 {
-      font-size: ${px(18)};
+      font-size: ${px(20)};
 
       ${media.up.tablet`
         font-size: ${px(24)};
@@ -60,6 +48,18 @@ export const GlobalStyle = createGlobalStyle`
 
       ${media.up.desktop`
         font-size: ${px(28)};
+      `}
+    }
+
+    h3 {
+      font-size: ${px(18)};
+
+      ${media.up.tablet`
+        font-size: ${px(20)};
+      `}
+
+      ${media.up.desktop`
+        font-size: ${px(22)};
       `}
     }
 

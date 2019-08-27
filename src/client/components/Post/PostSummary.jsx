@@ -49,7 +49,7 @@ const CardContent = styled.div`
   padding: ${px(16)};
 
   ${media.up.phone`
-    padding: ${px(32)};
+    padding: ${px(24)};
   `}
 `;
 
