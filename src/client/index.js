@@ -3,7 +3,6 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Layout, Provider } from './components';
 import 'normalize.css';
-import 'highlight.js/styles/github.css';
 
 const root = document.getElementById('root');
 
