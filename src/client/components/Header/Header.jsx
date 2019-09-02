@@ -15,7 +15,7 @@ import { setTheme } from '../../redux/actions/ui/themeActions';
 import { getTheme } from '../../redux/reducers/uiReducer';
 
 const HeaderContainer = styled.header`
-  box-shadow: 0 0 5px ${({ theme }) => theme.colors.shadow};
+  box-shadow: 0px 10px 20px -10px ${({ theme }) => theme.colors.shadow};
   position: fixed;
   top: 0;
   width: 100%;

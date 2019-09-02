@@ -11,10 +11,12 @@ const updatePost = (post) => axios.put(`${apiUrl}/posts/${post.slug}`, post);
 
 const deletePost = (id) => axios.delete(`${apiUrl}/posts/${id}`);
 
-export {
+const postApi = () => ({
   createPost,
   fetchPosts,
   fetchPost,
   updatePost,
   deletePost,
-};
+});
+
+export default postApi();

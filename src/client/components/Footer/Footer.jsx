@@ -7,7 +7,7 @@ import * as loginActions from '../../redux/actions/userActions';
 import { px } from '../../utils/pixel';
 
 const StyledFooter = styled.footer`
-
+  position: relative;
   background-color: ${({ theme }) => theme.colors.footerBackground};
   color: ${({ theme }) => theme.colors.footer};
   min-height: 40px;
@@ -15,41 +15,64 @@ const StyledFooter = styled.footer`
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  flex-direction: row;
+  padding: ${px(16)};
 
   ${media.up.tablet`
     min-height: 60px;
   `}
 `;
 
-const FooterLink = styled.a`
-  margin: ${px(24)};
-  font-size: ${px(32)};
+const FooterLinksContainer = styled.div`
+  display: flex;
+`;
 
-  > svg {
-    transition: all 0.2s;
-    &:hover {
+const FooterLink = styled.a`
+  margin: 0 ${px(24)};
+  font-size: ${px(32)};
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s;
+  > span {
+    font-size: 12px;
+  }
+
+  &:hover {
     transform: scale(1.2);
     color: ${({ theme }) => theme.colors.accent};
-    }
   }
+
+`;
+
+const AdminLink = styled(FaCaretDown)`
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  top: -6px;
+  color: white;
 `;
 
 export const Footer = () => {
   const dispatch = useDispatch();
   return (
     <StyledFooter>
-      <div>
+      <FooterLinksContainer>
         <FooterLink href="https://github.com/ralphwengerek" target="_blank" rel="noopener noreferrer" title="Github">
           <FaGithub />
+          <span>Github</span>
         </FooterLink>
 
         <FooterLink href="https://www.linkedin.com/in/ralph-wengerek/" target="_blank" rel="noopener noreferrer" title="LinkedIn">
           <FaLinkedin />
+          <span>LinkedIn</span>
         </FooterLink>
-      </div>
-      <div>&copy; Ralph Wengerek</div>
-      <FaCaretDown onClick={() => dispatch(loginActions.login())} />
+      </FooterLinksContainer>
+
+      <AdminLink onClick={() => dispatch(loginActions.login())} />
     </StyledFooter>
   );
 };

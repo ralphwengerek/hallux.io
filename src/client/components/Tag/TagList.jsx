@@ -9,6 +9,9 @@ const TagsContainer = styled.div`
   justify-content: flex-start;
   flex-wrap: wrap;
 
+  &:first-child .tag {
+    margin-left: 0px;
+  }
   > .tag {
     margin: 8px;
   }

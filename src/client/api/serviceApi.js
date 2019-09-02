@@ -4,6 +4,8 @@ import { apiUrl } from '../config';
 
 const sendMail = (email) => axios.post(`${apiUrl}/services/sendmail`, email);
 
-export {
+const serviceApi = () => ({
   sendMail,
-};
+});
+
+export default serviceApi();

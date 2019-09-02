@@ -35,9 +35,9 @@ export const Bio = () => (
         <span style={{ whiteSpace: 'nowrap' }}>Ralph Wengerek</span>
       </BioTitle>
       <div>
-        Develop, Listen, Surf, Eat
+        Develop, Eat, Surf, Repeat
         {' '}
-        <span role="img" aria-label="shaka">🤙</span>
+        <span role="img" aria-label="repeat">🏄‍</span>
       </div>
     </BioInformation>
   </BioContainer>

@@ -20,7 +20,7 @@ import {
 import { SET_THEME } from '../actions/ui/themeActions';
 
 export const initialState = {
-  theme: 'dark',
+  theme: 'light',
   showMenu: false,
   showProfilePanel: false,
 };

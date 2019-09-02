@@ -15,11 +15,11 @@ import {
   savePostFailure,
   SAVE_POST_SUCCESS,
 } from '../actions/postActions';
+
 import { apiRequest } from '../actions/apiActions';
-import {
-  fetchPosts, fetchPost, createPost, updatePost,
-} from '../../api/postApi';
+import postApi from '../../api/postApi';
 import schema from '../schemas/post';
+
 
 const getSinglePost = ({ dispatch, getState }) => (next) => (action) => {
   next(action);
@@ -33,7 +33,7 @@ const getSinglePost = ({ dispatch, getState }) => (next) => (action) => {
     if (!post || !post.content) {
       dispatch(postApiInit());
       dispatch(apiRequest(
-        () => fetchPost(slug),
+        () => postApi.fetchPost(slug),
         schema.POST,
         fetchPostSuccess,
         fetchPostFailure,
@@ -50,7 +50,7 @@ const savePost = ({ dispatch }) => (next) => (action) => {
     const post = action.payload;
     dispatch(postApiInit());
     dispatch(apiRequest(
-      () => (post._id ? updatePost(post) : createPost(post)),
+      () => (post._id ? postApi.updatePost(post) : postApi.createPost(post)),
       schema.POST,
       savePostSuccess,
       savePostFailure,
@@ -78,7 +78,7 @@ const getPosts = ({ dispatch, getState }) => (next) => (action) => {
     if (!posts.ids.length) {
       dispatch(postApiInit());
       dispatch(apiRequest(
-        fetchPosts,
+        postApi.fetchPosts,
         schema.POST_ARRAY,
         fetchPostsSuccess,
         fetchPostsFailure,

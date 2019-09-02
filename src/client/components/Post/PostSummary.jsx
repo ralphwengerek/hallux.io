@@ -1,11 +1,11 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 import { FaCalendarDay } from 'react-icons/fa';
 import moment from 'moment';
+import { px } from '../../utils/pixel';
 import { Link } from '../Link/Link';
 import { Card } from '../Card/Card';
-import { px } from '../../utils/pixel';
 import { TagList } from '../Tag/TagList';
 import { media } from '../../utils/mediaQuery';
 
@@ -19,43 +19,23 @@ const ArticleLink = styled(Link)`
 `;
 
 const CardWrapper = styled.div`
-  margin: ${px(32)} ${px(16)};
-`;
-
-const CardTitle = styled.h2`
-  display: block;
-  margin-bottom: 0px;
-  cursor: pointer;
-  text-transform: uppercase;
-  color: ${({ theme }) => theme.colors.primary};
-  text-decoration: underline;
-`;
-
-const CardImage = styled.img`
-  display: block;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 100%;
-  object-fit: cover;
-  border-radius: 3px 3px 0px 0px;
-`;
-
-const CardSummary = styled.div`
-  margin-bottom: ${px(16)};
-`;
-
-const CardContent = styled.div`
-  padding: ${px(16)};
+  margin: ${px(8)};
 
   ${media.up.phone`
-    padding: ${px(24)};
+    margin: ${px(32)} ${px(16)};
   `}
 `;
 
-const CardFooter = styled.div`
+const CardLayout = styled.div`
   display: flex;
-  justify-content: space-between;
+
+  ${({ hero }) => hero && css`
+    display: block;
+  `}
+`;
+
+const CardSummary = styled.div`
+  margin-bottom: ${px(8)};
 `;
 
 const DateContainer = styled.div`
@@ -70,28 +50,30 @@ const DateContainer = styled.div`
 `;
 
 export const PostSummary = ({
-  title, image, summary, published, tags, slug,
+  title, image, summary, published, tags, slug, hero,
 }) => (
   <CardWrapper>
     <Card>
-      <CardImage src={image} alt={title} title={title} height="140" />
-      <CardContent>
-        <ArticleLink to={`/blog/${slug}`}>
-          <CardTitle>
-            {title}
-          </CardTitle>
-          <DateContainer>
-            <FaCalendarDay />
-            <span>{moment(published).format('LL')}</span>
-          </DateContainer>
-          <CardSummary>
-            {summary}
-          </CardSummary>
-        </ArticleLink>
-        <CardFooter>
-          <TagList tags={tags} />
-        </CardFooter>
-      </CardContent>
+      <CardLayout hero={hero}>
+        <Card.Image src={image} alt={title} title={title} hero={hero} />
+        <Card.Content hero={hero}>
+          <ArticleLink to={`/blog/${slug}`}>
+            <Card.Title>
+              {title}
+            </Card.Title>
+            <DateContainer>
+              <FaCalendarDay />
+              <span>{moment(published).format('LL')}</span>
+            </DateContainer>
+            <CardSummary>
+              {summary}
+            </CardSummary>
+          </ArticleLink>
+          <Card.Footer>
+            <TagList tags={tags} />
+          </Card.Footer>
+        </Card.Content>
+      </CardLayout>
     </Card>
   </CardWrapper>
 );
@@ -103,10 +85,12 @@ PostSummary.propTypes = {
   published: PropTypes.string.isRequired,
   tags: PropTypes.array.isRequired,
   slug: PropTypes.string.isRequired,
+  hero: PropTypes.bool,
 };
 
 PostSummary.defaultProps = {
   image: '',
+  hero: false,
 };
 
 export default PostSummary;

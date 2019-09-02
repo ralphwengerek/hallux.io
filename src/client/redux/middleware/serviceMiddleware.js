@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import { push } from 'connected-react-router';
 import { message } from 'antd';
-import { sendMail as sendMailApi } from '../../api/serviceApi';
+import { serviceApi } from '../../api';
 import { apiRequest } from '../actions/apiActions';
 import {
   serviceApiInit,
@@ -13,6 +13,7 @@ import {
   SEND_MAIL_FAILURE,
 } from '../actions/serviceActions';
 
+
 const submitContactForm = ({ dispatch }) => (next) => (action) => {
   next(action);
 
@@ -20,7 +21,7 @@ const submitContactForm = ({ dispatch }) => (next) => (action) => {
     const mail = action.payload;
     dispatch(serviceApiInit());
     dispatch(apiRequest(
-      () => sendMailApi(mail),
+      () => serviceApi.sendMail(mail),
       undefined,
       sendMailSuccess,
       sendMailFailure,

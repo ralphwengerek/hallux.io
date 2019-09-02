@@ -2,14 +2,14 @@ import * as yup from 'yup';
 
 export const schema = yup.object().shape({
   name: yup.string()
-    .required(),
+    .required('Name is a required field'),
   company: yup.string()
-    .required(),
+    .required('Company is a required field'),
   email: yup.string()
-    .email()
-    .required(),
+    .email('Please enter a valid email address')
+    .required('Email is a required field'),
   message: yup.string()
-    .required(),
+    .required('Message is a required field'),
 });
 
 export default schema;

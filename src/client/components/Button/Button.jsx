@@ -14,10 +14,8 @@ const StyledButton = styled.button.attrs({
     text-decoration: none;
     color: ${colors.primary};
     transition: all 0.2s;
-    border: solid 2px ${colors.primary};
+    border: solid ${px(1)} ${colors.primary};
     padding: ${px(7)};
-    border-radius: ${px(4)};
-    box-shadow: 0 0 5px ${colors.shadow};
     background-color: ${colors.background};
 
     &.active {
@@ -32,7 +30,7 @@ const StyledButton = styled.button.attrs({
     }
     &:hover {
       color: ${colors.accent};
-      border: solid ${px(2)} ${colors.accent};
+      border: solid ${px(1)} ${colors.accent};
       box-shadow: 0 0 2px ${colors.shadow};
       >span {
       }

@@ -16,7 +16,7 @@ export const PostSummaryList = ({
   <>
     <Loader show={isLoading} />
     <ListContainer>
-      { entities.length > 0 && entities.map((post) => (
+      { entities.length > 0 && entities.map((post, i) => (
         <PostSummary
           key={post.slug}
           slug={post.slug}
@@ -25,15 +25,16 @@ export const PostSummaryList = ({
           published={post.published}
           summary={post.summary}
           tags={post.tags}
+          hero={i === 0}
         />
       ))}
     </ListContainer>
     {error && (
-      <h2>
+      <h3>
       Error:
         {' '}
         {error}
-      </h2>
+      </h3>
     )}
 
   </>

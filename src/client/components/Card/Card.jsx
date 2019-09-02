@@ -1,22 +1,27 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
-import { px } from '../../utils/pixel';
-
+import { CardContent } from './CardContent';
+import { CardFooter } from './CardFooter';
+import { CardImage } from './CardImage';
+import { CardTitle } from './CardTitle';
+import { media } from '../../utils/mediaQuery';
 
 const CardContainer = styled.div`
   ${({ theme }) => css`
     background-color: ${theme.colors.background};
-    border-radius: ${px(3)};
-    box-shadow: 0 0 5px ${theme.colors.shadow};
-    transition: box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    border-radius: 0;
+    transition: box-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
     position: relative;
 
-    &:hover {
+    ${media.up.phone`
       box-shadow: 0 0 2px ${theme.colors.shadow};
+    `}
+
+    &:hover {
+      box-shadow: 0px 3px 15px ${theme.colors.shadow};
     }
   `}
-
 `;
 
 export const Card = ({ children }) => (
@@ -24,6 +29,11 @@ export const Card = ({ children }) => (
     {children}
   </CardContainer>
 );
+
+Card.Title = CardTitle;
+Card.Image = CardImage;
+Card.Content = CardContent;
+Card.Footer = CardFooter;
 
 Card.propTypes = {
   children: PropTypes.any.isRequired,

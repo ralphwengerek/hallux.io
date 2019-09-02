@@ -7,11 +7,11 @@ import * as Showdown from 'showdown';
 import showdownHighlight from 'showdown-highlight';
 import { useDispatch } from 'react-redux';
 import { Switch, Tooltip } from 'antd';
-import { FaWindowMinimize } from 'react-icons/fa';
 import { Loader } from '../Loader/Loader';
 import { TagList } from '../Tag/TagList';
 import { px } from './../../utils/pixel';
 import { Link } from '../Link/Link';
+import { Divider } from '../Divider/Divider';
 import { hasRole, roles } from '../../../shared/utils/rbac';
 import media from '../../utils/mediaQuery';
 import { savePost } from '../../redux/actions/postActions';
@@ -34,6 +34,7 @@ const PostImage = styled.img`
   max-width: 100%;
   height: auto;
   max-height: ${px(450)};
+  box-shadow: 0px 0px 10px 0px ${({ theme }) => theme.colors.shadow};
 `;
 
 const PublishDate = styled.div`
@@ -133,12 +134,6 @@ const Container = styled.div`
   margin-bottom: 40px;
 `;
 
-const PostDivider = styled.div`
-  display: block;
-  text-align: center;
-  margin-bottom: ${px(8)};
-`;
-
 const PostActions = styled.div`
   padding: ${px(8)};
 `;
@@ -203,9 +198,7 @@ export const Post = ({ post, isLoading, user }) => {
       </PostMeta>
       <PostContent dangerouslySetInnerHTML={{__html: converter.makeHtml(content)}} />
       <Container>
-        <PostDivider >
-          <FaWindowMinimize />
-        </PostDivider>
+        <Divider />
         <TagList tags={tags} />
         <PostContent style={{ textAlign: 'center'}}>
           Did the article help you? Share it with your friends on social media or comment below!<br/>

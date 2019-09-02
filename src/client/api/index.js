@@ -1,6 +1,7 @@
-/* eslint-disable import/prefer-default-export */
 import postApi from './postApi';
+import serviceApi from './serviceApi';
 
 export {
   postApi,
+  serviceApi,
 };

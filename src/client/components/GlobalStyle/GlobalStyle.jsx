@@ -68,6 +68,7 @@ export const GlobalStyle = createGlobalStyle`
       background-color: ${theme.colors.background};
       color: ${theme.colors.body};
       border-color: ${theme.colors.inputBorder};
+      border-radius: 0;
     }
     .ant-input-group-addon {
       background-color: ${theme.colors.background};
