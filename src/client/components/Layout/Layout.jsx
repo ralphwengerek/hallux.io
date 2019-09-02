@@ -1,9 +1,7 @@
-/* eslint-disable no-console */
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import { useSelector } from 'react-redux';
-import { TransitionGroup, Transition } from 'react-transition-group';
 import {
   ContactPage, ListPostsPage, NotFoundPage, ManagePostPage, ViewPostPage,
 } from '../../pages';
@@ -60,33 +58,18 @@ export const Layout = () => {
       <Site>
         <Header />
         <ContentContainer>
-          <Route render={(location) => {
-            const { key } = location;
-            return (
-              <TransitionGroup component={null}>
-                <Transition
-                  key={key}
-                  appear
-                  onEnter={(node) => console.log(node)} // play(pathname, node, appears)}
-                  timeout={{ enter: 750, exit: 0 }}
-                >
-                  <Switch location={location}>
-                    <Content>
-                      { loggedIn && <ProfilePanel /> }
-                      <Route path={['/tag/:tag', '/']} exact component={ListPostsPage} />
-                      <Route exact path="/contact" component={ContactPage} />
-                      { hasRole(roles.ADMIN, user) && <Route path="/blog/:slug/edit" component={ManagePostPage} />}
-                      { hasRole(roles.ADMIN, user) && <Route path="/blog/create" component={ManagePostPage} />}
-                      <Route exact path="/blog/:slug" component={ViewPostPage} />
-                      <Route path="/callback" component={Callback} />
-                      <Route component={NotFoundPage} />
-                    </Content>
-                  </Switch>
-                </Transition>
-              </TransitionGroup>
-            );
-          }}
-          />
+          <Content>
+            { loggedIn && <ProfilePanel /> }
+            <Switch>
+              <Route path={['/tag/:tag', '/']} exact component={ListPostsPage} />
+              <Route exact path="/contact" component={ContactPage} />
+              { hasRole(roles.ADMIN, user) && <Route path="/blog/:slug/edit" component={ManagePostPage} />}
+              { hasRole(roles.ADMIN, user) && <Route path="/blog/create" component={ManagePostPage} />}
+              <Route exact path="/blog/:slug" component={ViewPostPage} />
+              <Route path="/callback" component={Callback} />
+              <Route component={NotFoundPage} />
+            </Switch>
+          </Content>
         </ContentContainer>
         <Footer />
       </Site>
