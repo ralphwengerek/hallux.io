@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { ThemeProvider } from 'styled-components';
 import { useSelector } from 'react-redux';
+import { getTheme } from 'store/reducers/uiReducer';
 import { light, dark } from '../../theme';
-import { getTheme } from '../../redux/reducers/uiReducer';
 
 const themes = {
   light,

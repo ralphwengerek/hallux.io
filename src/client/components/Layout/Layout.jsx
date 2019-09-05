@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import { useSelector } from 'react-redux';
+import { getUserIsAuthenticated, getUser } from 'store/reducers/userReducer';
 import {
   ContactPage, ListPostsPage, NotFoundPage, ManagePostPage, ViewPostPage,
 } from '../../pages';
@@ -11,7 +12,6 @@ import { GlobalStyle } from '../GlobalStyle/GlobalStyle';
 import { Callback } from '../Auth/Callback';
 import { ProfilePanel } from '../ProfilePanel/ProfilePanel';
 import { media } from '../../utils/mediaQuery';
-import { getUserIsAuthenticated, getUser } from '../../redux/reducers/userReducer';
 import ScrollToTop from '../ScrollToTop/ScrollToTop';
 import { hasRole, roles } from '../../../shared/utils/rbac';
 

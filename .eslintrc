@@ -18,6 +18,11 @@
     "react/forbid-prop-types": "off",
     "consistent-return": "off"
   },
+  "settings": {
+    "import/resolver": {
+      "babel-module": {}
+    }
+  },
   "env": {
     "browser": true,
     "jest": true,

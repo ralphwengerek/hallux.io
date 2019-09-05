@@ -1,12 +1,14 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import { render } from '@testing-library/react';
 import { Provider as ReduxProvider } from 'react-redux';
 import { createStore } from 'redux';
 import { ThemeProvider } from 'styled-components';
 import { Router } from 'react-router-dom';
+import { ConnectedRouter } from 'connected-react-router';
 import { createMemoryHistory } from 'history';
-import mockTheme from './mocks/mockTheme';
-import rootReducer from '../redux/reducers';
+import rootReducer from 'store/reducers';
+import { mockTheme } from './mocks/mockTheme';
 
 const customRender = (node,
   {
@@ -46,9 +48,9 @@ const reduxRender = (node,
   const rendered = render(
     <ReduxProvider store={store}>
       <ThemeProvider theme={theme}>
-        <Router history={history}>
+        <ConnectedRouter history={history}>
           {node}
-        </Router>
+        </ConnectedRouter>
       </ThemeProvider>
     </ReduxProvider>,
   );

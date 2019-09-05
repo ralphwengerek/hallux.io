@@ -4,8 +4,17 @@
     "@babel/preset-react"
   ],
   "plugins": [
+    "react-hot-loader/babel",
     "@babel/plugin-syntax-dynamic-import",
     "@babel/plugin-proposal-class-properties",
-    "babel-plugin-styled-components"
+    "@babel/plugin-transform-runtime",
+    "babel-plugin-styled-components",
+    ["module-resolver", {
+      "alias": {
+        "shared": "./src/shared",
+        "components": "./src/client/components",
+        "store": "./src/client/redux/"
+      }
+    }]
   ]
 }

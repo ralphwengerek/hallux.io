@@ -1,9 +1,10 @@
+import { hot } from 'react-hot-loader';
 import React from 'react';
 import { Provider as ReduxProvider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import PropTypes from 'prop-types';
 import { message } from 'antd';
-import configureStore, { history } from '../../redux/configureStore';
+import configureStore, { history } from 'store/configureStore';
 import { ConnectedThemeProvider } from '../ConnectedThemeProvider/ConnectedThemeProvider';
 import 'antd/dist/antd.css';
 
@@ -28,4 +29,4 @@ Provider.propTypes = {
   children: PropTypes.element.isRequired,
 };
 
-export default Provider;
+export default hot(module)(Provider);

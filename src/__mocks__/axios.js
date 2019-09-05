@@ -1,6 +1,6 @@
 export default {
-  get: jest.fn(),
-  post: jest.fn(),
+  get: jest.fn(() => Promise.resolve('Get')),
+  post: jest.fn(() => Promise.resolve('Post')),
   interceptors: {
     response: {
       use: jest.fn(),
